@@ -1,0 +1,54 @@
+{
+  "name": "website",
+  "description": "Kristof Dewilde's website combining Jekyll static site generator with Vue.js",
+  "version": "0.0.9",
+  "private": true,
+  "author": "Kristof Dewilde <git@krivi.be>",
+  "scripts": {
+    "setup": "bundle install && npm install",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "serve": "bundle exec jekyll serve --config docs/_config.yml --livereload",
+    "start": "nun-p \"dev -- --watch\" serve",
+    "lint": "run-s lint:*",
+    "lint:js": "eslint --ext .js,.vue src *.js",
+    "lint:css": "stylelint \"src/styles/**/*.scss\" --syntax scss"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qrivi/website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Qrivi/website/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^2.5.17"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.2",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-vue": "^4.7.1",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.12.0",
+    "npm-run-all": "^4.1.5",
+    "sass-loader": "^7.0.3",
+    "style-resources-loader": "^1.2.1",
+    "stylelint": "^9.6.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-scss": "^3.2.0",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "vue-loader": "^15.4.1",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.4"
+  }
+}

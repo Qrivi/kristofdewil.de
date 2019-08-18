@@ -1,0 +1,24 @@
+title:       Kristof Dewilde
+description: Hello. This is my website. I hope you like it.
+
+source:    ./docs
+host:       0.0.0.0
+port:       8080
+encoding:   UTF-8
+markdown:   kramdown
+
+permalink:  /blog/:year/:month/:day/:title
+
+feed:
+    path:   /blog/atom.xml
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-redirect-from
+
+exclude:
+# exclude these files from production _site directory
+- ".gitignore"
+- CNAME
