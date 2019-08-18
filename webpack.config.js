@@ -1,7 +1,7 @@
 const child = require('child_process');
 const path = require('path');
 const webpack = require('webpack'); // eslint-disable-line no-unused-vars
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -62,7 +62,7 @@ module.exports = (env, options) => {
         filename: '../_includes/scripts.html',
         template: './templates/scripts.html',
       }),
-      new CleanWebpackPlugin(['_site', 'docs/assets']),
+      new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: ['_site', 'docs/assets']}),
       new VueLoaderPlugin(),
     ],
     // tell webpack to minimize the bundle
