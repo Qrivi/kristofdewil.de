@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      title: "Hello new website"
+      title: "Hello website"
     };
   }
 };
