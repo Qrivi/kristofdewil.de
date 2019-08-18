@@ -13,9 +13,8 @@ export default {
     Navigation
   },
   data() {
-    console.log("Hello world");
     return {
-      title: "Hello website"
+      title: "Hello new website"
     };
   }
 };
