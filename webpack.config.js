@@ -62,7 +62,7 @@ module.exports = (env, options) => {
         filename: '../_includes/scripts.html',
         template: './templates/scripts.html',
       }),
-      new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: ['_site', 'docs/assets']}),
+      new CleanWebpackPlugin(),
       new VueLoaderPlugin(),
     ],
     // tell webpack to minimize the bundle

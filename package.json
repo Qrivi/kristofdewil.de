@@ -6,10 +6,10 @@
   "author": "Kristof Dewilde <git@krivi.be>",
   "scripts": {
     "setup": "bundle install && npm install",
+    "start": "run-p \"dev -- --watch\" serve",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "serve": "bundle exec jekyll serve --config docs/_config.yml --livereload",
-    "start": "run-p \"dev -- --watch\" serve",
     "lint": "run-s lint:*",
     "lint:js": "eslint --ext .js,.vue src *.js",
     "lint:css": "stylelint \"src/styles/**/*.scss\" --syntax scss"
