@@ -5,7 +5,7 @@ before_install:
   - npm install
 script:
   - npm run build
-after_success:
+after_script:
   - ./bin/travis_push_build.sh
 
 env:
