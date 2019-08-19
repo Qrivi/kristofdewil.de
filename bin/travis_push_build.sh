@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 push_build() {
   git checkout master
