@@ -7,13 +7,10 @@ push_build() {
   else
     echo "Last commit was not a Travis build: pushing this build."
 
-    echo "Professional debug 0"
     GH_USER="$(echo ${TRAVIS_REPO_SLUG} | cut -d / -f 1)"
 
-    echo "Professional debug 1"
     git config --global user.name "${GH_USER}'s Build Bot"
     git config --global user.email "travisbuildbot@krivi.be"
-    echo "Professional debug 2"
 
     git checkout master
     git remote rm origin
