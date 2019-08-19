@@ -14,7 +14,12 @@ push_build() {
 
     git add .
     git commit --author "Build Boy <travis@krivi.be>" --message "Travis production build: $TRAVIS_BUILD_NUMBER"
-    git push origin master --quiet > /dev/null 2>&1
+    
+    if [[ "$(git push origin master --porcelain > /dev/null 2>&1)" != *"Done"* ]]
+    then
+      echo "Failed to git push!"
+      exit 1
+    fi
   fi
 }
 
