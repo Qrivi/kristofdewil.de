@@ -1,4 +1,3 @@
-
 #!/bin/sh
 
 push_build() {
