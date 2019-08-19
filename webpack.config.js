@@ -8,6 +8,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (env, options) => {
   const isProductionMode = options.mode === 'production';
+  const onlyVueEnvironment = env.onlyvue;
 
   const webpackConfig = {
     context: path.resolve(__dirname, 'src'),
@@ -50,12 +51,13 @@ module.exports = (env, options) => {
     plugins: [
       { // run shell commands after webpack builds
         apply: compiler => {
-          compiler.hooks.afterEmit.tap('AfterEmitPlugin', () => {
-            child.exec('bundle exec jekyll build --config docs/_config.yml', (err, stdout, stderr) => {
-              if (stdout) process.stdout.write(stdout);
-              if (stderr) process.stderr.write(stderr);
+          if (!onlyVueEnvironment)
+            compiler.hooks.afterEmit.tap('AfterEmitPlugin', () => {
+              child.exec('bundle exec jekyll build --config docs/_config.yml', (err, stdout, stderr) => {
+                if (stdout) process.stdout.write(stdout);
+                if (stderr) process.stderr.write(stderr);
+              });
             });
-          });
         },
       },
       new HtmlWebpackPlugin({

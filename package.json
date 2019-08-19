@@ -9,6 +9,7 @@
     "start": "run-p \"dev -- --watch\" serve",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
+    "build:vue": "webpack --mode production --env.onlyvue yes",
     "serve": "bundle exec jekyll serve --config docs/_config.yml --livereload",
     "lint": "run-s lint:*",
     "lint:js": "eslint --ext .js,.vue src *.js",
