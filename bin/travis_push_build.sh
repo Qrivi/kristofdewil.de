@@ -8,7 +8,7 @@ push_build() {
   then
     echo "Last commit was a Travis build. Not taking any action."
   else
-    echo "Last commit was a code change. Pushing the build."
+    echo "Last commit was a code change. Pushing this build."
 
     git remote rm origin
     git remote add origin https://Qrivi:${GH_TOKEN}@github.com/Qrivi/website.git > /dev/null 2>&1
