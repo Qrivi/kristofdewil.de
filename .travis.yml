@@ -6,7 +6,7 @@ before_install:
 script:
   - npm run build
 after_script:
-  - ./bin/travis_push_build.sh || travis_terminate 1
+  - ./bin/push_build.sh || travis_terminate 1
 
 env:
   global:
