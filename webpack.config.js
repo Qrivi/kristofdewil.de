@@ -7,8 +7,8 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (env, options) => {
-  const isProductionMode = options.mode === 'production';
-  const onlyVueEnvironment = env.onlyvue;
+  const isProductionMode = options && options.mode === 'production';
+  const onlyVueEnvironment = env && env.onlyvue;
 
   const webpackConfig = {
     context: path.resolve(__dirname, 'src'),
