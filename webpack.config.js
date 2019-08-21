@@ -14,8 +14,8 @@ module.exports = (env, options) => {
     context: path.resolve(__dirname, 'src'),
     entry: './app.js',
     output: {
-      path: path.resolve(__dirname, 'docs/assets'),
-      publicPath: '/assets/',
+      path: path.resolve(__dirname, 'assets/js'),
+      publicPath: '/assets/js/',
       filename: isProductionMode ? '[name]-[chunkhash].js' : '[name].js',
     },
     devtool: isProductionMode ? 'source-map' : 'cheap-module-eval-source-map',
@@ -53,7 +53,7 @@ module.exports = (env, options) => {
         apply: compiler => {
           if (!onlyVueEnvironment)
             compiler.hooks.afterEmit.tap('AfterEmitPlugin', () => {
-              child.exec('bundle exec jekyll build --config docs/_config.yml', (err, stdout, stderr) => {
+              child.exec('bundle exec jekyll build', (err, stdout, stderr) => {
                 if (stdout) process.stdout.write(stdout);
                 if (stderr) process.stderr.write(stderr);
               });

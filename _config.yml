@@ -1,7 +1,7 @@
 title:       Kristof Dewilde
 description: Hello. This is my website. I hope you like it.
 
-source:    ./docs
+source:    ./
 host:       0.0.0.0
 port:       8080
 encoding:   UTF-8
@@ -19,6 +19,17 @@ plugins:
   - jekyll-redirect-from
 
 exclude:
-# exclude these files from production _site directory
-- ".gitignore"
-- CNAME
+  - ".babelrc"
+  - ".editorconfig"
+  - ".eslintignore"
+  - ".eslintrc.yml"
+  - ".gitignore"
+  - ".stylelintrc"
+  - ".travis.yml"
+  - "package.json"
+  - "package-lock.json"
+  - "webpack.config.js"
+  - CNAME
+  - bin/
+  - src/
+  - node_modules/

@@ -10,7 +10,7 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "build:vue": "webpack --mode production --env.onlyvue yes",
-    "serve": "bundle exec jekyll serve --config docs/_config.yml --livereload",
+    "serve": "bundle exec jekyll serve --livereload",
     "lint": "run-s lint:*",
     "lint:js": "eslint --ext .js,.vue src *.js",
     "lint:css": "stylelint \"src/styles/**/*.scss\" --syntax scss"
