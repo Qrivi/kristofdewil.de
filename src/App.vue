@@ -1,20 +1,20 @@
 <template>
   <div id="content" role="main">
-    <navigation />
-    <h1>{{ title }}</h1>
+    <AppHeader />
+    <p>{{dummytext}}</p>
   </div>
 </template>
 
 <script>
-import Navigation from "./components/Navigation.vue";
+import AppHeader from "./segments/AppHeader.vue";
 
 export default {
   components: {
-    Navigation
+    AppHeader
   },
   data() {
     return {
-      title: "Hello website"
+      dummytext: "Hello world"
     };
   }
 };

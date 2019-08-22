@@ -61,7 +61,7 @@ module.exports = (env, options) => {
         },
       },
       new HtmlWebpackPlugin({
-        filename: '../_includes/scripts.html',
+        filename: '../../_includes/scripts.html',
         template: './templates/scripts.html',
       }),
       new CleanWebpackPlugin(),
