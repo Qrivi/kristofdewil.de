@@ -61,8 +61,8 @@ module.exports = (env, options) => {
         },
       },
       new HtmlWebpackPlugin({
-        filename: '../../_includes/scripts.html',
-        template: './templates/scripts.html',
+        filename: '../../_includes/main.html',
+        template: './templates/main.html',
       }),
       new CleanWebpackPlugin(),
       new VueLoaderPlugin(),

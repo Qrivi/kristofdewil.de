@@ -14,16 +14,14 @@ export default {
   },
   data() {
     return {
-      dummytext: "Hello world"
+      dummytext: "Hello Denzel"
     };
   }
 };
 </script>
 
-<style lang="scss" scoped>
-h1 {
-  color: $color-primary;
-  font-size: $default-font-size;
-  font-family: $header-font-family;
+<style lang="scss">
+p{
+  padding: 20px;
 }
 </style>

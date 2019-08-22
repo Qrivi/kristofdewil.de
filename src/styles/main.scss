@@ -1,10 +1,27 @@
-/*!
- * Vue Jekyll
- * Copyright 2018-2019 Sonnie Nguyen <info@sonnienguyen.com>
- * Licensed under MIT (https://github.com/sonnienguyen/vue-jekyll/blob/master/LICENSE)
- */
-
 @charset 'UTF-8';
 
-// helpers
-@import 'base/vars';
+@import "base/vars";
+
+body {
+  position: relative;
+  max-width: 100vw;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text);
+  font: 400 1.1em/2em $font-regular;
+  transition: background-color .5s ease-out, color .5s ease-out;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--text);
+}
+
+a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.h {
+  display: none !important;
+}

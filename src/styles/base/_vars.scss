@@ -1,50 +1,18 @@
-/*
- * Variables.
- *
- * This file contains all application-wide Sass variables.
- */
+$font-title: "Parisienne", Arial, sans-serif;
+$font-regular: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-/*
- * Font stacks.
- */
+:root {
+    --background: #ffffff;
+    --text: #111111;
+    --border: #070606;
+    --accent: rgb(165, 17, 74);
+    --dim: rgba(165, 17, 74, .4);
+}
 
-$georgia:                                       Georgia, serif;
-$helvetica:                                     Helvetica, Arial, sans-serif;
-$helveticaneue:                                 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
-
-/*
- * Font family.
- */
-
-$global-font-family:                            $helvetica;
-$header-font-family:                            $helvetica;
-
-/*
- * Color system.
- */
-
-// shades of gray
-$color-gray-base:                               #000;
-$color-gray-darker:                             lighten($color-gray-base, 13%);   // #212
-$color-gray-dark:                               lighten($color-gray-base, 26%);   // #424
-$color-gray:                                    lighten($color-gray-base, 38%);   // #616
-$color-gray-light:                              lighten($color-gray-base, 62%);   // #9e9
-$color-gray-lighter:                            lighten($color-gray-base, 93.5%); // #eee
-$color-gray-lightest:                           lighten($color-gray-base, 96%);   // #f5f
-
-// font colors
-$blue-pill:                                     #007bff;
-$green-tea:                                     #0a5;
-
-$color-primary:                                 $green-tea;
-
-// background colors
-$body-background-color:                         #fff;
-$content-background-color:                      $body-background-color;
-$selection-background-color:                    #b3d4fc;
-
-// text colors
-$base-color-text:                               mix($color-gray-light, $blue-pill, 85%);
-
-// font sizes
-$default-font-size:                             1.6rem;
+body.darkmode {
+    --background: #000;
+    --text: #ffffff;
+    --border: #dedede;
+    --accent: rgb(250, 170, 20);
+    --dim: rgba(250, 170, 20, .4);
+}
