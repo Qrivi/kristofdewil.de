@@ -14,8 +14,8 @@ module.exports = (env, options) => {
     context: path.resolve(__dirname, 'src'),
     entry: './app.js',
     output: {
-      path: path.resolve(__dirname, 'assets/js'),
-      publicPath: '/assets/js/',
+      path: path.resolve(__dirname, 'assets/js/app'),
+      publicPath: '/assets/js/app/',
       filename: isProductionMode ? '[name]-[chunkhash].js' : '[name].js',
     },
     devtool: isProductionMode ? 'source-map' : 'cheap-module-eval-source-map',
@@ -61,8 +61,8 @@ module.exports = (env, options) => {
         },
       },
       new HtmlWebpackPlugin({
-        filename: '../../_includes/main.html',
-        template: './templates/main.html',
+        filename: '../../../_includes/app.html',
+        template: './templates/app.html',
       }),
       new CleanWebpackPlugin(),
       new VueLoaderPlugin(),

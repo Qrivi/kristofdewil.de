@@ -3,7 +3,7 @@ description: Hello. This is my website. I hope you like it.
 
 source:    ./
 host:       0.0.0.0
-port:       8080
+port:       8282
 encoding:   UTF-8
 markdown:   kramdown
 
