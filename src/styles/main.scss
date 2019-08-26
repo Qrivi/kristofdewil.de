@@ -3,13 +3,27 @@
 @import "base/vars";
 
 body {
+  --background: #ffffff;
+  --text: #111111;
+  --border: #070606;
+  --accent: rgb(165, 17, 74);
+  --dim: rgba(165, 17, 74, 0.4);
+
   position: relative;
   max-width: 100vw;
   min-height: 100vh;
   background: var(--background);
   color: var(--text);
+  transition: background-color 0.5s ease-out, color 0.5s ease-out;
   font: 400 1.1em/2em $font-regular;
-  transition: background-color .5s ease-out, color .5s ease-out;
+
+  &.darkmode {
+    --background: #000;
+    --text: #ffffff;
+    --border: #dedede;
+    --accent: rgb(250, 170, 20);
+    --dim: rgba(250, 170, 20, 0.4);
+  }
 }
 
 ::selection {

@@ -1,5 +1,5 @@
 <template>
-  <div id="content" role="main">
+  <div role="application">
     <AppHeader />
     <p>{{dummytext}}</p>
   </div>

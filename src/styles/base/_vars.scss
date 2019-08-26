@@ -1,18 +1,2 @@
 $font-title: "Parisienne", Arial, sans-serif;
 $font-regular: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
-:root {
-    --background: #ffffff;
-    --text: #111111;
-    --border: #070606;
-    --accent: rgb(165, 17, 74);
-    --dim: rgba(165, 17, 74, .4);
-}
-
-body.darkmode {
-    --background: #000;
-    --text: #ffffff;
-    --border: #dedede;
-    --accent: rgb(250, 170, 20);
-    --dim: rgba(250, 170, 20, .4);
-}
