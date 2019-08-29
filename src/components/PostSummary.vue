@@ -2,12 +2,20 @@
   <li class="summary">
     <time :datetime="technicalDate">{{ printableDate }}</time>
     <a :href="link">
-      <h3>{{title}}</h3>
+      <h3>{{ title }}</h3>
     </a>
-    <img v-if="banner" :src="`/assets/img/banners/${banner}`" :alt="title" loading="lazy" />
+    <img
+      v-if="banner"
+      :src="`/assets/img/banners/${banner}`"
+      :alt="title"
+      loading="lazy"
+    >
     <p>{{ short }}</p>
     <ul v-if="tags">
-      <li v-for="(tag, index) in tags" :key="index">
+      <li
+        v-for="(tag, index) in tags"
+        :key="index"
+      >
         <a :href="`/?tag=${tag}`">{{ tag }}</a>
       </li>
     </ul>
@@ -16,21 +24,41 @@
 
 <script>
 export default {
-  name: 'PostSummary',
+  name: "PostSummary",
   props: {
-    title: String,
-    short: String,
-    link: String,
-    date: Date,
-    banner: String,
-    tags: Array
+    title: {
+      type: String,
+      default: "Placeholder for the post title"
+    },
+    short: {
+      type: String,
+      default: "Placeholder for the post description."
+    },
+    link: {
+      type: String,
+      default: "/"
+    },
+    date: {
+      type: Date,
+      default: new Date()
+    },
+    banner: {
+      type: String,
+      default: null
+    },
+    tags: {
+      type: Array,
+      default: function() {
+        return [];
+      }
+    }
   },
   computed: {
-    printableDate: function() {
-      return this.$moment(this.date).format('MMMM D, YYYY');
+    printableDate() {
+      return this.$moment(this.date).format("MMMM D, YYYY");
     },
-    technicalDate: function() {
-      return this.$moment(this.date).format('YYYY-MM-DD');
+    technicalDate() {
+      return this.$moment(this.date).format("YYYY-MM-DD");
     }
   }
 };

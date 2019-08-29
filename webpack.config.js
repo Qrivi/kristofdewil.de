@@ -51,13 +51,14 @@ module.exports = (env, options) => {
     plugins: [
       { // run shell commands after webpack builds
         apply: compiler => {
-          if (!onlyVueEnvironment)
+          if (!onlyVueEnvironment) {
             compiler.hooks.afterEmit.tap('AfterEmitPlugin', () => {
               child.exec('bundle exec jekyll build', (err, stdout, stderr) => {
                 if (stdout) process.stdout.write(stdout);
                 if (stderr) process.stderr.write(stderr);
               });
             });
+          }
         },
       },
       new HtmlWebpackPlugin({
