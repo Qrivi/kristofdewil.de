@@ -20,8 +20,8 @@ push_to_master() {
   # Merge that branch into master
   git fetch
   git checkout master
-  git merge --no-ff build-local
-  git commit --amend -m "Automerged Travis build $TRAVIS_BUILD_NUMBER from develop into master"
+  git merge --no-ff -X theirs build-local
+  git commit --amend -m "Automerge Travis build $TRAVIS_BUILD_NUMBER from develop into master"
   git push origin master | sed "s/${GH_TOKEN}/FILTERED_TOKEN/"
 }
 
