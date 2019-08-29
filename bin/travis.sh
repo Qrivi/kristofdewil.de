@@ -12,12 +12,12 @@ push_to_master() {
 
   git add .
   git commit -m "Updated to use Vue production build"
+  git branch build-local
 
   git fetch
   git checkout master
-
-  git merge -s theirs develop
-  git commit --amend -m "Merged Travis build $TRAVIS_BUILD_NUMBER from develop"
+  git merge -s theirs build-local
+  git commit --amend -m "Merged Travis build $TRAVIS_BUILD_NUMBER from develop into master"
   git push origin master | sed "s/${GH_TOKEN}/FILTERED_TOKEN/"
 }
 
