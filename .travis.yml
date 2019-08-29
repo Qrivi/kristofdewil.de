@@ -2,12 +2,13 @@ language: node_js
 node_js: node
 
 before_install:
-  - chmod +x ./bin/push_build.sh
+  - chmod +x ./bin/travis.sh
   - npm install
 script:
+  - npm run lint
   - npm run build:vue
 after_script:
-  - ./bin/push_build.sh || travis_terminate 1
+  - if [ "$TRAVIS_BRANCH" = "develop" ]; then ./bin/travis.sh || travis_terminate 1; fi
 
 env:
   global:
