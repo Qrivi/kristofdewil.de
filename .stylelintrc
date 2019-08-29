@@ -1,4 +1,6 @@
 {
   "extends": ["stylelint-config-standard", "stylelint-config-recommended-scss"],
-  "rules": {}
+  "rules": {
+    "color-hex-length": "long"
+  }
 }
