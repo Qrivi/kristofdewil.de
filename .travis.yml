@@ -5,8 +5,8 @@ before_install:
   - chmod +x ./bin/travis.sh
   - npm install
 script:
-  - npm run lint
-  - npm run build:vue
+ # - npm run lint || travis_terminate 1
+  - npm run build:vue || travis_terminate 1
 after_script:
   - if [ "$TRAVIS_BRANCH" = "develop" ]; then ./bin/travis.sh || travis_terminate 1; fi
 

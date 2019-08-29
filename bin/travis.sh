@@ -11,9 +11,13 @@ push_to_master() {
   git remote add origin https://${GH_USER}:${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git | sed "s/${GH_TOKEN}/FILTERED_TOKEN/"
 
   git add .
-  git commit -m "Travis production build: $TRAVIS_BUILD_NUMBER"
+  git commit -m "Updated to use Vue production build"
 
-  git merge origin/master | sed "s/${GH_TOKEN}/FILTERED_TOKEN/"
+  git fetch
+  git checkout master
+
+  git merge -s theirs develop
+  git commit --amend -m "Merged Travis build $TRAVIS_BUILD_NUMBER from develop"
   git push origin master | sed "s/${GH_TOKEN}/FILTERED_TOKEN/"
 }
 
