@@ -7,10 +7,17 @@ port:       8282
 encoding:   UTF-8
 markdown:   kramdown
 
-permalink:  /blog/:year/:month/:day/:title
-
+permalink:  /blog/:year/:title
 feed:
     path:   /blog/atom.xml
+
+defaults:
+  -
+    scope:
+      type: "posts"
+    values:
+      layout: "post"
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag

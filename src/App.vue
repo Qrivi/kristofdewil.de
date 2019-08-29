@@ -1,27 +1,26 @@
 <template>
   <div role="application">
     <AppHeader />
-    <p>{{dummytext}}</p>
+    <main>
+      <SectionActivity />
+    </main>
   </div>
 </template>
 
 <script>
 import AppHeader from "./segments/AppHeader.vue";
+import SectionActivity from "./segments/SectionActivity.vue";
 
 export default {
   components: {
-    AppHeader
-  },
-  data() {
-    return {
-      dummytext: "Hello Denzel"
-    };
+    AppHeader,
+    SectionActivity
   }
 };
 </script>
 
 <style lang="scss">
-p{
-  padding: 20px;
+main{
+ margin: 20px auto;
 }
 </style>

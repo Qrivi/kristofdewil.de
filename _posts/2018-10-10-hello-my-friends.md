@@ -1,7 +1,7 @@
 ---
-layout: post
 title:  Hello my friends!
-baseline: Nec odio eripuit epicuri an, est vero sonet mentitum ut. Cum ut quem nibh. Vel ei alia quando oporteat!
+short: Nec odio eripuit epicuri an, est vero sonet mentitum ut. Cum ut quem nibh. Vel ei alia quando oporteat!
+banner: dummy.jpg
 tags:
   - JavaScript
   - Opinion

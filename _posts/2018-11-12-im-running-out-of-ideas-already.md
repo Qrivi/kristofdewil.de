@@ -1,7 +1,7 @@
 ---
-layout: post
 title:  I'm running out of ideas already
-baseline: Ipsum soluta lucilius eu cum. Movet electram duo ei, sea quod purto case ex, ea mazim choro cotidieque pri.
+short: Ipsum soluta lucilius eu cum. Movet electram duo ei, sea quod purto case ex, ea mazim choro cotidieque pri.
+banner: dummy.jpg
 tags:
   - PHP
   - Opinion

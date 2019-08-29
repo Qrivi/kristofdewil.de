@@ -1,9 +1,9 @@
 ---
-layout: post
 title:  Welcome to Jekyll!
-baseline: Ullum mazim facilis cu pro, no porro summo qui. Pri an odio modus offendit, vocibus mnesarchum qui id.
+short: Ullum mazim facilis cu pro, no porro summo qui. Pri an odio modus offendit, vocibus mnesarchum qui id.
+banner: dummy.jpg
 tags:
-  - jekyll
+  - Jekyll
 ---
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
