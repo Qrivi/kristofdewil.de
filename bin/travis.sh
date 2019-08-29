@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-push_to_master() {
+push_master() {
   GH_USER="$(echo ${TRAVIS_REPO_SLUG} | cut -d / -f 1)"
 
   # Set git user credentials
@@ -25,4 +25,9 @@ push_to_master() {
   git push origin master | sed "s/${GH_TOKEN}/FILTERED_TOKEN/"
 }
 
-push_to_master
+if [ "$TRAVIS_BRANCH" = "develop" ]
+  then
+    push_master
+  else
+    echo "Build was not created from the develop branch: no further actions required."
+fi
