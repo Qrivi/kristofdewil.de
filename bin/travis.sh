@@ -16,7 +16,7 @@ push_to_master() {
 
   git fetch
   git checkout master
-  git merge -s theirs build-local
+  git merge build-local
   git commit --amend -m "Merged Travis build $TRAVIS_BUILD_NUMBER from develop into master"
   git push origin master | sed "s/${GH_TOKEN}/FILTERED_TOKEN/"
 }

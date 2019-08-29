@@ -31,6 +31,7 @@ export default {
   },
   mounted() {
     this.axios.get("/api/posts.json.x").then(response => {
+      console.log('hello');
       this.posts = response.data;
     });
   }
