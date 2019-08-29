@@ -2,7 +2,9 @@
   <section id="activity">
     <h2 class="h">Recent activity</h2>
     <ul>
-      <PostSummary v-for="post in posts" :key="`${post.date} | ${post.title}`"
+      <PostSummary
+        v-for="post in posts"
+        :key="`${post.date} | ${post.title}`"
         :title="post.title"
         :short="post.short"
         :link="post.link"
@@ -29,7 +31,6 @@ export default {
   },
   mounted() {
     this.axios.get("/api/posts.json.x").then(response => {
-      console.log("making a change");
       this.posts = response.data;
     });
   }
