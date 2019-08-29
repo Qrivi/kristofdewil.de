@@ -8,14 +8,14 @@
 </template>
 
 <script>
-import AppHeader from "./segments/AppHeader.vue";
-import SectionActivity from "./segments/SectionActivity.vue";
+import AppHeader from './segments/AppHeader.vue';
+import SectionActivity from './segments/SectionActivity.vue';
 
 export default {
   components: {
     AppHeader,
-    SectionActivity
-  }
+    SectionActivity,
+  },
 };
 </script>
 

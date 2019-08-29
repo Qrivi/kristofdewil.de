@@ -1,6 +1,8 @@
 <template>
   <section id="activity">
-    <h2 class="h">Recent activity</h2>
+    <h2 class="h">
+      Recent activity
+    </h2>
     <ul>
       <PostSummary
         v-for="post in posts"
@@ -17,23 +19,23 @@
 </template>
 
 <script>
-import PostSummary from "../components/PostSummary.vue";
+import PostSummary from '../components/PostSummary.vue';
 
 export default {
-  name: "SectionActivity",
+  name: 'SectionActivity',
   components: {
-    PostSummary
+    PostSummary,
   },
   data() {
     return {
-      posts: []
+      posts: [],
     };
   },
   mounted() {
-    this.axios.get("/api/posts.json.x").then(response => {
+    this.axios.get('/api/posts.json.x').then(response => {
       this.posts = response.data;
     });
-  }
+  },
 };
 </script>
 

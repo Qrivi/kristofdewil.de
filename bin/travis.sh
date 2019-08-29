@@ -14,7 +14,7 @@ push_to_master() {
 
   # Push the production build to a temporary branch
   git add .
-  git commit -m "Updated to use Vue production build"
+  git commit -m "Changed to a Vue production mode build"
   git branch build-local
 
   # Merge that branch into master
