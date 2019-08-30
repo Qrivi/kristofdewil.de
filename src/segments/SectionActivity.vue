@@ -32,7 +32,7 @@ export default {
     };
   },
   mounted() {
-    this.axios.get('/api/posts.json.x').then(response => {
+    this.axios.get('/api/posts.json.liquid').then(response => {
       this.posts = response.data;
     });
   },
