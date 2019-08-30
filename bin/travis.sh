@@ -6,7 +6,7 @@ push_master() {
 
   # Set git user credentials
   git config --global user.name "${GH_USER}'s Build Bot"
-  git config --global user.email "travisbuildbot@krivi.be"
+  git config --global user.email "buildbot@krivi.be"
 
   # Restore origin remote
   git remote rm origin
