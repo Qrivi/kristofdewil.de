@@ -7,6 +7,9 @@
 
     <link rel="stylesheet" media="screen" href="assets/css/screen.css">
     <link rel="stylesheet" media="print" href="assets/css/print.css">
+    {% if page.layout == 'post' %}
+    <link rel="stylesheet" media="print" href="assets/css/post.css">
+    {% endif %}
 
     <script defer src="assets/js/colorscheme.js"></script>
 </head>
