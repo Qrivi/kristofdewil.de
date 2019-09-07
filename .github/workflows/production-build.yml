@@ -3,10 +3,7 @@ name: production build
 on:
   push:
     paths:
-    - '*.js'
-    - '*.vue'
-    - '*.css'
-    - '*.scss'
+    - 'assets/js/app/*'
     branches:
     - master
 
