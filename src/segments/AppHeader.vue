@@ -69,7 +69,7 @@
       </svg>
     </div>
     <h1>Kristof Dewilde</h1>
-    <em>Full stack Java developer</em>
+    <em>{{profession}}</em>
   </header>
 </template>
 
@@ -77,6 +77,13 @@
 export default {
   name: "AppHeader",
   computed: {
+    profession() {
+      const titles = [
+        "Full stack Java Developer",
+        "Just a regular innocent boy"
+      ];
+      return titles[Math.floor(Math.random() * titles.length)];
+    },
     typewriter() {
       const messages = [
         "Hello, please hire me",
