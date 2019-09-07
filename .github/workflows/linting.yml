@@ -8,5 +8,6 @@ jobs:
     steps:
     - name: Code quality check
       run: |
+        cd ..
         npm install
         ls
