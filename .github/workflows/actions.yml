@@ -26,12 +26,11 @@ jobs:
         npm install
         npm audit
         npm run lint
-     - name: Make production build
-       if: github.ref == refs/heads/master
-       env:
-         GITHUB_ACCES: ${{ secrets.GITHUB_ACCESS }}
-       run: |
-         npm run build:vue
-         chmod +x ./bin/push_build.sh
-         ./bin/push_build.sh
-        
+    - name: Make production build
+      if: github.ref == refs/heads/master
+      env:
+        GITHUB_ACCES: ${{ secrets.GITHUB_ACCESS }}
+      run: |
+        npm run build:vue
+        chmod +x ./bin/push_build.sh
+        ./bin/push_build.sh     
