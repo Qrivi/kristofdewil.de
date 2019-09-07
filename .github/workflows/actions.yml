@@ -1,4 +1,4 @@
-name: quality checks
+name: CI/CD
 
 on:
   push:
@@ -19,3 +19,15 @@ jobs:
         npm install
         npm audit
         npm run lint
+
+  build:
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+    - name: make production build
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        chmod +x ../bin/prod.sh
+        ../bin/prod.sh
