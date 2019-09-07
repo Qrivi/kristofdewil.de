@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: install and lint
     - uses: actions/checkout@master
     - uses: actions/setup-node@master
       with:
@@ -29,7 +28,6 @@ jobs:
     needs: lint
 
     steps:
-    - name: make production build
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - uses: actions/checkout@master
