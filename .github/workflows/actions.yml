@@ -29,5 +29,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        chmod +x ../bin/prod.sh
-        ../bin/prod.sh
+        cd ../..
+        chmod +x ./bin/prod.sh
+        ./bin/prod.sh
