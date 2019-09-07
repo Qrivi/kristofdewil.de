@@ -27,7 +27,7 @@ jobs:
         npm audit
         npm run lint
     - name: Make production build
-      if: github.ref == refs/heads/master
+      if: github.ref == 'refs/heads/master'
       env:
         GITHUB_ACCES: ${{ secrets.GITHUB_ACCESS }}
       run: |
