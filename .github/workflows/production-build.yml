@@ -20,6 +20,8 @@ jobs:
       run: |
         npm install
         npm run build:vue
+        git config --global user.name "${GITHUB_ACTOR}'s Build Bot"	
+        git config --global user.email "buildbot@krivi.be"
         git add .
         git commit -m "Switched to Vue production build"
         git push
