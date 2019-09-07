@@ -26,6 +26,7 @@ set -e
 
  if [[ $GITHUB_REF == *"master"* ]]
   then
+    npm install
     npm run build:vue
     push_master
   else
