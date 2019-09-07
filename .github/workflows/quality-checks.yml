@@ -3,10 +3,7 @@ name: quality checks
 on:
   push:
     paths:
-    - '*.js'
-    - '*.vue'
-    - '*.css'
-    - '*.scss'
+    - 'src/*'
 
 jobs:
   lint:
