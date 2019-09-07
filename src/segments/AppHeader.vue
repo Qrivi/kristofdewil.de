@@ -109,7 +109,7 @@ header {
       path {
         fill: var(--text);
         opacity: 0;
-        animation: appear 0.1s 6s ease-out forwards;
+        animation: appear 0.1s 6.5s ease-out forwards;
 
         &#k01,
         &#r02,
@@ -133,21 +133,21 @@ header {
         &#w10,
         &#l12 {
           animation-duration: 1s;
-          animation-delay: 6.25s;
+          animation-delay: 6.75s;
         }
         &#k01,
         &#t05,
         &#e09,
         &#d13 {
           animation-duration: 1s;
-          animation-delay: 6.5s;
+          animation-delay: 7s;
         }
         &#o06,
         &#d08,
         &#e14,
         &#f07 {
           animation-duration: 1s;
-          animation-delay: 6.75s;
+          animation-delay: 7.25s;
         }
 
         @keyframes appear {
@@ -159,7 +159,7 @@ header {
       }
 
       g {
-        animation: slide 1s 5.5s ease-in-out forwards;
+        animation: slide 1s 6s ease-in-out forwards;
 
         @keyframes slide {
           to {
@@ -188,8 +188,8 @@ header {
       white-space: nowrap;
       border-right: 8px solid;
       font: 1em/1em $font-monospace;
-      animation: typing 5s steps(21, end) 1s forwards,
-        caret 1s step-end infinite;
+      animation: typing 5s steps(21, end) 1.5s forwards,
+        caret 0.75s step-end infinite;
 
       @keyframes typing {
         60%,
