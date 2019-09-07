@@ -1,0 +1,28 @@
+name: production build
+
+on:
+  push:
+    paths:
+    - '*.js'
+    - '*.vue'
+    - '*.css'
+    - '*.scss'
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: 12.x
+    - name: build for production
+      run: |
+        npm install
+        npm run build:vue
+        git add .
+        git commit -m "Switched to Vue production build"
+        git push
