@@ -116,7 +116,7 @@ header {
         &#d08,
         &#e09,
         &#w10 {
-          transform: translate(65px);
+          transform: translate(45px);
         }
         &#s04,
         &#t05,
@@ -125,7 +125,7 @@ header {
         &#l12,
         &#d13,
         &#e14 {
-          transform: translate(-65px);
+          transform: translate(-45px);
         }
 
         &#r02,
@@ -133,24 +133,21 @@ header {
         &#w10,
         &#l12 {
           animation-duration: 1s;
-          animation-delay: 6.5s;
+          animation-delay: 6.25s;
         }
         &#k01,
         &#t05,
         &#e09,
         &#d13 {
           animation-duration: 1s;
-          animation-delay: 6.75s;
+          animation-delay: 6.5s;
         }
         &#o06,
         &#d08,
-        &#e14 {
-          animation-duration: 1s;
-          animation-delay: 7s;
-        }
+        &#e14,
         &#f07 {
           animation-duration: 1s;
-          animation-delay: 7.25s;
+          animation-delay: 6.75s;
         }
 
         @keyframes appear {
@@ -183,7 +180,7 @@ header {
       box-sizing: content-box;
       position: absolute;
       top: 25px;
-      left: calc(50%);
+      left: 50%;
       display: block;
       padding: 8px 0 6px;
       width: 0;
@@ -197,7 +194,7 @@ header {
       @keyframes typing {
         60%,
         80% {
-          width: 222px;
+          width: 200px;
         }
         99% {
           width: 0;
