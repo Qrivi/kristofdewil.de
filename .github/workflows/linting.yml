@@ -9,4 +9,4 @@ jobs:
     - name: Code quality check
       run: |
         npm install
-        npm run lint
+        ls
