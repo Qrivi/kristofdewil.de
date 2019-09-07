@@ -1,12 +1,6 @@
 <!doctype html>
 <html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cool Title???</title>
-  </head>
+  {% include head.html %}
 
   <body>
     <article class="post">
@@ -19,7 +13,7 @@
       </div>
 
       <div class="date">
-        Written on {{ page.date | date: "%B %e, %Y" }}
+        Written on {{ page.date | date: "%B %e, %Y" }}!
       </div>
     </article>
   </body>

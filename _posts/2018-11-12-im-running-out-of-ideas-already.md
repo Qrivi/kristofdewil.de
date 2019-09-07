@@ -1,5 +1,5 @@
 ---
-title:  I'm running out of ideas already
+title:  This will be my style guide
 short: Ipsum soluta lucilius eu cum. Movet electram duo ei, sea quod purto case ex, ea mazim choro cotidieque pri.
 banner: dummy.jpg
 tags:
@@ -7,8 +7,40 @@ tags:
   - Opinion
 ---
 
-Lorem ipsum dolor sit amet, ea sonet tantas usu, labore accusam referrentur ea vel, disputationi voluptatibus in per. Affert quaestio accommodare eos et. Autem democritum an vis, vim diam dignissim efficiendi te, choro principes ut has. Dicunt partiendo persequeris ei pri, in adhuc audire aperiam vel. Cu nullam vidisse denique usu, vel unum minim ex. Malis dicunt percipitur pri in, te duo reque dicit voluptua. Veri oratio et est, mutat tritani at sit.
+This is a pragraph. Pellentesque habitant morbi tristique senectus et netus et malesuada fames [ac turpis egestas](http://krivi.be). Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis.
 
-Dicant consectetuer comprehensam vim ad, vidisse virtute saperet pro ei, ex adhuc modus mundi eam. Sint quando nam at. Et idque ludus qui. Usu maiorum civibus no, qui dissentias mediocritatem te, odio debet nihil qui an.
+# This is an H1
+Quisque facilisis erat a dui. Nam malesuada ornare dolor. Cras gravida, diam sit amet rhoncus ornare, erat elit consectetuer erat, id egestas pede nibh eget odio. Proin tincidunt, velit vel porta elementum, magna diam molestie sapien, non aliquet massa pede eu diam. Aliquam iaculis. Fusce et ipsum et nulla tristique facilisis.
 
-Ex qui facer accumsan invidunt, has etiam ceteros adolescens ei, delenit lobortis praesent eos ut. Aliquam torquatos ea cum. Illum principes hendrerit at est. Latine tibique cum ne, cu erant graeco appetere quo, an prima postea postulant sed. Congue verterem vim ad.
+## This is an H2
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero.
+
+### This is an H3
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero.
+
+#### This is an H4
+Quisque facilisis erat a dui. Nam malesuada ornare dolor. Cras gravida, diam sit amet rhoncus ornare, erat elit consectetuer erat, id egestas pede nibh eget odio. Proin tincidunt, velit vel porta elementum, magna diam molestie sapien, non aliquet massa pede eu diam. Aliquam iaculis.
+
+# Quoting
+Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero.
+
+> Creativity is allowing yourself to make mistakes. Design is knowing which ones to keep. <footer>Scott Adams</footer>
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero.
+
+# Syntax highlighting
+
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
+
+```python
+s = "Python syntax highlighting"
+print s
+```
+
+```
+No language indicated, so no syntax highlighting.
+But let's throw in a <b>tag</b>.
+```
