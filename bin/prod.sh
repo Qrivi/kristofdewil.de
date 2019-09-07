@@ -10,7 +10,7 @@ set -e
 
    # Restore origin remote
   git remote rm origin
-  git remote add origin https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git | sed "s/${GITHUB_TOKEN}/FILTERED_TOKEN/"
+  git remote add origin https://${GITHUB_USER}:${GITHUB_PASS}@github.com/${GITHUB_REPOSITORY}.git | sed "s/${GITHUB_TOKEN}/FILTERED_TOKEN/"
 
    # Push the production build to a temporary branch
   git add .
