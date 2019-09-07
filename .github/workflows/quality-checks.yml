@@ -1,19 +1,24 @@
-name: Quality Checks
+name: quality checks
 
-on: [push]
+on:
+  push:
+    paths:
+    - '*.js'
+    - '*.vue'
+    - '*.css'
+    - '*.scss'
 
 jobs:
   lint:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-node@master
       with:
-        node-version: 12.x 
+        node-version: 12.x
     - name: install and lint
       run: |
         npm install
         npm audit
         npm run lint
-      
