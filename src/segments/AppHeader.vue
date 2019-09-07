@@ -82,7 +82,6 @@ export default {
         "Full stack Java Developer",
         "Full stack Java Developer",
         "Full stack Java Developer",
-        "Full stack Java Developer",
         "Just a regular innocent boy"
       ];
       return titles[Math.floor(Math.random() * titles.length)];
