@@ -13,7 +13,8 @@
     "serve": "bundle exec jekyll serve --livereload",
     "lint": "run-s lint:*",
     "lint:js": "eslint --ext .js,.vue src *.js",
-    "lint:css": "stylelint \"src/styles/**/*.scss\" --syntax scss"
+    "lint:css": "stylelint \"src/styles/**/*.scss\" --syntax scss",
+    "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix"
   },
   "repository": {
     "type": "git",
