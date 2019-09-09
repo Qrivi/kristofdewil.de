@@ -71,6 +71,11 @@ li.summary {
   padding: 10px 20px;
   border-left: solid 1px var(--dim);
 
+  @media only screen and (max-width: 650px) {
+    font-size: .9em;
+    margin: 20px 10px;
+  }
+
   &:hover img {
     opacity: 0.1;
   }
