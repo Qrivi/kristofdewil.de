@@ -32,9 +32,13 @@ export default {
 
 <style lang="scss">
 main{
-  margin: 20px auto;
+  margin: 120px auto 20px;
   animation: fade 1s ease-out forwards;
   opacity: 0;
+
+  @media only screen and (max-width: 650px) {
+    margin-top: 20px;
+  }
 
   @keyframes fade {
     100% {
