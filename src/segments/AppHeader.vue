@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { headroom } from 'vue-headroom'
+import { headroom } from 'vue-headroom';
 
 export default {
   name: "AppHeader",
@@ -218,7 +218,7 @@ h1 {
     animation: typing 5s steps(21, end) 1.5s forwards, caret 0.75s step-end infinite;
 
     @media only screen and (max-width: 650px) {
-      display: none;
+      visibility: hidden;
     }
 
     @keyframes typing {
