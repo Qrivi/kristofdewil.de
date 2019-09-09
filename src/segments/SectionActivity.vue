@@ -19,23 +19,23 @@
 </template>
 
 <script>
-import PostSummary from '../components/PostSummary.vue';
+import PostSummary from "../components/PostSummary.vue";
 
 export default {
-  name: 'SectionActivity',
+  name: "SectionActivity",
   components: {
-    PostSummary,
+    PostSummary
   },
   data() {
     return {
-      posts: [],
+      posts: []
     };
   },
   mounted() {
-    this.axios.get('/api/posts.json.liquid').then(response => {
+    this.axios.get("/api/posts.json.liquid").then(response => {
       this.posts = response.data;
     });
-  },
+  }
 };
 </script>
 
@@ -43,11 +43,17 @@ export default {
 section {
   > ul {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
+    grid-template-columns: repeat(4, 1fr);
 
-  @media (max-width: 1600px) {
-    > ul {
+    @media (max-width: 3139px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 2239px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 1439px) {
       grid-template-columns: repeat(1, 1fr);
     }
   }

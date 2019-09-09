@@ -209,7 +209,7 @@ h1 {
     top: 25px;
     left: 50%;
     display: block;
-    padding: 8px 0 6px 1px;
+    padding: 8px 0 6px;
     width: 0;
     overflow: hidden;
     white-space: nowrap;
@@ -223,7 +223,7 @@ h1 {
 
     @keyframes typing {
       60%, 80% {
-        width: calc(9.83px * 21); // width of 1 char * amount of chars
+        width: calc(9.83px * 21 - 1px); // width of 1 char * amount of chars - safety margin
       }
       99% {
         width: 0;
