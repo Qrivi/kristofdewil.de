@@ -10,7 +10,7 @@
         :title="post.title"
         :short="post.short"
         :link="post.link"
-        :date="new Date(post.date)"
+        :date="post.date"
         :banner="post.banner"
         :tags="post.tags"
       />

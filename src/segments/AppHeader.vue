@@ -213,7 +213,7 @@ h1 {
     width: 0;
     overflow: hidden;
     white-space: nowrap;
-    border-right: 8px solid;
+    border-right: 8px solid var(--text);;
     font: 18px $font-monospace;
     animation: typing 5s steps(21, end) 1.5s forwards, caret 0.75s step-end infinite;
 
@@ -236,10 +236,10 @@ h1 {
 
     @keyframes caret {
       from, to {
-        border-color: var(--text);
+        border-width: 8px;
       }
       50% {
-        border-color: transparent;
+        border-width: 0;
       }
     }
   }

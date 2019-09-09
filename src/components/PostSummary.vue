@@ -24,23 +24,23 @@
 
 <script>
 export default {
-  name: "PostSummary",
+  name: 'PostSummary',
   props: {
     title: {
       type: String,
-      default: "Placeholder for the post title"
+      default: 'Placeholder for the post title'
     },
     short: {
       type: String,
-      default: "Placeholder for the post description."
+      default: 'Placeholder for the post description.'
     },
     link: {
       type: String,
-      default: "/"
+      default: '/'
     },
     date: {
-      type: Date,
-      default: new Date()
+      type: String,
+      default: 'Publish date unknown'
     },
     banner: {
       type: String,
@@ -55,10 +55,10 @@ export default {
   },
   computed: {
     printableDate() {
-      return this.$moment(this.date).format("MMMM D, YYYY");
+      return this.$moment(this.date, 'YYYY-MM-DD HH:mm:ss Z' ).format('MMMM D, YYYY');
     },
     technicalDate() {
-      return this.$moment(this.date).format("YYYY-MM-DD");
+      return this.$moment(this.date, 'YYYY-MM-DD HH:mm:ss Z').format('YYYY-MM-DD');
     }
   }
 };
