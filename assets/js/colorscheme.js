@@ -26,3 +26,7 @@ function setLightMode() {
 
 setColorScheme(true);
 darkMode.addListener(setColorScheme);
+document.addEventListener('keydown', event => {
+  if (event.key === 'm')
+    document.body.classList.contains('darkmode') ? setLightMode() : setDarkMode();
+});
