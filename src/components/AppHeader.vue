@@ -1,5 +1,8 @@
 <template>
-  <div :class="{ static: isStatic }">
+  <section id="app-header" :class="{ static: isStatic }">
+    <h2 class="h">
+      Welcome on my website
+    </h2>
     <div id="logo-animation">
       <span>{{ loadingMessage }}</span>
       <svg viewBox="0 0 566.5 151.5">
@@ -24,7 +27,7 @@
       </svg>
     </div>
     <em>{{ jobTitle }}</em>
-  </div>
+  </section>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <section id="activity">
+  <section id="app-activity">
     <h2 class="h">
       Recent activity
     </h2>
@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import PostSummary from "../components/PostSummary.vue";
+import PostSummary from '../components/PostSummary.vue';
 
 export default {
-  name: "SectionActivity",
+  name: 'AppActivity',
   components: {
     PostSummary
   },
@@ -33,7 +33,7 @@ export default {
     };
   },
   mounted() {
-    this.axios.get("/api/posts.json.liquid").then(response => {
+    this.axios.get('/api/posts.json.liquid').then(response => {
       this.posts = response.data;
     });
   }
@@ -42,7 +42,13 @@ export default {
 
 <style scoped lang="scss">
 section {
-  > ul {
+  margin: 120px auto 80px;
+
+  @media only screen and (max-width: 650px) {
+    margin-top: 20px;
+  }
+
+  ul {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 

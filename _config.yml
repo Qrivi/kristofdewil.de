@@ -7,7 +7,7 @@ port:       8282
 encoding:   UTF-8
 markdown:   kramdown
 
-permalink:  /blog/:year/:title
+permalink:  /blog/:title
 feed:
     path:   /blog/atom.xml
 

@@ -1,54 +1,27 @@
 <template>
   <div role="application">
-    <header>
+    <header id="app-topbar">
       <h1 class="h">
         Kristof Dewilde
       </h1>
-      <AppNavigation
-        style="transition: opacity 1s ease-out"
-        :style="{ opacity: ready ? 1 : 0 }"
-      />
-      <AppHeader
-        :static="ready"
-      />
+      <AppNavigation />
     </header>
-    <main v-if="ready">
-      <SectionActivity />
-    </main>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import AppNavigation from './segments/AppNavigation.vue';
-import AppHeader from './segments/AppHeader.vue';
-import SectionActivity from './segments/SectionActivity.vue';
-import { setTimeout } from 'timers';
+import AppNavigation from './components/AppNavigation.vue';
 
 export default {
   components: {
-    AppNavigation,
-    AppHeader,
-    SectionActivity,
-  },
-  data() {
-    return {
-      ready: window.location.hash.includes('ready'),
-    };
-  },
-  mounted() {
-    setTimeout( () => {
-      this.ready = true;
-    }, window.innerWidth > 650 ? 7500 : 2000 );
+    AppNavigation
   }
 };
 </script>
 
 <style lang="scss">
-main {
-  margin: 120px auto 80px;
-
-  @media only screen and (max-width: 650px) {
-    margin-top: 20px;
-  }
+#app-topbar {
+  height: 100px;
 }
 </style>
