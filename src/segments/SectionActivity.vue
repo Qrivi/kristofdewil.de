@@ -3,9 +3,9 @@
     <h2 class="h">
       Recent activity
     </h2>
-    <ul>
+    <transition-group name="appear" tag="ul">
       <PostSummary
-        v-for="post in posts"
+        v-for="(post, index) in posts"
         :key="`${post.date} | ${post.title}`"
         :title="post.title"
         :intro="post.intro"
@@ -13,8 +13,9 @@
         :date="post.date"
         :banner="post.banner"
         :tags="post.tags"
+        :style="`transition-delay: ${index / 4}s`"
       />
-    </ul>
+    </transition-group>
   </section>
 </template>
 
@@ -57,5 +58,13 @@ section {
       grid-template-columns: repeat(1, 1fr);
     }
   }
+}
+
+.appear-enter-active, .appear-leave-active {
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.appear-enter, .appear-leave-to {
+  opacity: 0;
+  transform: translateY(-25px);
 }
 </style>

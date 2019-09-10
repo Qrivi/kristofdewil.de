@@ -4,8 +4,13 @@
       <h1 class="h">
         Kristof Dewilde
       </h1>
-      <AppNavigation v-if="ready" />
-      <AppHeader :static="ready" />
+      <AppNavigation
+        style="transition: opacity 1s ease-out"
+        :style="{ opacity: ready ? 1 : 0 }"
+      />
+      <AppHeader
+        :static="ready"
+      />
     </header>
     <main v-if="ready">
       <SectionActivity />
@@ -39,19 +44,11 @@ export default {
 </script>
 
 <style lang="scss">
-main{
-  margin: 120px auto 20px;
-  animation: fade 1s ease-out forwards;
-  opacity: 0;
+main {
+  margin: 120px auto 80px;
 
   @media only screen and (max-width: 650px) {
     margin-top: 20px;
-  }
-
-  @keyframes fade {
-    100% {
-      opacity: 1;
-    }
   }
 }
 </style>
