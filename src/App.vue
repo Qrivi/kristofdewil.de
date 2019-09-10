@@ -1,30 +1,38 @@
 <template>
   <div role="application">
-    <AppHeader />
-    <main v-if="appLoaded">
+    <header>
+      <h1 class="h">
+        Kristof Dewilde
+      </h1>
+      <AppNavigation v-if="ready" />
+      <AppHeader :static="ready" />
+    </header>
+    <main v-if="ready">
       <SectionActivity />
     </main>
   </div>
 </template>
 
 <script>
+import AppNavigation from './segments/AppNavigation.vue';
 import AppHeader from './segments/AppHeader.vue';
 import SectionActivity from './segments/SectionActivity.vue';
 import { setTimeout } from 'timers';
 
 export default {
   components: {
+    AppNavigation,
     AppHeader,
     SectionActivity,
   },
   data() {
     return {
-      appLoaded: false,
+      ready: window.location.hash.includes('ready'),
     };
   },
   mounted() {
     setTimeout( () => {
-      this.appLoaded = true;
+      this.ready = true;
     }, window.innerWidth > 650 ? 7500 : 2000 );
   }
 };
