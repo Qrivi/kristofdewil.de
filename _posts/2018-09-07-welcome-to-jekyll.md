@@ -1,6 +1,6 @@
 ---
 title:  Welcome to Jekyll!
-short: Ullum mazim facilis cu pro, no porro summo qui. Pri an odio modus offendit, vocibus mnesarchum qui id.
+intro: Ullum mazim facilis cu pro, no porro summo qui. Pri an odio modus offendit, vocibus mnesarchum qui id.
 banner: dummy.jpg
 tags:
   - Jekyll

@@ -7,7 +7,7 @@ redirect_from:
     {% for post in site.posts %}
     {
         "title": {{ post.title | smartify | jsonify }},
-        "short": {{ post.short | smartify | jsonify }},
+        "intro": {{ post.intro | smartify | jsonify }},
         "link": {{ post.url | jsonify }},
         "date": "{{ post.date }}",
         "banner": {{ post.banner | jsonify }},

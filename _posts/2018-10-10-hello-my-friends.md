@@ -1,6 +1,6 @@
 ---
 title:  Hello my friends!
-short: Nec odio eripuit epicuri an, est vero sonet mentitum ut. Cum ut quem nibh. Vel ei alia quando oporteat!
+intro: Nec odio eripuit epicuri an, est vero sonet mentitum ut. Cum ut quem nibh. Vel ei alia quando oporteat!
 banner: dummy.jpg
 tags:
   - JavaScript

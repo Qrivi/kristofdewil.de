@@ -1,5 +1,8 @@
 ---
-title:  This will be my style guide
+layout: post
+date: 1993-09-26
+
+title:  This is my style guide
 intro: Ipsum soluta lucilius eu cum. Movet electram duo ei, sea quod purto case ex, ea mazim choro cotidieque pri.
 banner: dummy.jpg
 tags:
@@ -7,7 +10,7 @@ tags:
   - Opinion
 ---
 
-This is a pragraph. Pellentesque habitant _very cursive_ morbi **also bold** tristique senectus et netus et malesuada fames [ac turpis egestas](http://krivi.be). Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis.
+This is a pragraph. Pellentesque habitant _very cursive_ morbi **also bold** tristique senectus et netus et malesuada fames [ac turpis egestas](http://krivi.be). Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
 
 Quisque facilisis erat a dui. <mark>Nam malesuada ornare dolor.</mark> Cras gravida, diam sit amet rhoncus ornare, erat elit consectetuer erat, id egestas pede nibh eget odio. Proin tincidunt, velit vel porta elementum, magna diam molestie sapien, non aliquet massa pede eu diam. Aliquam iaculis. Fusce et ipsum et nulla tristique facilisis.
 
@@ -57,6 +60,8 @@ Nice! Don't forget inline code like `ur mom gey` haha.
 No language indicated, so no syntax highlighting.
 But let's throw in a <b>tag</b>.
 ```
+
+## Lists
 
 And now it is time for a list!
 - my name is jeff

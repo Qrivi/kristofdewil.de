@@ -4,18 +4,10 @@
     <a :href="link">
       <h3>{{ title }}</h3>
     </a>
-    <img
-      v-if="banner"
-      :src="`/assets/img/banners/${banner}`"
-      :alt="title"
-      loading="lazy"
-    >
-    <p>{{ short }}</p>
+    <img v-if="banner" loading="lazy" :src="`/assets/img/banners/${banner}`" :alt="title">
+    <p>{{ intro }}</p>
     <ul v-if="tags">
-      <li
-        v-for="(tag, index) in tags"
-        :key="index"
-      >
+      <li v-for="(tag, index) in tags" :key="index">
         <a :href="`/?tag=${tag}`">{{ tag }}</a>
       </li>
     </ul>
@@ -30,7 +22,7 @@ export default {
       type: String,
       default: 'Placeholder for the post title'
     },
-    short: {
+    intro: {
       type: String,
       default: 'Placeholder for the post description.'
     },

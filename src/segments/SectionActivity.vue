@@ -8,7 +8,7 @@
         v-for="post in posts"
         :key="`${post.date} | ${post.title}`"
         :title="post.title"
-        :short="post.short"
+        :intro="post.intro"
         :link="post.link"
         :date="post.date"
         :banner="post.banner"

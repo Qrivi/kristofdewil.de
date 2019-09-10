@@ -1,25 +1,26 @@
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>{{site.title}}</title>
-    <base href="{{site.url}}">
+  <title>{% if page.layout == 'post' %}{{page.title}} | {% endif %}{{site.title}}</title>
+  <base href="{{site.url}}">
 
-    <link rel="stylesheet" media="screen" href="assets/css/screen.css">
-    <link rel="stylesheet" media="print" href="assets/css/print.css">
-    <link rel="stylesheet" media="all" href="assets/css/syntax.css">
-    {% if page.layout == 'post' %}
-    <link rel="stylesheet" media="screen" href="assets/css/post.css">
-    {% endif %}
+  <link rel="stylesheet" media="screen" href="assets/css/screen.css">
+  <link rel="stylesheet" media="screen" href="assets/css/article.css">
+  <link rel="stylesheet" media="all" href="assets/css/syntax.css">
+  <link rel="stylesheet" media="print" href="assets/css/print.css">
+  {% if page.layout == 'post' %}
+  <link rel="stylesheet" media="screen" href="assets/css/header.css">
+  {% endif %}
 
-    <link rel="icon" type="image/png" href="assets/img/icons/icon_light.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/apple_light.png">
-    <link rel="mask-icon" href="mask.svg" color="#030044">
+  <link rel="icon" type="image/png" href="assets/img/icons/icon_light.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/apple_light.png">
+  <link rel="mask-icon" href="mask.svg" color="#030044">
 
-    <meta name="theme-color" content="#fff">
-    <meta name="msapplication-TileColor" content="#fff">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#fff">
+  <meta name="msapplication-TileColor" content="#fff">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <script defer src="assets/js/colorscheme.js"></script>
+  <script defer src="assets/js/colorscheme.js"></script>
 </head>
