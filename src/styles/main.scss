@@ -37,3 +37,14 @@ a {
 .h {
   display: none !important;
 }
+
+.fadein {
+  opacity: 0;
+  animation: fadein 1s ease-out forwards;
+
+  @keyframes fadein {
+    to {
+      opacity: 1;
+    }
+  }
+}

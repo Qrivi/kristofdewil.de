@@ -30,7 +30,8 @@
     "vue-axios": "^2.1.4",
     "vue-headroom": "^0.10.1",
     "vue-moment": "^4.0.0",
-    "vue-router": "^3.1.3"
+    "vue-router": "^3.1.3",
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",

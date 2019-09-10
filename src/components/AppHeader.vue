@@ -215,16 +215,10 @@ em {
   font-weight: 700;
   letter-spacing: 0.2em;
   opacity: 0;
-  animation: fade 1s 7.5s ease-out forwards;
+  animation: fadein 1s 7.5s ease-out forwards;
 
   @media only screen and (max-width: 650px) {
     animation-delay: 2s;
-  }
-
-  @keyframes fade {
-    100% {
-      opacity: 1;
-    }
   }
 }
 </style>

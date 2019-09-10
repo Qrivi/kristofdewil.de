@@ -15,15 +15,13 @@ export default {
     AppHeader,
     AppActivity
   },
-  data() {
-    return {
-      ready: window.location.hash.includes('ready'),
-    };
+  computed: {
+    ready() {
+      return this.$store.getters.isReady;
+    }
   },
   mounted() {
-    setTimeout( () => {
-      this.ready = true;
-    }, window.innerWidth > 650 ? 7500 : 2000 );
+    this.$store.dispatch('becomeReady', window.innerWidth > 650 ? 7500 : 2000 );
   }
 };
 </script>
