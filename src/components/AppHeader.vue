@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: "AppHeader",
+  name: 'AppHeader',
   props: {
     static: {
       type: Boolean,
@@ -47,22 +47,22 @@ export default {
   computed: {
     jobTitle() {
       const titles = [
-        "Full stack Java Developer",
-        "Full stack Java Developer",
-        "Full stack Java Developer",
-        "Just a regular innocent boy"
+        'Full stack Java Developer',
+        'Full stack Java Developer',
+        'Full stack Java Developer',
+        'Just a regular innocent boy'
       ];
       return titles[Math.floor(Math.random() * titles.length)];
     },
     loadingMessage() {
       const messages = [
-        "Hello, please hire me",
-        "<p> Hello World! </p>",
-        "ENV=PROD node site.js",
-        `git commit -m "Hello"`,
-        "Welcome on my website",
-        `It's pronounced "gif"`,
-        "1st cereal, then bowl"
+        'Hello, please hire me',
+        '<p> Hello World! </p>',
+        'ENV=PROD node site.js',
+        `git commit -m 'Hello'`,
+        'Welcome on my website',
+        `It's pronounced 'gif'`,
+        '1st cereal, then bowl'
       ];
       return messages[Math.floor(Math.random() * messages.length)];
     }

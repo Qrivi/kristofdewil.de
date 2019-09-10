@@ -33,9 +33,9 @@ export default {
     };
   },
   mounted() {
-    this.axios.get('/api/posts.json.liquid').then(response => {
-      this.posts = response.data;
-    });
+    fetch('/api/posts.json.liquid')
+      .then(response => response.json())
+      .then(json => { this.posts = json; });
   }
 };
 </script>

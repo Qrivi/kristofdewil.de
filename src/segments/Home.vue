@@ -21,7 +21,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('becomeReady', window.innerWidth > 650 ? 7500 : 2000 );
+    this.$store.dispatch('becomeReady', window.innerWidth > 650 ? 7500 : 2000);
   }
 };
 </script>

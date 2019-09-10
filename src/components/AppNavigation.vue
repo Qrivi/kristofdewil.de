@@ -23,7 +23,7 @@
 import { headroom } from 'vue-headroom';
 
 export default {
-  name: "AppNavigation",
+  name: 'AppNavigation',
   components: {
     headroom
   }

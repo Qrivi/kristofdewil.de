@@ -40,14 +40,14 @@ export default {
     },
     tags: {
       type: Array,
-      default: function() {
+      default: function () {
         return [];
       }
     }
   },
   computed: {
     printableDate() {
-      return this.$moment(this.date, 'YYYY-MM-DD HH:mm:ss Z' ).format('MMMM D, YYYY');
+      return this.$moment(this.date, 'YYYY-MM-DD HH:mm:ss Z').format('MMMM D, YYYY');
     },
     technicalDate() {
       return this.$moment(this.date, 'YYYY-MM-DD HH:mm:ss Z').format('YYYY-MM-DD');
