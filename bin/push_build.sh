@@ -19,7 +19,7 @@ push_build() {
    # Merge that branch into master
   git fetch
   git checkout master
-  git merge --no-ff -s ours build-local
+  git merge --no-ff --strategy-option theirs build-local
   git push origin master | sed "s/${GITHUB_ACCESS}/FILTERED_TOKEN/"
 }
 
