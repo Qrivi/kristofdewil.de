@@ -55,15 +55,15 @@ section {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 
-    @media (max-width: 3139px) {
+    @media only screen and (max-width: 3139px) {
       grid-template-columns: repeat(3, 1fr);
     }
 
-    @media (max-width: 2239px) {
+    @media only screen and (max-width: 2239px) {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: 1439px) {
+    @media only screen and (max-width: 1439px) {
       grid-template-columns: repeat(1, 1fr);
     }
   }
