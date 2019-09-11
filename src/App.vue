@@ -27,6 +27,10 @@ export default {
 
 <style lang="scss">
 #app-topbar {
+  position: relative;
+  z-index: 99;
+  top: 0;
+  width: 100%;
   height: 100px;
   opacity: 0;
   animation: fadein 5s forwards;

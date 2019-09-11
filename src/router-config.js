@@ -4,6 +4,6 @@ export default {
   mode: 'history',
   routes: [
     { path: '/', component: Home },
-    { path: '/blog', component: Home }
+    { path: '/blog/:post?', component: Home }
   ]
 };

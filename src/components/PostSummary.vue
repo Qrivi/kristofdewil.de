@@ -1,9 +1,9 @@
 <template>
   <li class="summary">
     <time :datetime="technicalDate">{{ printableDate }}</time>
-    <a :href="link">
+    <router-link :to="link">
       <h3>{{ title }}</h3>
-    </a>
+    </router-link>
     <img v-if="banner" loading="lazy" :src="`/assets/img/banners/${banner}`" :alt="title">
     <p>{{ intro }}</p>
     <ul v-if="tags">

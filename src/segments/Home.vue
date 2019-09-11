@@ -1,19 +1,26 @@
 <template>
   <main>
-    <AppHeader :static="ready" />
-    <AppActivity v-if="ready" />
+    <AppHeader
+      :static="ready" />
+    <AppActivity
+      v-if="ready" />
+    <PostContent
+      v-if="$route.params.post"
+      :post="$route.params.post" />
   </main>
 </template>
 
 <script>
-import AppHeader from '../components/AppHeader.vue'
+import AppHeader from '../components/AppHeader.vue';
 import AppActivity from '../components/AppActivity.vue';
+import PostContent from '../components/PostContent.vue';
 
 export default {
   name: 'Home',
   components: {
     AppHeader,
-    AppActivity
+    AppActivity,
+    PostContent
   },
   computed: {
     ready() {

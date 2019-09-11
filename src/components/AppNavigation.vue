@@ -31,11 +31,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.headroom--pinned.headroom--not-top nav {
+  box-shadow: 0 15px 15px 0 var(--background);
+}
+.headroom--top nav {
+  background-color: transparent;
+}
 nav {
   display: block;
   width: 100%;
   height: 100px;
-  background: var(--background);
+  background-color: var(--background);
+  box-shadow: 0 0 0 0 transparent;
+  transition: background-color 2s ease-out, box-shadow 2s ease-out;
 
   ul {
     display: flex;
