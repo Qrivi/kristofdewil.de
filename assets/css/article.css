@@ -19,7 +19,17 @@
   height: 100%;
   top: 0;
   left: 0;
-  opacity: 0.2;
+  opacity: 0;
+  animation: postheader 2s ease-out 1s forwards;
+}
+
+@keyframes postheader {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: .5;
+  }
 }
 
 .article > header::after {
@@ -79,8 +89,69 @@
 .article > article {
   display: block;
   position: relative;
+  z-index: 5;
   max-width: 1080px;
   margin: 0 auto;
+}
+
+.article > article > *:nth-child(1) {
+  opacity: 0;
+  animation: postcontent 1.5s ease-out .2s forwards;
+}
+
+.article > article > *:nth-child(2) {
+  opacity: 0;
+  animation: postcontent 1.5s ease-out .4s forwards;
+}
+
+.article > article > *:nth-child(3) {
+  opacity: 0;
+  animation: postcontent 1.5s ease-out .6s forwards;
+}
+
+.article > article > *:nth-child(4) {
+  opacity: 0;
+  animation: postcontent 1.5s ease-out .8s forwards;
+}
+
+.article > article > *:nth-child(5) {
+  opacity: 0;
+  animation: postcontent 1.5s ease-out 1s forwards;
+}
+
+.article > article > *:nth-child(6) {
+  opacity: 0;
+  animation: postcontent 1.5s ease-out 1.2s forwards;
+}
+
+.article > article > *:nth-child(7) {
+  opacity: 0;
+  animation: postcontent 1.5s ease-out 1.4s forwards;
+}
+
+.article > article > *:nth-child(8) {
+  opacity: 0;
+  animation: postcontent 1.5s ease-out 1.6s forwards;
+}
+
+.article > article > *:nth-child(9) {
+  opacity: 0;
+  animation: postcontent 1.5s ease-out 1.8s forwards;
+}
+
+.article > article > * {
+  opacity: 0;
+  animation: postcontent 1.5s ease-out 2.4s forwards;
+}
+
+@keyframes postcontent {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .article > article h1 {
@@ -157,7 +228,7 @@
   max-width: 740px;
   margin: 0 auto;
   padding: 15px 20px;
-  white-space: pre-wrap;
+  overflow-x: auto;
 }
 
 .article > article ul {
