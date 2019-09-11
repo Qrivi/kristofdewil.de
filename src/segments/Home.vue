@@ -8,10 +8,12 @@
       v-if="$store.getters.isReady"
       v-show="!$route.params.post"
     />
-    <PostContent
-      v-if="$route.params.post"
-      :post="$route.params.post"
-    />
+    <transition name="quickfade">
+      <PostContent
+        v-if="$route.params.post"
+        :post="$route.params.post"
+      />
+    </transition>
   </main>
 </template>
 
