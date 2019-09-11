@@ -30,9 +30,8 @@ export default {
     fetch(`/blog/${this.post}`)
       .then(response => response.text())
       .then(content => {
-        const $ = cheerio.load(content);
-        this.html = $('main').html();
-       });
+        this.article = content.match(/<main class="article">((.|\n)*)<\/main>/)[1];
+      });
   }
 }
 </script>

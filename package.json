@@ -25,7 +25,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
     "vue": "^2.6.10",
     "vue-headroom": "^0.10.1",
     "vue-moment": "^4.0.0",
