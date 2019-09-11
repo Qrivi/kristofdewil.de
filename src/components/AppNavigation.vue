@@ -43,7 +43,7 @@ nav {
   height: 100px;
   background-color: var(--background);
   box-shadow: 0 0 0 0 transparent;
-  transition: background-color 2s ease-out, box-shadow 2s ease-out;
+  transition: background-color .5s ease-out, box-shadow .5s ease-out;
 
   ul {
     display: flex;

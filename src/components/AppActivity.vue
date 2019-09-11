@@ -1,5 +1,6 @@
 <template>
   <section id="app-activity">
+    <AppLoader :loading="!posts.length" />
     <h2 class="h">
       Recent activity
     </h2>
@@ -20,11 +21,13 @@
 </template>
 
 <script>
-import PostSummary from '../components/PostSummary.vue';
+import AppLoader from './AppLoader.vue';
+import PostSummary from './PostSummary.vue';
 
 export default {
   name: 'AppActivity',
   components: {
+    AppLoader,
     PostSummary
   },
   data() {

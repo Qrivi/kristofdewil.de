@@ -1,12 +1,21 @@
 <template>
+  <!-- eslint-disable vue/no-v-html -->
   <section id="post-content" class="article" v-html="article">
-      Content of {{ post }} will come here.
+    <AppLoader :loading="!article.length" />
+    <h2 class="h">
+      Blog post
+    </h2>
   </section>
 </template>
 
 <script>
+import AppLoader from './AppLoader.vue';
+
 export default {
   name: 'PostContent',
+  components: {
+    AppLoader
+  },
   props: {
     post: {
       type: String,
@@ -15,7 +24,7 @@ export default {
   },
   data() {
     return {
-      article: '<p>Loading pls wait</p>'
+      article: ''
     }
   },
   mounted() {
