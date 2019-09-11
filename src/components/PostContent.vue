@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable vue/no-v-html -->
   <section id="post-content" class="article" v-html="article">
     <AppLoader :loading="!article.length" />
     <h2 class="h">
