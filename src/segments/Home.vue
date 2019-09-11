@@ -1,7 +1,8 @@
 <template>
   <main>
     <AppHeader
-      :static="ready" />
+      :static="ready"
+      v-show="!$route.params.post" />
     <AppActivity
       v-if="ready"
       v-show="!$route.params.post" />
