@@ -15,8 +15,8 @@ export default {
     }
   },
   actions: {
-    becomeReady({ commit }, delay) {
-      setTimeout(() => { commit('becomeReady') }, delay);
+    becomeReady({ commit }) {
+      commit('becomeReady');
     }
   }
 };

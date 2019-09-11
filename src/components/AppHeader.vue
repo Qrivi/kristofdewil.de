@@ -1,5 +1,5 @@
 <template>
-  <section id="app-header" :class="{still}">
+  <section id="app-header" :class="{ready}">
     <h2 class="h">
       Welcome on my website
     </h2>
@@ -33,10 +33,9 @@
 <script>
 export default {
   name: 'AppHeader',
-  props: {
-    still: {
-      type: Boolean,
-      default: false
+  data() {
+    return {
+      ready: this.$store.getters.isReady
     }
   },
   computed: {
@@ -61,15 +60,25 @@ export default {
       ];
       return messages[Math.floor(Math.random() * messages.length)];
     }
+  },
+  mounted() {
+    // We the app know we are "ready" when the animation is *almost* finished (for smooth effect)
+    document.querySelector('#r02').addEventListener('animationend', () => {
+      this.$store.dispatch('becomeReady');
+    });
+    // but we, this component itself, can only be "ready" when all animations are finished.
+    document.querySelector('#logo-animation + em').addEventListener('animationend', () => {
+      this.ready = true;
+    });
   }
 };
 </script>
 
 <style scoped lang="scss">
-.still span{
+.ready span{
   visibility: hidden;
 }
-.still path, .still g, .still em{
+.ready path, .ready g, .ready em{
   animation-delay: 0s !important;
   animation-duration: 1ms !important;
 }
@@ -210,7 +219,7 @@ em {
   font-weight: 700;
   letter-spacing: 0.2em;
   opacity: 0;
-  animation: fadein 1s 7.5s ease-out forwards;
+  animation: fade 1s 7.5s ease-out forwards;
 
   @media only screen and (max-width: 650px) {
     animation-delay: 2s;

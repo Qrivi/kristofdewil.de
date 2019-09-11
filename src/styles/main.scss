@@ -38,11 +38,11 @@ a {
   display: none !important;
 }
 
-.fadein {
+.fade {
   opacity: 0;
-  animation: fadein 1s ease-out forwards;
+  animation: fade 1s ease-out forwards;
 
-  @keyframes fadein {
+  @keyframes fade {
     to {
       opacity: 1;
     }
