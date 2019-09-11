@@ -1,5 +1,5 @@
 <template>
-  <section id="app-header" :class="{ static: isStatic }">
+  <section id="app-header" :class="{still}">
     <h2 class="h">
       Welcome on my website
     </h2>
@@ -34,15 +34,10 @@
 export default {
   name: 'AppHeader',
   props: {
-    static: {
+    still: {
       type: Boolean,
       default: false
     }
-  },
-  data() {
-    return {
-      isStatic: this.static
-    };
   },
   computed: {
     jobTitle() {
@@ -71,10 +66,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.static span{
+.still span{
   visibility: hidden;
 }
-.static path, .static g, .static em{
+.still path, .still g, .still em{
   animation-delay: 0s !important;
   animation-duration: 1ms !important;
 }

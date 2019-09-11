@@ -1,14 +1,20 @@
 <template>
-  <section id="post-content" class="article" v-html="html">
-      Content of {{ post }} will come here.
+  <section id="post-content" class="article" v-html="article">
+    <AppLoader :loading="!article.length" />
+    <h2 class="h">
+      Blog post
+    </h2>
   </section>
 </template>
 
 <script>
-import cheerio from 'cheerio';
+import AppLoader from './AppLoader.vue';
 
 export default {
   name: 'PostContent',
+  components: {
+    AppLoader
+  },
   props: {
     post: {
       type: String,
@@ -17,7 +23,7 @@ export default {
   },
   data() {
     return {
-      html: '<p>Loading pls wait</p>'
+      article: ''
     }
   },
   mounted() {

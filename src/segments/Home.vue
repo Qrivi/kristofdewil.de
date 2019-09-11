@@ -1,9 +1,10 @@
 <template>
   <main>
     <AppHeader
-      :static="ready" />
+      :still="$store.getters.isReady"
+      v-show="!$route.params.post" />
     <AppActivity
-      v-if="ready"
+      v-if="$store.getters.isReady"
       v-show="!$route.params.post" />
     <PostContent
       v-if="$route.params.post"
@@ -23,13 +24,9 @@ export default {
     AppActivity,
     PostContent
   },
-  computed: {
-    ready() {
-      return this.$store.getters.isReady;
-    }
-  },
   mounted() {
-    this.$store.dispatch('becomeReady', window.innerWidth > 650 ? 7500 : 2000);
+    if (!this.$route.params.post && !this.$store.getters.isReady)
+      this.$store.dispatch('becomeReady', window.innerWidth > 650 ? 8000 : 2500);
   }
 };
 </script>
