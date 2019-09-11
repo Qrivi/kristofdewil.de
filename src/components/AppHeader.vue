@@ -44,17 +44,22 @@ export default {
         'Full stack Java Developer',
         'Full stack Java Developer',
         'Full stack Java Developer',
-        'Just a regular innocent boy'
+        'Just a regular innocent boy',
+        'Frontend, backend, weekend',
+        'Writes codes till things happen',
+        'I can probably fix your printer'
       ];
       return titles[Math.floor(Math.random() * titles.length)];
     },
     loadingMessage() {
       const messages = [
+        'sudo ./make_a_site.sh',
         'Hello, please hire me',
+        'Want to hire me? :-)',
         '<p> Hello World! </p>',
         'ENV=PROD node site.js',
         `git commit -m 'Hello'`,
-        'Welcome on my website',
+        'String string = "st"',
         `It's pronounced 'gif'`,
         '1st cereal, then bowl'
       ];
