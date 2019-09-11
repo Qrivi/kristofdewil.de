@@ -34,7 +34,7 @@ export default {
 
 <style scoped lang="scss">
 .headroom--pinned.headroom--not-top nav {
-  box-shadow: 0 15px 15px 0 var(--background);
+  box-shadow: 0 10px 15px 0 var(--background);
 }
 .headroom--top nav {
   background-color: transparent;

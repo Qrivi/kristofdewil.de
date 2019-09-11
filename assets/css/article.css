@@ -12,6 +12,14 @@
   padding: 180px 0 0;
 }
 
+@media only screen and (max-width: 650px) {
+  .article > header {
+    height: 320px;
+    padding: 100px 0 0;
+    font-size: .9em;
+  }
+}
+
 .article > header img {
   position: absolute;
   object-fit: cover;
