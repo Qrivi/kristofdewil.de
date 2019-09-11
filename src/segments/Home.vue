@@ -2,7 +2,6 @@
   <main>
     <AppHeader
       v-show="!$route.params.post"
-      :still="$store.getters.isReady"
     />
     <AppActivity
       v-if="$store.getters.isReady"
@@ -28,10 +27,6 @@ export default {
     AppHeader,
     AppActivity,
     PostContent
-  },
-  mounted() {
-    if (!this.$route.params.post && !this.$store.getters.isReady)
-      this.$store.dispatch('becomeReady', window.innerWidth > 650 ? 8000 : 2500);
   }
 };
 </script>

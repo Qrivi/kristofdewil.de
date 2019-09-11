@@ -4,7 +4,7 @@
       <h1 class="h">
         Kristof Dewilde
       </h1>
-      <AppNavigation v-if="ready" class="fadein" />
+      <AppNavigation v-if="ready" class="fade" />
     </header>
     <transition name="quickfade" mode="out-in">
       <router-view />
@@ -34,14 +34,15 @@ export default {
   top: 0;
   width: 100%;
   height: 100px;
-  opacity: 0;
-  animation: fadein 5s forwards;
 }
 
+.slowfade-enter-active, .slowfade-leave-active {
+  transition: opacity 1s ease-out;
+}
 .quickfade-enter-active, .quickfade-leave-active {
   transition: opacity .25s ease-out;
 }
-.quickfade-enter, .quickfade-leave-to {
+.slowfade-enter, .slowfade-leave-to, .quickfade-enter, .quickfade-leave-to {
   opacity: 0;
 }
 </style>

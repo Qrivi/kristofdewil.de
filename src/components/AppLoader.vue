@@ -1,8 +1,8 @@
 <template>
-  <transition name="fade">
+  <transition name="quickfade">
     <svg v-if="loading" :style="{top}" viewBox="0 0 100 100">
-      <ellipse class="fadein" cx="50" cy="50" rx="30" ry="30" />
-      <line class="fadein" x1="52.7" y1="57.1" x2="82.5" y2="83" />
+      <ellipse class="fade" cx="50" cy="50" rx="30" ry="30" />
+      <line class="fade" x1="52.7" y1="57.1" x2="82.5" y2="83" />
     </svg>
   </transition>
 </template>
@@ -48,12 +48,5 @@ svg {
   100% {
     transform: rotate(720deg);
   }
-}
-
-.fade-leave-active {
-  transition: opacity .25s ease-out;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
 }
 </style>
