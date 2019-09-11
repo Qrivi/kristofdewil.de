@@ -6,7 +6,9 @@
       </h1>
       <AppNavigation v-if="ready" class="fadein" />
     </header>
-    <router-view />
+    <transition name="quickfade" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -34,5 +36,12 @@ export default {
   height: 100px;
   opacity: 0;
   animation: fadein 5s forwards;
+}
+
+.quickfade-enter-active, .quickfade-leave-active {
+  transition: opacity .25s ease-out;
+}
+.quickfade-enter, .quickfade-leave-to {
+  opacity: 0;
 }
 </style>
