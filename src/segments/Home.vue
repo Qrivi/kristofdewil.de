@@ -1,14 +1,17 @@
 <template>
   <main>
     <AppHeader
+      v-show="!$route.params.post"
       :static="ready"
-      v-show="!$route.params.post" />
+    />
     <AppActivity
       v-if="ready"
-      v-show="!$route.params.post" />
+      v-show="!$route.params.post"
+    />
     <PostContent
       v-if="$route.params.post"
-      :post="$route.params.post" />
+      :post="$route.params.post"
+    />
   </main>
 </template>
 

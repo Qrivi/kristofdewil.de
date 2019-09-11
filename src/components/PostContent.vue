@@ -1,6 +1,6 @@
 <template>
   <section id="post-content" class="article" v-html="article">
-      Content of {{ post }} will come here.
+    Content of {{ post }} will come here.
   </section>
 </template>
 
