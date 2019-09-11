@@ -3,7 +3,8 @@
     <AppHeader
       :static="ready" />
     <AppActivity
-      v-if="ready" />
+      v-if="ready"
+      v-show="!$route.params.post" />
     <PostContent
       v-if="$route.params.post"
       :post="$route.params.post" />
