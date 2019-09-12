@@ -8,7 +8,7 @@
     <p>{{ intro }}</p>
     <ul v-if="tags">
       <li v-for="(tag, index) in tags" :key="index">
-        <a :href="`/?tag=${tag}`">{{ tag }}</a>
+        <a>{{ tag }}</a>
       </li>
     </ul>
   </li>
@@ -119,10 +119,10 @@ li.summary {
       display: inline-block;
       margin: 0 10px 0 0;
       padding: 10px 0;
-    }
 
-    &:before {
-      content: "#";
+      &:before {
+        content: "#";
+      }
     }
   }
 }
