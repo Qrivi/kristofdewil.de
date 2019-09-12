@@ -44,24 +44,26 @@ export default {
         'Full stack Java Developer',
         'Full stack Java Developer',
         'Full stack Java Developer',
-        'Just a regular innocent boy',
+        'Full stack Java Developer',
+        'Made a very spicy meme once',
         'Frontend, backend, weekend',
-        'Writes codes till things happen',
-        'I can probably fix your printer'
+        'Writes code then things happen',
+        'Can indeed fix your printer'
       ];
       return titles[Math.floor(Math.random() * titles.length)];
     },
     loadingMessage() {
       const messages = [
         'sudo ./make_a_site.sh',
-        'Hello, please hire me',
-        'Want to hire me? :-)',
         '<p> Hello World! </p>',
         'ENV=PROD node site.js',
-        `git commit -m 'Hello'`,
-        'String string = "st"',
-        `It's pronounced 'gif'`,
-        '1st cereal, then bowl'
+        `git commit -m "Hello"`,
+        'this.startAnimation()',
+        `It's pronounced "gif"`,
+        '1st cereal, then bowl',
+        `It's-a me, not Mario!`,
+        'Want to hire me? :-)',
+        'afk lol brb gtg cul8r'
       ];
       return messages[Math.floor(Math.random() * messages.length)];
     }
