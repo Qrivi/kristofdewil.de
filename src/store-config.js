@@ -1,6 +1,6 @@
 export default {
   state: {
-    ready: window.location.hash.includes('%E2%9D%A4')
+    ready: location.hash.includes('%E2%99%A5')
   },
   getters: {
     isReady(state) {
@@ -9,8 +9,8 @@ export default {
   },
   mutations: {
     becomeReady(state) {
-      if (!window.location.hash.includes('%E2%9D%A4'))
-        window.location.hash += '%E2%9D%A4';
+      if (!location.hash.includes('%E2%99%A5'))
+        location.hash += '%E2%99%A5';
       state.ready = true;
     }
   },
