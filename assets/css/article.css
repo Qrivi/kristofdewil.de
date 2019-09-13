@@ -208,6 +208,12 @@
   color: var(--accent);
 }
 
+.article > article p a:hover,
+.article > article p a:focus
+.article > article p a:visited {
+  color: var(--accent);
+}
+
 .article > article p mark {
   background: var(--dim);
   color: var(--text);
