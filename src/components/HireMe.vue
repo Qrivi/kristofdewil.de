@@ -5,8 +5,7 @@
         Become colleagues?
       </p>
       <p class="hireme-text">
-        Boy, wouldn't that be awesome! I am currently open to new job opportunities. Check out my <a href="https://github.com/Qrivi" target="_blank">GitHub</a> or
-        <a href="https://linkedin.com/in/Qrivi" target="_blank">LinkedIn</a> profile, or the latest version of  <a class="hireme-button" href="/assets/files/cv.pdf">my resume</a>!
+        Boy, wouldn't that be awesome! I am currently open to new job opportunities. Check out my <a href="https://github.com/Qrivi" target="_blank">GitHub</a> or <a href="https://linkedin.com/in/Qrivi" target="_blank">LinkedIn</a> profile, or the latest version of  <a class="hireme-button" href="https://cv.kristofdewil.de">my resume</a>!
       </p>
     </section>
   </transition>
