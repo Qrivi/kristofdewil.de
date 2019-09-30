@@ -3,7 +3,6 @@
     <AppHeader
       v-show="!$route.params.post"
     />
-    <HireMe />
     <AppActivity
       v-if="$store.getters.isReady"
       v-show="!$route.params.post"
@@ -21,15 +20,13 @@
 import AppHeader from '../components/AppHeader.vue';
 import AppActivity from '../components/AppActivity.vue';
 import PostContent from '../components/PostContent.vue';
-import HireMe from '../components/HireMe.vue'
 
 export default {
   name: 'Home',
   components: {
     AppHeader,
     AppActivity,
-    PostContent,
-    HireMe
+    PostContent
   }
 };
 </script>
