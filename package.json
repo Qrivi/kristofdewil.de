@@ -1,19 +1,18 @@
 {
   "name": "website",
-  "description": "Kristof Dewilde's website combining Jekyll static site generator with Vue.js",
-  "version": "0.0.9",
+  "description": "Kristof Dewilde's personal website",
+  "version": "0.1.0",
   "private": true,
   "author": "Kristof Dewilde <git@krivi.be>",
   "scripts": {
     "setup": "bundle install && npm install",
-    "start": "run-p \"dev -- --watch\" serve",
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production",
-    "build:vue": "webpack --mode production --env.onlyvue yes",
+    "start": "run-p watch serve",
+    "watch": "parcel watch ./assets/main.js ./assets/main.scss -d ./assets/dist",
+    "build": "parcel build ./assets/main.js ./assets/main.scss -d ./assets/dist",
     "serve": "bundle exec jekyll serve --livereload",
-    "lint": "run-s lint:*",
-    "lint:js": "eslint --ext .js,.vue src *.js",
-    "lint:css": "stylelint \"src/styles/**/*.scss\" --syntax scss",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "eslint ./assets/src/js/**",
+    "lint:css": "stylelint ./assets/src/css/**",
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix"
   },
   "repository": {
@@ -24,36 +23,13 @@
     "url": "https://github.com/Qrivi/qrivi.github.io/issues"
   },
   "license": "MIT",
-  "dependencies": {
-    "vue": "^2.6.10",
-    "vue-headroom": "^0.10.1",
-    "vue-moment": "^4.0.0",
-    "vue-router": "^3.1.3",
-    "vuex": "^3.1.1"
-  },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
-    "babel-loader": "^8.0.6",
-    "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^3.2.0",
-    "eslint": "^6.2.2",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-vue": "^5.2.3",
-    "html-webpack-plugin": "^3.2.0",
-    "node-sass": "^4.12.0",
+    "@babel/core": "^7.7.5",
     "npm-run-all": "^4.1.5",
-    "sass-loader": "^7.2.0",
-    "style-resources-loader": "^1.2.1",
-    "stylelint": "^10.1.0",
-    "stylelint-config-recommended-scss": "^3.3.0",
-    "stylelint-config-standard": "^18.3.0",
-    "stylelint-scss": "^3.9.3",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "vue-loader": "^15.7.1",
-    "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.7"
+    "parcel-bundler": "^1.12.4",
+    "standardx": "^5.0.0",
+    "stylelint": "^12.0.0",
+    "stylelint-config-recommended-scss": "^4.1.0",
+    "stylelint-scss": "^3.13.0"
   }
 }
