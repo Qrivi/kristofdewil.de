@@ -31,6 +31,6 @@ jobs:
       env:
         GITHUB_ACCESS: ${{ secrets.GITHUB_ACCESS }}
       run: |
-        npm run build:vue
+        # npm run build:vue
         chmod +x ./bin/push_build.sh
-        ./bin/push_build.sh     
+        ./bin/push_build.sh
