@@ -1,3 +1,3 @@
 import { hello } from './js/dummy'
 
-hello('World')
+hello('Foo Bar')
