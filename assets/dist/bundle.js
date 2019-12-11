@@ -133,7 +133,7 @@ function hello(who) {
 
 var _dummy = require("./js/dummy");
 
-(0, _dummy.hello)('boys');
+(0, _dummy.hello)('World');
 },{"./js/dummy":"js/dummy.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
