@@ -26,17 +26,14 @@ plugins:
   - jekyll-redirect-from
 
 exclude:
+  - ".gitignore"
   - ".babelrc"
   - ".editorconfig"
-  - ".eslintignore"
   - ".eslintrc.yml"
-  - ".gitignore"
   - ".stylelintrc"
-  - ".travis.yml"
   - "package.json"
   - "package-lock.json"
-  - "webpack.config.js"
   - CNAME
   - bin/
-  - src/
+  - assets/src
   - node_modules/
