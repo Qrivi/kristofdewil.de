@@ -41,8 +41,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run clean && npm run build",
-      "pre-push": "npm run lint && npm audit"
+      "pre-commit": "npm run lint && npm audit"
     }
   }
 }
