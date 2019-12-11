@@ -2,7 +2,8 @@
 
 # Generated files
 _site
-assets/dist
+*.js.map
+*.css.map
 
 # Jekyll
 .bundle

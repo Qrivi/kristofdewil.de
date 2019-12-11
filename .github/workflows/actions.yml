@@ -4,11 +4,7 @@ on:
   pull_request:
   push:
     paths:
-    - 'src/*'
-    - 'src/*/*'
-    - 'src/*/*/*'
-    - 'src/*/*/*/*'
-    - 'src/*/*/*/*/*'
+    - 'assets/src/**'
 
 jobs:
   build:

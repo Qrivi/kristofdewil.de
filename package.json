@@ -4,11 +4,13 @@
   "version": "0.1.0",
   "private": true,
   "author": "Kristof Dewilde <git@krivi.be>",
+  "license": "MIT",
   "scripts": {
-    "setup": "bundle install && npm install",
+    "setup": "gem install bundler && bundle install && npm install && npm audit",
+    "clean": "rm -rf ./assets/dist/*",
     "start": "run-p watch serve",
-    "watch": "parcel watch ./assets/main.js ./assets/main.scss -d ./assets/dist",
-    "build": "parcel build ./assets/main.js ./assets/main.scss -d ./assets/dist",
+    "watch": "parcel watch ./assets/bundle.js ./assets/screen.scss ./assets/print.scss -d ./assets/dist",
+    "build": "parcel build ./assets/bundle.js ./assets/screen.scss ./assets/print.scss -d ./assets/dist",
     "serve": "bundle exec jekyll serve --livereload",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint ./assets/src/js/**",
@@ -22,7 +24,10 @@
   "bugs": {
     "url": "https://github.com/Qrivi/qrivi.github.io/issues"
   },
-  "license": "MIT",
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "husky": "^3.1.0",
@@ -36,7 +41,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint",
-      "pre-push": "npm run build"
+      "pre-push": "npm run clean && npm run build"
     }
   }
 }

@@ -6,13 +6,8 @@
   <title>{% if page.layout == 'post' %}{{page.title}} | {% endif %}{{site.title}}</title>
   <base href="{{site.url}}">
 
-  <link rel="stylesheet" media="screen" href="assets/css/screen.css">
-  <link rel="stylesheet" media="screen" href="assets/css/article.css">
-  <link rel="stylesheet" media="all" href="assets/css/syntax.css">
-  <link rel="stylesheet" media="print" href="assets/css/print.css">
-  {% if page.layout == 'post' %}
-  <link rel="stylesheet" media="screen" href="assets/css/header.css">
-  {% endif %}
+  <link rel="stylesheet" media="screen" href="assets/dist/screen.css">
+  <link rel="stylesheet" media="print" href="assets/dist/print.css">
 
   <link rel="icon" type="image/png" href="assets/img/icons/icon_light.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/apple_light.png">
@@ -24,5 +19,5 @@
 
   <meta name="google-site-verification" content="4h6Nqop-E-vlbdgRGU8jg4DrPcGB5bw6VQbyg9fa1Js">
 
-  <script defer src="assets/js/colorscheme.js"></script>
+  <script defer src="assets/dist/bundle.js"></script>
 </head>
