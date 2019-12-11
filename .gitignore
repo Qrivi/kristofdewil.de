@@ -1,9 +1,14 @@
+# Parceljs cache directory
 .cache
 
-# Generated files
+# Generated Jekyll site
 _site
-*.js.map
-*.css.map
+
+# Generated bundles (except those we use on the Jekyll site)
+/assets/dist/*
+!/assets/dist/bundle.js
+!/assets/dist/screen.css
+!/assets/dist/print.css
 
 # Jekyll
 .bundle
