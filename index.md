@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: home
 redirect_from:
     - "blog"
 ---

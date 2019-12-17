@@ -1,0 +1,20 @@
+<section id="app-activity">
+  <h2 class="h">
+    Recent activity
+  </h2>
+  <ul>
+    {% for post in site.posts %}
+    <li class="summary" style="transition-delay: 0s;">
+      <time datetime="{{ post.date }}">{{ post.date | date_to_string: "ordinal", "US"}}</time>
+      <a href="{{ post.url }}" class="">
+        <h3>{{ post.title | smartify }}</h3>
+      </a>
+      <img loading="lazy" src="{{ post.banner }}" alt="{{ post.title | smartify }}">
+      <p>{{ post.intro | smartify }}</p>
+      <ul>
+        <li><a>storytime</a></li>
+      </ul>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
