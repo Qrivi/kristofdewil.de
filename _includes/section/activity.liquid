@@ -1,5 +1,5 @@
-<section id="app-activity">
-  <h2 class="h">
+<section id="app-activity" aria-labelledby="app-activity-label">
+  <h2 id="app-activity-label">
     Recent activity
   </h2>
   <ul>
@@ -9,7 +9,7 @@
       <a href="{{ post.url }}" class="">
         <h3>{{ post.title | smartify }}</h3>
       </a>
-      <img loading="lazy" src="{{ post.banner }}" alt="{{ post.title | smartify }}">
+      <img loading="lazy" src="{{ page.banner | default: 'assets/images/default_banner.jpg'}}" alt="{{ post.title | smartify }}">
       <p>{{ post.intro | smartify }}</p>
       <ul>
         <li><a>storytime</a></li>
