@@ -77,21 +77,21 @@ const adaptColorScheme = (forcedMode) => {
 }
 
 const setLightMode = () => {
-  console.log('Enabling light theme') // eslint-disable-line
   document.body.classList.remove('darkmode')
   document.querySelector('link[rel="icon"]').setAttribute('href', 'assets/images/icon_light.png')
   document.querySelector('link[rel="apple-touch-icon"]').setAttribute('href', 'assets/images/icon_apple_light.png')
   document.querySelector('link[rel="mask-icon"]').setAttribute('color', '#030044')
   document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
   document.querySelector('meta[name="msapplication-TileColor"]').setAttribute('content', '#fff')
+  console.log('Light theme enabled') // eslint-disable-line
 }
 
 const setDarkMode = () => {
-  console.log('Enabling dark theme') // eslint-disable-line
   document.body.classList.add('darkmode')
   document.querySelector('link[rel="icon"]').setAttribute('href', 'assets/images/icon_dark.png')
   document.querySelector('link[rel="apple-touch-icon"]').setAttribute('href', 'assets/images/icon_apple_dark.png')
   document.querySelector('link[rel="mask-icon"]').setAttribute('color', '#fff')
   document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
   document.querySelector('meta[name="msapplication-TileColor"]').setAttribute('content', '#000')
+  console.log('Dark theme enabled') // eslint-disable-line
 }
