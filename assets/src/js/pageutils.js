@@ -77,6 +77,7 @@ const adaptColorScheme = (forcedMode) => {
 }
 
 const setLightMode = () => {
+  console.log('Enabling light theme') // eslint-disable-line
   document.body.classList.remove('darkmode')
   document.querySelector('link[rel="icon"]').setAttribute('href', 'assets/images/icon_light.png')
   document.querySelector('link[rel="apple-touch-icon"]').setAttribute('href', 'assets/images/icon_apple_light.png')
@@ -86,6 +87,7 @@ const setLightMode = () => {
 }
 
 const setDarkMode = () => {
+  console.log('Enabling dark theme') // eslint-disable-line
   document.body.classList.add('darkmode')
   document.querySelector('link[rel="icon"]').setAttribute('href', 'assets/images/icon_dark.png')
   document.querySelector('link[rel="apple-touch-icon"]').setAttribute('href', 'assets/images/icon_apple_dark.png')
@@ -93,10 +95,3 @@ const setDarkMode = () => {
   document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
   document.querySelector('meta[name="msapplication-TileColor"]').setAttribute('content', '#000')
 }
-
-/*eslint-disable*/
-const dummyToRemoveLater = () => {
-  const xx = 'yy'
-  const z = xx + 'z'
-}
-/* eslint-enable */
