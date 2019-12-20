@@ -1,3 +1,5 @@
-import { hello } from './js/dummy'
+import { stickyHeader, smoothScrolling, heroAnimation } from './js/pageutils'
 
-hello('World')
+stickyHeader()
+smoothScrolling()
+heroAnimation()
