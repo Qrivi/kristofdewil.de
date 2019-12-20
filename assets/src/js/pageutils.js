@@ -93,3 +93,10 @@ const setDarkMode = () => {
   document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
   document.querySelector('meta[name="msapplication-TileColor"]').setAttribute('content', '#000')
 }
+
+/*eslint-disable*/
+const dummyToRemoveLater = () => {
+  const xx = 'yy'
+  const z = xx + 'z'
+}
+/* eslint-enable */
