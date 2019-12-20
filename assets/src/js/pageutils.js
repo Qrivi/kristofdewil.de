@@ -59,7 +59,7 @@ const adaptColorScheme = (forcedMode) => {
         try {
           localStorage.setItem('savedMode', forcedMode)
         } catch (err) {
-          // localStorage not available: mode won't be persisted
+          // localStorage unavailable: mode won't be persisted
         }
     }
   } else if (savedMode === 'light' || savedMode === 'dark') {

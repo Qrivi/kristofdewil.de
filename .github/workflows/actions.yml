@@ -14,7 +14,7 @@ jobs:
     - name: Checkout codebase
       uses: actions/checkout@v2
     - name: Install node
-      uses: actions/setup-node@v1.3
+      uses: actions/setup-node@v1
       with:
         node-version: 13.x
     - name: Code quality check
