@@ -12,11 +12,11 @@ jobs:
 
     steps:
     - name: Checkout codebase
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
     - name: Install node
-      uses: actions/setup-node@master
+      uses: actions/setup-node@v1.3
       with:
-        node-version: 12.x
+        node-version: 13.x
     - name: Code quality check
       run: |
         npm install
