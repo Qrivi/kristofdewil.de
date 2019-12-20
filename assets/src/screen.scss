@@ -19,6 +19,7 @@ body {
   background: var(--background);
   color: var(--text);
   font: 400 1.1em/2em $font-regular;
+  transition: background-color 0.5s;
   -ms-overflow-style: none;
   scrollbar-width: none;
 
