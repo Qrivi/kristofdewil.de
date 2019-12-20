@@ -145,7 +145,7 @@ section#app-hero {
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding: 40vh 0 60vh;
+  padding: calc(50vh - 100px) 0 60vh;
   animation: heroSlideUp 0.75s 3.25s ease-in-out forwards;
 
   @media only screen and (max-width: 650px) {
@@ -159,9 +159,11 @@ section#app-hero {
       padding: 120px 0 0;
     }
 
-    * {
-      animation-duration: 0s !important;
-      animation-delay: 0s !important;
+    path, g, em {
+      letter-spacing: 0.2em;
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
     }
   }
 
