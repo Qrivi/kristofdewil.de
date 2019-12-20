@@ -4,7 +4,6 @@ date: 1993-09-26
 
 title:  This is my style guide
 intro: Ipsum soluta lucilius eu cum. Movet electram duo ei, sea quod purto case ex, ea mazim choro cotidieque pri.
-banner: dummy.jpg
 tags:
   - PHP
   - Opinion

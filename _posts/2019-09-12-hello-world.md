@@ -1,7 +1,7 @@
 ---
 title: Hello World
 intro: It’s been 3000 years, but this website has finally received its way overdue makeover. This time we’re going to do things… agile!
-banner: dummy.jpg
+# banner: dummy.jpg
 tags:
   - storytime
 ---
