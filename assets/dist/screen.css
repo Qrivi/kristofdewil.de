@@ -800,7 +800,7 @@ section#app-hero {
   overflow: hidden;
   width: 100%;
   padding: 40vh 0 60vh;
-  animation: heroSlideUp 1.5s 2.5s ease-in-out forwards;
+  animation: heroSlideUp 0.75s 3.25s ease-in-out forwards;
 }
 @media only screen and (max-width: 650px) {
   section#app-hero {
@@ -849,13 +849,13 @@ section#app-hero svg path#s04, section#app-hero svg path#t05, section#app-hero s
   transform: translate(-45px);
 }
 section#app-hero svg path#r02, section#app-hero svg path#s04, section#app-hero svg path#w10, section#app-hero svg path#l12 {
-  animation-delay: 0.75s;
-}
-section#app-hero svg path#k01, section#app-hero svg path#t05, section#app-hero svg path#e09, section#app-hero svg path#d13 {
   animation-delay: 1s;
 }
-section#app-hero svg path#o06, section#app-hero svg path#d08, section#app-hero svg path#e14, section#app-hero svg path#f07 {
+section#app-hero svg path#k01, section#app-hero svg path#t05, section#app-hero svg path#e09, section#app-hero svg path#d13 {
   animation-delay: 1.25s;
+}
+section#app-hero svg path#o06, section#app-hero svg path#d08, section#app-hero svg path#e14, section#app-hero svg path#f07 {
+  animation-delay: 1.5s;
 }
 @keyframes logoLettersPlacing {
   to {
@@ -887,7 +887,7 @@ section#app-hero em {
   font-size: 1.2em;
   font-weight: 700;
   opacity: 0;
-  animation: logoBaseLineFading 2s ease-out forwards;
+  animation: logoBaseLineFading 2s 1s ease-out forwards;
 }
 @keyframes logoBaseLineFading {
   50% {

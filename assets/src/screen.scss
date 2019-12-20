@@ -145,7 +145,7 @@ section#app-hero {
   overflow: hidden;
   width: 100%;
   padding: 40vh 0 60vh;
-  animation: heroSlideUp 1.5s 2.5s ease-in-out forwards;
+  animation: heroSlideUp 0.75s 3.25s ease-in-out forwards;
 
   @media only screen and (max-width: 650px) {
     animation-name: heroSlideUpMobile;
@@ -212,21 +212,21 @@ section#app-hero {
       &#s04,
       &#w10,
       &#l12 {
-        animation-delay: 0.75s;
+        animation-delay: 1s;
       }
 
       &#k01,
       &#t05,
       &#e09,
       &#d13 {
-        animation-delay: 1s;
+        animation-delay: 1.25s;
       }
 
       &#o06,
       &#d08,
       &#e14,
       &#f07 {
-        animation-delay: 1.25s;
+        animation-delay: 1.5s;
       }
 
       @keyframes logoLettersPlacing {
@@ -266,7 +266,7 @@ section#app-hero {
     font-size: 1.2em;
     font-weight: 700;
     opacity: 0;
-    animation: logoBaseLineFading 2s ease-out forwards;
+    animation: logoBaseLineFading 2s 1s ease-out forwards;
 
     @keyframes logoBaseLineFading {
       50% {
