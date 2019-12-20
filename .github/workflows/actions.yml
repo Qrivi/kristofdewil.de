@@ -4,11 +4,7 @@ on:
   pull_request:
   push:
     paths:
-    - 'src/*'
-    - 'src/*/*'
-    - 'src/*/*/*'
-    - 'src/*/*/*/*'
-    - 'src/*/*/*/*/*'
+    - 'assets/src/**'
 
 jobs:
   build:
@@ -24,13 +20,13 @@ jobs:
     - name: Code quality check
       run: |
         npm install
-        npm audit
         npm run lint
+        npm audit
     - name: Make production build
       if: github.ref == 'refs/heads/master'
       env:
         GITHUB_ACCESS: ${{ secrets.GITHUB_ACCESS }}
       run: |
-        npm run build:vue
+        npm run clean && npm run build
         chmod +x ./bin/push_build.sh
-        ./bin/push_build.sh     
+        ./bin/push_build.sh

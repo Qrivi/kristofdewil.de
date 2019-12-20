@@ -13,7 +13,7 @@ push_build() {
 
    # Push the production build to a temporary branch
   git add .
-  git commit -m "Switched to a Vue production mode build"
+  git commit -m "Bundled and minified assets (production build)"
   git branch build-local
 
    # Merge that branch into master
