@@ -34,3 +34,62 @@ export const heroAnimation = () => {
     }
   }
 }
+
+export const darkModeSupport = () => {
+  window.matchMedia('(prefers-color-scheme: dark)').addListener(adaptColorScheme)
+  adaptColorScheme()
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'm') {
+      adaptColorScheme(document.body.classList.contains('darkmode') ? 'light' : 'dark')
+    }
+  })
+}
+
+const adaptColorScheme = (forcedMode) => {
+  const savedMode = localStorage.getItem('savedMode')
+  let newMode = null
+
+  if (forcedMode) {
+    switch (forcedMode) {
+      case 'light':
+      case 'dark':
+        newMode = forcedMode
+      case 'system':
+        try {
+          localStorage.setItem('savedMode', forcedMode)
+        } catch (err) {
+          // localStorage not available. mode won't be persisted
+        }
+    }
+  } else if (savedMode === 'light' || savedMode === 'dark') {
+    newMode = savedMode
+  }
+
+  switch (newMode) {
+    case 'light':
+      return setLightMode()
+    case 'dark':
+      return setDarkMode()
+    default:
+      window.matchMedia('(prefers-color-scheme: dark)').matches ? setDarkMode() : setLightMode()
+  }
+}
+
+const setDarkMode = () => {
+  document.body.classList.add('darkmode')
+  document.querySelector('link[rel="icon"]').setAttribute('href', 'assets/images/icon_dark.png')
+  document.querySelector('link[rel="apple-touch-icon"]').setAttribute('href', 'assets/images/icon_apple_dark.png')
+  document.querySelector('link[rel="mask-icon"]').setAttribute('color', '#fff')
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  document.querySelector('meta[name="msapplication-TileColor"]').setAttribute('content', '#000')
+}
+
+const setLightMode = () => {
+  document.body.classList.remove('darkmode')
+  document.querySelector('link[rel="icon"]').setAttribute('href', 'assets/images/icon_light.png')
+  document.querySelector('link[rel="apple-touch-icon"]').setAttribute('href', 'assets/images/icon_apple_light.png')
+  document.querySelector('link[rel="mask-icon"]').setAttribute('color', '#030044')
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  document.querySelector('meta[name="msapplication-TileColor"]').setAttribute('content', '#fff')
+}
