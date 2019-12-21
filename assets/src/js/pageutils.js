@@ -83,7 +83,6 @@ const setLightMode = () => {
   document.querySelector('link[rel="mask-icon"]').setAttribute('color', '#030044')
   document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
   document.querySelector('meta[name="msapplication-TileColor"]').setAttribute('content', '#fff')
-  console.log('Light theme enabled') // eslint-disable-line
 }
 
 const setDarkMode = () => {
@@ -93,5 +92,4 @@ const setDarkMode = () => {
   document.querySelector('link[rel="mask-icon"]').setAttribute('color', '#fff')
   document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
   document.querySelector('meta[name="msapplication-TileColor"]').setAttribute('content', '#000')
-  console.log('Dark theme enabled') // eslint-disable-line
 }
