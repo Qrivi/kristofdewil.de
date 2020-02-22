@@ -8,6 +8,7 @@
 /* #region Page Setup */
 
 body {
+  --syntax: #f9f8f5;
   --background: #ffffff;
   --text: #030044;
   --border: #070606;
@@ -24,6 +25,7 @@ body {
   scrollbar-width: none;
 
   &.darkmode {
+    --syntax: #272822;
     --background: #000000;
     --text: #ffffff;
     --border: #dedede;
@@ -159,7 +161,9 @@ section#app-hero {
       padding: 120px 0 0;
     }
 
-    path, g, em {
+    path,
+    g,
+    em {
       letter-spacing: 0.2em;
       opacity: 1 !important;
       transform: none !important;
@@ -295,7 +299,7 @@ section#app-activity {
     display: none;
   }
 
-  ul {
+  > ul {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 
@@ -481,14 +485,14 @@ main > article {
     margin: 0 auto;
 
     h1 {
-      max-width: 740px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 20px;
       font-size: 1.8em;
     }
 
     h2 {
-      max-width: 740px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 30px 20px 15px;
       font-size: 1.7em;
@@ -496,7 +500,7 @@ main > article {
     }
 
     h3 {
-      max-width: 740px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 30px 20px 15px;
       font-size: 1.5em;
@@ -504,7 +508,7 @@ main > article {
     }
 
     h4 {
-      max-width: 740px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 30px 20px 15px;
       font-size: 1.4em;
@@ -512,7 +516,7 @@ main > article {
     }
 
     p {
-      max-width: 740px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 15px 20px;
 
@@ -545,33 +549,40 @@ main > article {
       }
     }
 
-    code {
+    code.highlighter-rouge { // Targets <code> outside <pre>
+      position: relative;
+      display: inline-block;
+      padding: 0 5px;
+      background: var(--syntax);
       font-family: $font-monospace;
 
-      &:before,
-      &:after {
+      &:after{
         content: " ";
-        display: inline-block;
-        min-width: 6px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: var(--background);
       }
     }
 
     pre {
-      max-width: 740px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 15px 20px;
       overflow-x: auto;
     }
 
     ul {
-      max-width: 740px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 0 20px 15px 40px;
       list-style-type: square;
     }
 
     ol {
-      max-width: 740px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 0 20px 15px 40px;
       list-style-type: decimal;

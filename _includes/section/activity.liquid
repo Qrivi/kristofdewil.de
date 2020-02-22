@@ -9,10 +9,14 @@
       <a href="{{ post.url }}" class="">
         <h3>{{ post.title | smartify }}</h3>
       </a>
-      <img loading="lazy" src="{{ page.banner | default: 'assets/images/default_banner.jpg'}}" alt="{{ post.title | smartify }}">
+      <img loading="lazy" src="{{ post.banner | default: 'https://source.unsplash.com/random'}}" alt="{{ post.title | smartify }}">
       <p>{{ post.intro | smartify }}</p>
       <ul>
-        <li><a>storytime</a></li>
+        {% for tag in post.tags %}
+        <li>
+          <a>{{ tag }}</a>
+        </li>
+        {% endfor %}
       </ul>
     </li>
     {% endfor %}

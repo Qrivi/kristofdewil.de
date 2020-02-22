@@ -1,7 +1,8 @@
 pre.highlight {
   font: 14px/20px $font-monospace;
-  padding: 25px;
-  background: #f9f8f5;
+  margin: 15px auto 25px;
+  padding: 20px 25px 15px;
+  background: var(--syntax);
   color: #272822;
 
   .hll {
@@ -202,7 +203,6 @@ pre.highlight {
 }
 
 .darkmode pre.highlight {
-  background: #272822;
   color: #f9f8f5;
 
   .hll {
