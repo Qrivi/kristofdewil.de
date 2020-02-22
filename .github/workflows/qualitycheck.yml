@@ -1,0 +1,25 @@
+name: actions/qualitycheck
+
+on:
+  pull_request:
+  push:
+    paths:
+    - 'assets/src/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout codebase
+      uses: actions/checkout@v2
+    - name: Install node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 13.x
+    - name: Install dependencies
+      run: npm install
+    - name: Verify codebase quality
+      run: npm run lint
+    - name: Check for vulnerabilities
+      run: npm audit
