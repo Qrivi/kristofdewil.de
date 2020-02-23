@@ -1,3 +1,9 @@
+export const lateInit = () => {
+  window.setTimeout(() => {
+    document.body.classList.add('loaded')
+  }, 500)
+}
+
 export const stickyHeader = () => {
   const header = document.querySelector('header#app-topbar')
   let scrollPos = 0

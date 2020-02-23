@@ -1,5 +1,6 @@
-import { stickyHeader, smoothScrolling, heroAnimation, darkModeSupport } from './js/pageutils'
+import { lateInit, stickyHeader, smoothScrolling, heroAnimation, darkModeSupport } from './js/pageutils'
 
+lateInit()
 stickyHeader()
 smoothScrolling()
 heroAnimation()

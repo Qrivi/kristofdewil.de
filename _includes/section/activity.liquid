@@ -4,7 +4,7 @@
   </h2>
   <ul>
     {% for post in site.posts %}
-    <li class="summary" style="transition-delay: 0s;">
+    <li class="summary">
       <time datetime="{{ post.date }}">{{ post.date | date_to_string: "ordinal", "US"}}</time>
       <a href="{{ post.url }}" class="">
         <h3>{{ post.title | smartify }}</h3>

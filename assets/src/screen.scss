@@ -20,7 +20,6 @@ body {
   background: var(--background);
   color: var(--text);
   font: 400 1.1em/2em $font-regular;
-  transition: background-color 0.5s;
   -ms-overflow-style: none;
   scrollbar-width: none;
 
@@ -31,6 +30,20 @@ body {
     --border: #dedede;
     --accent: rgb(250, 170, 20);
     --dim: rgba(250, 170, 20, 0.4);
+  }
+
+  &.loaded {
+    transition: background-color 0.5s;
+
+    #app-activity li.summary {
+      img {
+        transition: opacity 5s ease-out;
+      }
+
+      &:hover img {
+        opacity: 0.1;
+      }
+    }
   }
 }
 
@@ -326,10 +339,6 @@ section#app-activity {
         margin: 20px 10px;
       }
 
-      &:hover img {
-        opacity: 0.1;
-      }
-
       img {
         position: absolute;
         object-fit: cover;
@@ -339,7 +348,6 @@ section#app-activity {
         top: 0;
         left: 0;
         opacity: 0;
-        transition: opacity 5s ease-out;
       }
 
       time {
@@ -549,14 +557,15 @@ main > article {
       }
     }
 
-    code.highlighter-rouge { // Targets <code> outside <pre>
+    code.highlighter-rouge {
+      // Targets <code> outside <pre>
       position: relative;
       display: inline-block;
       padding: 0 5px;
       background: var(--syntax);
       font-family: $font-monospace;
 
-      &:after{
+      &:after {
         content: " ";
         position: absolute;
         bottom: 0;
