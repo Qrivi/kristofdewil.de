@@ -19,10 +19,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Qrivi/qrivi.github.io.git"
+    "url": "git+https://github.com/Qrivi/kristofdewil.de.git"
   },
   "bugs": {
-    "url": "https://github.com/Qrivi/qrivi.github.io/issues"
+    "url": "https://github.com/Qrivi/kristofdewil.de/issues"
   },
   "engines": {
     "node": ">=10.0.0",
