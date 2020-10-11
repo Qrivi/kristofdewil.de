@@ -74,4 +74,4 @@ class SecurityConfig(private val handlerExceptionResolver: HandlerExceptionResol
 }
 ```
 
-I’ve actually not found many other people suggesting this approach, so though it works really well for me, I actually do worry a bit that I might be doing something wrong, like breaking a pattern of affecting performance in some way that I haven’t noticed yet. I will soon write a more technical post with better example code and a step-by-step guide for which I’ll definitely look closer into the subject.
+I’ve actually not found many other people suggesting this approach, so though it works really well for me, I actually do worry a bit that I might be doing something wrong, like breaking a pattern or affecting performance in some way that I haven’t noticed yet. I will soon write a more technical post with better example code and a step-by-step guide for which I’ll definitely look closer into the subject.
