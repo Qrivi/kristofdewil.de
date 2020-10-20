@@ -74,4 +74,4 @@ class SecurityConfig(private val handlerExceptionResolver: HandlerExceptionResol
 }
 ```
 
-I’ve only found a couple of other people suggesting this approach, so though it works really well for me, I am a bit worried that I might be doing something wrong like breaking a pattern or affecting performance in some way that I haven’t noticed yet. The code for [this project is available on my GitHub](https://github.com/Qrivi/fappserver), but is a work-in-progress, so the actual implementation might have changed a bit depending on how old this post has become.
+I’ve only found a couple of other people suggesting this approach, so though it works really well for me, I am a bit worried that I might be doing something wrong like breaking a pattern or affecting performance in some way that I haven’t noticed yet. The code for [this project is available on my GitHub](https://github.com/Qrivi/fappserver){:target="_blank"}, but is a work-in-progress, so the actual implementation might have changed a bit depending on how old this post has become.
