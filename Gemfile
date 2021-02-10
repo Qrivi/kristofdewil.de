@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "github-pages", "~> 203"
+gem "github-pages", "~> 211"
 # gem "jekyll-feed"
 # gem "jekyll-seo-tag"
 # gem "jekyll-sitemap"
