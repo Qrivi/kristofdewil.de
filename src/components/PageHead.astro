@@ -1,0 +1,77 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  tags?: string[];
+  published?: string;
+  banner?: string;
+}
+const {
+  title = 'Kristof Dewilde',
+  description = 'Full Stack Java Developer',
+  tags = [],
+  published = null,
+  banner = 'assets/images/icon_social.png',
+} = Astro.props;
+
+const siteUrl = 'https://kristofdewil.de';
+const siteName = 'Kristof Dewilde';
+const pageTitle = title === siteName ? title : `${title} | ${siteName}`;
+const keywords = [
+  ...tags,
+  'kristof', 'dewilde', 'krivi', 'qrivi', 'full', 'stack', 'fullstack', 'java', 'javascript', 'developer'
+];
+---
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>{pageTitle}</title>
+
+  <meta name="description" content="{description}">
+  <meta name="keywords" content="{keywords}">
+
+  <meta itemprop="name" content="{title}">
+  <meta itemprop="description" content="{description}">
+  <meta itemprop="image" content="{banner}">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{title}">
+  <meta name="twitter:description" content="{description}">
+  <meta name="twitter:image" content="{banner}">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{title}">
+  <meta property="og:url" content="{siteUrl}">
+  <meta property="og:image" content="{banner}">
+  <meta property="og:description" content="{description}">
+  <meta property="og:site_name" content="{siteName}">
+  {published &&
+  <meta property="article:published_time" content="{published}">
+  }
+  {published &&
+  <meta property="article:modified_time" content="{published}">
+  }
+
+  <!-- <base href="{{site.url}}"> -->
+
+  <meta name="google-site-verification" content="4h6Nqop-E-vlbdgRGU8jg4DrPcGB5bw6VQbyg9fa1Js">
+
+  <meta name="theme-color" content="#fff">
+  <meta name="msapplication-TileColor" content="#fff">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="icon" type="image/png" href="assets/images/icon_light.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icon_apple_light.png">
+  <link rel="mask-icon" href="assets/images/icon_mask.svg" color="#030044">
+
+  <link rel="stylesheet" media="screen" href="/styles/screen.css">
+  <link rel="stylesheet" media="print" href="/styles/print.css">
+  {published &&
+  <link rel="stylesheet" media="screen" href="/styles/post.css">
+  }
+
+  <!-- <script defer src="assets/dist/bundle.js"></script> -->
+</head>
