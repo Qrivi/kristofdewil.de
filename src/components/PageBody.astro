@@ -1,7 +1,3 @@
----
-console.log('hello')
----
-
 <body>
   <slot name="header" />
   <main>
@@ -20,11 +16,6 @@ console.log('hello')
     -ms-overflow-style: none;
     scrollbar-width: none;
     scroll-behavior: smooth;
-
-    > header {
-      width: 550px;
-      height: 100vh;
-    }
 
     > main {
       background-color: var(--scene);

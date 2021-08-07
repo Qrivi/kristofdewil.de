@@ -1,16 +1,21 @@
 ---
-import Hero from '../components/Hero.astro';
+import Hero from './Hero.astro';
+import ThemeToggle from './ThemeToggle.tsx';
 ---
 
 <header>
   <h1>Kristof Dewilde</h1>
-  <div class="sticky">
-    <Hero/>
-  </div>
+  <Hero />
+  <ThemeToggle client:idle />
 </header>
 
 <style lang="scss">
-  h1 {
-    display: none;
+  header {
+    width: 640px;
+    height: 100vh;
+
+    > h1 {
+      display: none;
+    }
   }
 </style>

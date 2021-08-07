@@ -14,7 +14,6 @@ h6,
 p,
 blockquote,
 pre,
-a,
 abbr,
 acronym,
 address,
@@ -23,7 +22,6 @@ cite,
 code,
 del,
 dfn,
-em,
 img,
 ins,
 kbd,
@@ -37,9 +35,6 @@ sub,
 sup,
 tt,
 var,
-b,
-u,
-i,
 center,
 dl,
 dt,
@@ -84,8 +79,18 @@ video {
   padding: 0;
   border: 0;
   outline: 0;
+}
+
+a,
+b,
+u,
+i,
+code,
+em,
+input,
+pre,
+textarea {
   font: inherit;
-  vertical-align: baseline;
 }
 
 *:focus {

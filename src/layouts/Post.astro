@@ -1,5 +1,6 @@
 ---
 import PageHead from '../components/PageHead.astro';
+import PageBody from '../components/PageBody.astro';
 import Header from '../components/Header.astro';
 
 const {content} = Astro.props;
@@ -15,27 +16,25 @@ const {
 <html lang="en">
   <PageHead title={title} description={description} published={published} banner={banner} tags={tags}/>
 
-  <body>
-    <Header/>
-    <main>
-      <article>
-        <header class="fadeIn">
-          <div>
-            <time datetime="{published}">{published.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-            <h1>{title}</h1>
-              <ul>
-                {tags.map(tag => <li><a>{tag}</a></li>)}
-              </ul>
-          </div>
-          <img loading="lazy" src="{banner ? `/banners/${banner}` : 'https://source.unsplash.com/random'}" alt="{title}">
-        </header>
-        <section>
-          <p class="intro">
-            {description}
-          </p>
-          <slot/>
-        </section>
-      </article>
-    </main>
-  </body>
+  <PageBody>
+    <Header slot="header"/>
+    <article>
+      <header class="fadeIn">
+        <div>
+          <time datetime="{published}">{published.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          <h1>{title}</h1>
+            <ul>
+              {tags.map(tag => <li><a>{tag}</a></li>)}
+            </ul>
+        </div>
+        <img loading="lazy" src="{banner ? `/banners/${banner}` : 'https://source.unsplash.com/random'}" alt="{title}">
+      </header>
+      <section>
+        <p class="intro">
+          {description}
+        </p>
+        <slot/>
+      </section>
+    </article>
+  </PageBody>
 </html>

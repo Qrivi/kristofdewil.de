@@ -2,14 +2,7 @@
 import PageBody from '../components/PageBody.astro';
 import PageHead from '../components/PageHead.astro';
 import Header from '../components/Header.astro';
-import Preview from '../components/Preview.astro';
-
-const content = Astro.fetchContent('./blog/*.md');
-const today = new Date();
-const posts = content
-  .map(post => ({ ...post, published: new Date(post.published)}))
-  .filter(post => post.published < today)
-  .sort((a, b) => b.published - a.published);
+import PostOverview from '../components/PostOverview.astro';
 ---
 
 <html lang="en">
@@ -17,12 +10,6 @@ const posts = content
 
   <PageBody>
     <Header slot="header" />
-
-    <section>
-        <h2>Recent activity</h2>
-        <ul>
-          {posts.map(post => <li><Preview post={post} /></li>)}
-        </ul>
-      </section>
+    <PostOverview />
   </PageBody>
 </html>
