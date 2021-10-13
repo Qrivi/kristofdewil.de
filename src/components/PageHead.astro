@@ -55,7 +55,7 @@ const keywords = [
   <meta property="article:modified_time" content="{published}">
   }
 
-  <!-- <base href="{{site.url}}"> -->
+  <!-- <base href="{Astro.site}"> -->
 
   <meta name="google-site-verification" content="4h6Nqop-E-vlbdgRGU8jg4DrPcGB5bw6VQbyg9fa1Js">
 
@@ -67,10 +67,10 @@ const keywords = [
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon_apple_light.png">
   <link rel="mask-icon" href="/icons/icon_mask.svg" color="#030044">
 
-  <link rel="stylesheet" media="screen" href="/styles/screen.css">
-  <link rel="stylesheet" media="print" href="/styles/print.css">
+  <link rel="stylesheet" media="screen" href={Astro.resolve("../styles/screen.css")}>
+  <link rel="stylesheet" media="print" href={Astro.resolve("../styles/print.css")}>
   {published &&
-  <link rel="stylesheet" media="screen" href="/styles/post.css">
+  <link rel="stylesheet" media="screen" href={Astro.resolve("../styles/post.css")}>
   }
 
   <!-- <script defer src="assets/dist/bundle.js"></script> -->

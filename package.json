@@ -1,9 +1,9 @@
 {
-  "name": "website",
-  "description": "Kristof Dewilde's personal website",
+  "name": "blog.kristofdewil.de",
+  "description": "Kristof Dewilde's personal blog",
   "version": "0.2.0",
   "private": true,
-  "author": "Kristof Dewilde <git@krivi.be>",
+  "author": "Kristof Dewilde <code@qrivi.dev>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -22,6 +22,6 @@
   },
   "devDependencies": {
     "@astrojs/renderer-preact": "^0.2.0",
-    "astro": "^0.18.4"
+    "astro": "^0.20.11"
   }
 }
