@@ -36,4 +36,3 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: /domains/kristofdewil.de/public_html/
-          dry-run: true
