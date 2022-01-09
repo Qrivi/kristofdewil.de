@@ -1,15 +1,34 @@
 ---
-import PageBody from '../components/PageBody.astro';
-import PageHead from '../components/PageHead.astro';
+import Meta from '../components/Meta.astro';
 import Header from '../components/Header.astro';
-import PostOverview from '../components/PostOverview.astro';
+import Main from '../components/Main.astro';
 ---
 
 <html lang="en">
-  <PageHead/>
+  <head>
+    <Meta />
+  </head>
 
-  <PageBody>
+  <body>
     <Header slot="header" />
-    <PostOverview />
-  </PageBody>
+    <Main />
+  </body>
+
+  <script>
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('darkmode')
+        document.querySelector('link[rel="icon"]').setAttribute('href', 'icons/icon_dark.png')
+        document.querySelector('link[rel="apple-touch-icon"]').setAttribute('href', 'icons/icon_apple_dark.png')
+        document.querySelector('link[rel="mask-icon"]').setAttribute('color', '#fff')
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+        document.querySelector('meta[name="msapplication-TileColor"]').setAttribute('content', '#000')
+      } else {
+        document.body.classList.remove('darkmode')
+        document.querySelector('link[rel="icon"]').setAttribute('href', 'icons/icon_light.png')
+        document.querySelector('link[rel="apple-touch-icon"]').setAttribute('href', 'icons/icon_apple_light.png')
+        document.querySelector('link[rel="mask-icon"]').setAttribute('color', '#030044')
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+        document.querySelector('meta[name="msapplication-TileColor"]').setAttribute('content', '#fff')
+      }
+  </script>
 </html>
