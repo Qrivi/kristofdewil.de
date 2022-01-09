@@ -35,5 +35,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: /domains/kristofdewil.de/public_html
+          server-dir: /domains/kristofdewil.de/public_html/
           dry-run: true
