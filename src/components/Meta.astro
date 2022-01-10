@@ -1,11 +1,4 @@
 ---
-export interface Props {
-  title?: string;
-  description?: string;
-  tags?: string[];
-  published?: string;
-  banner?: string;
-}
 const {
   title = 'Kristof Dewilde',
   description = 'Full Stack Java Developer',
@@ -14,8 +7,6 @@ const {
   banner = '/icons/icon_social.png',
 } = Astro.props;
 
-const siteUrl = 'https://kristofdewil.de';
-const siteName = 'Kristof Dewilde';
 const keywords = [
   ...tags,
   'kristof', 'dewilde', 'krivi', 'qrivi', 'full', 'stack', 'fullstack', 'java', 'javascript', 'developer'
@@ -26,34 +17,32 @@ const keywords = [
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<title>{title === siteName ? title : `${title} | ${siteName}`}</title>
+<title>{title}</title>
 
-<meta name="description" content="{description}">
-<meta name="keywords" content="{keywords}">
+<meta name="description" content={description}>
+<meta name="keywords" content={keywords}>
 
-<meta itemprop="name" content="{title}">
-<meta itemprop="description" content="{description}">
-<meta itemprop="image" content="{banner}">
+<meta itemprop="name" content={title}>
+<meta itemprop="description" content={description}>
+<meta itemprop="image" content={banner}>
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{title}">
-<meta name="twitter:description" content="{description}">
-<meta name="twitter:image" content="{banner}">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:image" content={banner}>
 
 <meta property="og:type" content="article">
-<meta property="og:title" content="{title}">
-<meta property="og:url" content="{siteUrl}">
-<meta property="og:image" content="{banner}">
-<meta property="og:description" content="{description}">
-<meta property="og:site_name" content="{siteName}">
+<meta property="og:title" content={title}>
+<meta property="og:url" content={Astro.request.canonicalURL}>
+<meta property="og:image" content={banner}>
+<meta property="og:description" content={description}>
+<meta property="og:site_name" content={title}>
 {published &&
-<meta property="article:published_time" content="{published}">
+<meta property="article:published_time" content={published}>
 }
 {published &&
-<meta property="article:modified_time" content="{published}">
+<meta property="article:modified_time" content={published}>
 }
-
-<!-- <base href="{Astro.site}"> -->
 
 <meta name="google-site-verification" content="4h6Nqop-E-vlbdgRGU8jg4DrPcGB5bw6VQbyg9fa1Js">
 
