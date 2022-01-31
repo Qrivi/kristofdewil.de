@@ -1,0 +1,32 @@
+---
+import PostPreview from "../components/PostPreview.astro";
+
+const content = Astro.fetchContent('../pages/posts/*.md');
+const today = new Date();
+const posts = content
+  .map(post => ({ ...post, published: new Date(post.published)}))
+  .filter(post => post.published < today)
+  .sort((a, b) => b.published - a.published);
+---
+
+<section class="wrapper">
+  <h2>Recent activity</h2>
+  <ul>
+    {posts.map(post => <li><PostPreview post={post} /></li>)}
+  </ul>
+</section>
+
+<style lang="scss">
+  section{
+    margin-top: 120px;
+
+    h2 {
+      display: none;
+    }
+    ul {
+      columns: 1;
+      column-gap: 25px;
+      margin: 20px;
+    }
+  }
+</style>

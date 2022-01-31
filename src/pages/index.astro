@@ -1,8 +1,7 @@
 ---
-import Meta from "../components/Meta.astro";
 import Header from "../components/Header.astro";
-import Main from "../components/Main.astro";
-import Logo from "../components/Logo.vue";
+import Meta from "../components/Meta.astro";
+import PostOverview from "../components/PostOverview.astro";
 ---
 
 <html lang="en">
@@ -10,9 +9,11 @@ import Logo from "../components/Logo.vue";
     <Meta />
   </head>
 
-  <body style="display: flex;align-items: center;    justify-content: center">
-    <div style="width: 400px">
-      <Logo client:idle/>
-    </div>
+  <body>
+    <Header />
+
+    <main>
+      <PostOverview />
+    </main>
   </body>
 </html>

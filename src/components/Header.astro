@@ -1,14 +1,32 @@
 ---
-import Hero from "./Hero.astro";
+import Logo from "../components/Logo.vue";
 ---
 
 <header>
-  <h1>Kristof Dewilde</h1>
-  <Hero />
+  <h1 class="h">Kristof Dewilde</h1>
+  <div class="wrapper">
+    <a href="#"><Logo client:idle height="40" /></a>
+  </div>
 </header>
 
 <style lang="scss">
-  header h1 {
-    display: none;
+header{
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  width: 100%;
+  padding: 15px 0;
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 5px 5px rgb(0 0 0 / 2%);
+  transition: transform 0.5s ease-out;
+
+  &.hidden {
+    transform: translateY(-100px);
   }
+
+  .wrapper {
+    height: 40px;
+  }
+}
 </style>

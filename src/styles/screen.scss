@@ -10,18 +10,19 @@ body {
     --font-monospace: 'Courier Prime', 'Courier New', Courier, monospace;
     --font-writing: 'Parisienne', Arial, sans-serif;
 
-    --syntax: #f9f8f5;
-    --background: #ffffff;
-    --scene: #f5f7fa;
-    --text: #030044;
-    --border: #070606;
+    --syntax: rgb(249, 248, 245);
+    --fade: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.69) 60%, rgba(255,255,255,.2) 100%);
+    --background: rgb(255, 255, 255);
+    --scene: rgb(245, 247, 250);
+    --text: rgb(3, 0, 68);
+    --border: #dcdee1;
     --accent: rgb(179, 136, 68);
     --dim: rgba(179, 136, 68, 0.4);
 
     position: relative;
     max-width: 100vw;
     min-height: 100vh;
-    background: var(--background);
+    background: var(--scene);
     color: var(--text);
     font: 400 1.1em/2em var(--font-regular);
     -ms-overflow-style: none;
@@ -29,11 +30,12 @@ body {
     scroll-behavior: smooth;
 
     &.darkmode {
-        --syntax: #272822;
-        --background: #000000;
-        --scene: #131313;
-        --text: #ffffff;
-        --border: #dedede;
+        --syntax: rgb(39, 40, 34);
+        --fade: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.5) 50%, rgba(255,255,255,0) 100%);
+        --background: rgb(0, 0, 0);
+        --scene: rgb(18, 18, 18);
+        --text: rgb(255, 255, 255);
+        --border: rgb(222, 222, 222);
         --accent: rgb(250, 170, 20);
         --dim: rgba(250, 170, 20, 0.4);
     }
@@ -56,3 +58,10 @@ a {
 .h {
     display: none !important;
 }
+
+.wrapper {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 25px;
+ }
