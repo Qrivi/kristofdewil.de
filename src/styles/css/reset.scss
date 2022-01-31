@@ -74,11 +74,11 @@ time,
 mark,
 audio,
 video {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
 }
 
 a,
@@ -90,11 +90,11 @@ em,
 input,
 pre,
 textarea {
-  font: inherit;
+    font: inherit;
 }
 
 *:focus {
-  outline: none;
+    outline: none;
 }
 
 article,
@@ -108,34 +108,34 @@ hgroup,
 menu,
 nav,
 section {
-  display: block;
+    display: block;
 }
 
 ol,
 ul {
-  list-style: none;
+    list-style: none;
 }
 
 blockquote,
 q {
-  quotes: none;
+    quotes: none;
 }
 
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: none;
+    content: none;
 }
 
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 body {
-  -webkit-text-size-adjust: none;
-  -webkit-touch-callout: none;
-  -ms-overflow-style: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-text-size-adjust: none;
+    -webkit-touch-callout: none;
+    -ms-overflow-style: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }

@@ -1,7 +1,8 @@
 ---
-import Meta from '../components/Meta.astro';
-import Header from '../components/Header.astro';
-import Main from '../components/Main.astro';
+import Meta from "../components/Meta.astro";
+import Header from "../components/Header.astro";
+import Main from "../components/Main.astro";
+import Logo from "../components/Logo.vue";
 ---
 
 <html lang="en">
@@ -9,26 +10,9 @@ import Main from '../components/Main.astro';
     <Meta />
   </head>
 
-  <body>
-    <Header slot="header" />
-    <Main />
+  <body style="display: flex;align-items: center;    justify-content: center">
+    <div style="width: 400px">
+      <Logo client:idle/>
+    </div>
   </body>
-
-  <script>
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('darkmode')
-        document.querySelector('link[rel="icon"]').setAttribute('href', 'icons/icon_dark.png')
-        document.querySelector('link[rel="apple-touch-icon"]').setAttribute('href', 'icons/icon_apple_dark.png')
-        document.querySelector('link[rel="mask-icon"]').setAttribute('color', '#fff')
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
-        document.querySelector('meta[name="msapplication-TileColor"]').setAttribute('content', '#000')
-      } else {
-        document.body.classList.remove('darkmode')
-        document.querySelector('link[rel="icon"]').setAttribute('href', 'icons/icon_light.png')
-        document.querySelector('link[rel="apple-touch-icon"]').setAttribute('href', 'icons/icon_apple_light.png')
-        document.querySelector('link[rel="mask-icon"]').setAttribute('color', '#030044')
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
-        document.querySelector('meta[name="msapplication-TileColor"]').setAttribute('content', '#fff')
-      }
-  </script>
 </html>
