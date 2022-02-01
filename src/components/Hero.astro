@@ -1,5 +1,11 @@
-<div>
-  <svg viewBox="0 0 566.5 151.5">
+<header>
+  <h1 class="h">Kristof Dewilde</h1>
+
+  <video autoplay muted loop>
+    <source src="assets/video.mp4" type="video/mp4">
+  </video>
+
+  <svg id="hero" viewBox="0 0 566.5 151.5">
     <g id="kristof01">
       <path
         id="k01"
@@ -51,37 +57,40 @@
     </g>
   </svg>
   <em>Full stack Java Developer</em>
-</div>
+</header>
 
 <style lang="scss">
-  div {
+  header {
     position: relative;
     overflow: hidden;
     width: 100%;
-    padding: 20vh 0 0;
+    height: 38vh;
+    min-height: 400px;
+    overflow: hidden;
+    padding: 15vh 0 0;
 
-    &.static {
-      padding: 20vh 0 0;
-
-      @media only screen and (max-width: 650px) {
-        padding: 120px 0 0;
-      }
-
-      path,
-      g,
-      em {
-        letter-spacing: 0.2em;
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
-      }
+    &:before {
+      content: " ";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: var(--scene);
+      opacity: .9;
     }
 
-    > h1 {
-      display: none;
+    video {
+      position: absolute;
+      z-index: -2;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
     }
 
-    svg {
+    svg#hero {
       display: block;
       margin: 0 auto;
       width: 300px;

@@ -1,7 +1,7 @@
 {
   "name": "kristofdewil.de",
   "description": "My personal web page",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "author": "Kristof Dewilde <code@qrivi.dev>",
   "license": "MIT",
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@astrojs/renderer-vue": "^0.3.0",
-    "astro": "0.22.20",
+    "astro": "^0.22.20",
     "prettier": "^2.5.1"
   },
   "prettier": {
