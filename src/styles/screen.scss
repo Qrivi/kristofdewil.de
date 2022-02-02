@@ -11,7 +11,7 @@ body {
     --font-writing: 'Parisienne', Arial, sans-serif;
 
     --syntax: rgb(249, 248, 245);
-    --fade: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.69) 60%, rgba(255,255,255,.2) 100%);
+    --fade: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.69) 69%, rgba(255,255,255,.2) 100%);
     --background: rgb(255, 255, 255);
     --scene: rgb(245, 247, 250);
     --text: rgb(3, 0, 68);
@@ -31,11 +31,11 @@ body {
 
     &.darkmode {
         --syntax: rgb(39, 40, 34);
-        --fade: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.5) 50%, rgba(255,255,255,0) 100%);
-        --background: rgb(0, 0, 0);
-        --scene: rgb(18, 18, 18);
+        --fade: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,.69) 69%, rgba(0,0,0,.2) 100%);
+        --background: rgb(10, 10, 10);
+        --scene: rgb(0, 0, 0);
         --text: rgb(255, 255, 255);
-        --border: rgb(222, 222, 222);
+        --border: rgb(36, 36, 36);
         --accent: rgb(250, 170, 20);
         --dim: rgba(250, 170, 20, 0.4);
     }
@@ -58,10 +58,3 @@ a {
 .h {
     display: none !important;
 }
-
-.wrapper {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 25px;
- }
