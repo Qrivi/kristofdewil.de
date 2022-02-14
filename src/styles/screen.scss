@@ -28,6 +28,7 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 
     &.darkmode {
         --syntax: rgb(39, 40, 34);
@@ -38,6 +39,17 @@ body {
         --border: rgb(36, 36, 36);
         --accent: rgb(250, 170, 20);
         --dim: rgba(250, 170, 20, 0.4);
+    }
+
+    > header,
+    > main {
+      transition: transform 250ms ease-in-out;
+      transform-style: flat;
+    }
+
+    &.withmenu > header,
+    &.withmenu > main {
+      transform: translateX(500px);
     }
 }
 

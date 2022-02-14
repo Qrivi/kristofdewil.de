@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro"
 import Hero from "../components/Hero.astro"
+import Menu from "../components/Menu.vue"
 import Meta from "../components/Meta.astro"
 import PostOverview from "../components/PostOverview.astro"
 ---
@@ -17,5 +18,7 @@ import PostOverview from "../components/PostOverview.astro"
       <Hero />
       <PostOverview />
     </main>
+
+    <Menu client:idle />
   </body>
 </html>

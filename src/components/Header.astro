@@ -1,49 +1,50 @@
 ---
+import Accessibility from "../components/Accessibility.vue"
 import Logo from "../components/Logo.vue"
+import MenuButton from "../components/MenuButton.vue"
 ---
 
-<header id="topbar" class="pinned">
-  <h1 class="h">Kristof Dewilde</h1>
-  <a class="logo" href="#"><Logo client:idle /></a>
+<header>
+  <div id="topbar" class="pinned">
+    <h1 class="h">Kristof Dewilde</h1>
+    <div class="menu"><MenuButton client:idle /></div>
+    <div class="logo"><a href="#"><Logo client:idle /></a></div>
+    <div class="accessibility"><Accessibility client:idle /></div>
+  </div>
 </header>
 
 <style lang="scss">
-header#topbar {
+#topbar {
+  position: fixed;
   z-index: 99;
   top: 0;
-  display: flex;
-  justify-content: center;
   width: 100%;
-  border-bottom: 1px solid transparent;
+  padding: 15px 45px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  background: var(--background);
+  box-shadow: 0 5px 5px rgb(0 0 0 / 2%);
+  border-bottom: 1px solid var(--border);
   transition: transform 750ms ease-out, padding 750ms ease-out, background 500ms ease-out, border-color 750ms ease-out, box-shadow 750ms ease-out;
-
+  transform-style: preserve-3d;
+  
   &.pinned {
-    position: absolute;
     padding: 80px 45px;
     background: transparent;
     border-color: transparent;
-    box-shadow: transparent;
-    transform: translateY(0);
+    box-shadow: 0 0 0 transparent;
   }
 
-  &.floating {
-    position: fixed;
-    padding: 15px 45px;
-    background: transparent;
-    border-color: transparent;
-    box-shadow: transparent;
-    transform: translateY(-150px);
-  }
-
-  &.sticky {
-    background: var(--background);
-    border-color: var(--border);
-    box-shadow: 0 5px 5px rgb(0 0 0 / 2%);
-    transform: translateY(0);
+  &.hidden {
+    transform: translateY(-75px);
   }
 
   .logo {
     height: 40px;
+  }
+
+  .accessibility {
+    justify-self : flex-end;
   }
 }
 </style>

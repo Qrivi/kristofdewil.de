@@ -103,7 +103,7 @@ export default {
             interval: null,
             svg: null,
             topbar: null,
-            scrollPosition: 0,
+            scrollPosition: -1,
         }
     },
     mounted() {
@@ -116,18 +116,21 @@ export default {
     },
     methods: {
         scrollAction() {
-            if (window.scrollY > 15) {
-                this.topbar.classList.add('floating')
-                this.topbar.classList.remove('pinned')
-                this.topbar.classList.toggle('sticky', document.body.getBoundingClientRect().top > this.scrollPosition)
-            } else {
-                this.topbar.classList.remove('floating')
+            if (window.scrollY === 0) {
                 this.topbar.classList.add('pinned')
-                this.topbar.classList.remove('sticky')
-                this.mouseLeave()
-                this.checkState()
+                if (this.scrollPosition != -1) {
+                    this.mouseLeave()
+                    this.checkState()
+                }
+            } else {
+                this.topbar.classList.remove('pinned')
             }
-            this.scrollPosition = (document.body.getBoundingClientRect()).top
+            if (document.body.getBoundingClientRect().top < this.scrollPosition) {
+                this.topbar.classList.add('hidden')
+            } else {
+                this.topbar.classList.remove('hidden')
+            }
+            this.scrollPosition = document.body.getBoundingClientRect().top
         },
         mouseEnter() {
             if(this.topbar.classList.contains('pinned')){
@@ -143,7 +146,7 @@ export default {
         mouseLeave() {
             this.isHovering = false
         },
-        checkState() {
+        checkState(forced) {
             if (this.wasHovering !== this.isHovering) {
                 const clone = this.svg.children[0].cloneNode(true)
                 this.svg.children[0].remove()

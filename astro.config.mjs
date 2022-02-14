@@ -1,6 +1,6 @@
 // @ts-check
 export default /** @type {import('astro').AstroUserConfig} */ ({
-  buildOptions:{
+  buildOptions: {
     site: 'https://kristofdewil.de'
   },
   renderers: [
