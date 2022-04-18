@@ -1,0 +1,10 @@
+{
+  "kotlin": {
+    "name": "Kotlin",
+    "color": "#f00"
+  },
+  "spring": {
+    "name": "Spring",
+    "color": "#00f"
+  }
+}

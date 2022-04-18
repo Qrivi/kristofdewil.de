@@ -1,0 +1,59 @@
+body {
+    --astro-code-color-background: rgb(249, 248, 245);
+    --astro-code-color-text: rgb(40, 41, 36);
+    --astro-code-token-constant: rgb(174, 129, 255);
+    --astro-code-token-string: rgb(109, 208, 7);
+    --astro-code-token-comment: rgb(165, 159, 133);
+    --astro-code-token-keyword: rgb(174, 129, 255);
+    --astro-code-token-function: rgb(245, 192, 117);
+    --astro-code-token-punctuation: rgb(40, 41, 36);
+    --astro-code-token-link: rgb(76, 144, 8);
+
+    &.darkmode {
+        --astro-code-color-background: rgb(40, 41, 36);
+        --astro-code-color-text: rgb(249, 248, 245);
+        --astro-code-token-punctuation: rgb(249, 248, 245);
+    }
+}
+
+#article {
+    display: flex;
+    flex-direction: column;
+    padding: 2em 0;
+
+    h1 {
+        font-size: 3em;
+        font-weight: 600;
+        padding: 2em 0;
+    }
+
+    h2 {
+        font-size: 1.8em;
+        font-weight: 600;
+        padding: 2em 0 1.2em;
+    }
+
+    p {
+        padding: 1em 1.5em;
+
+        &.description {
+            margin-bottom: 4em;
+        }
+
+        a {
+            color: var(--accent);
+        }
+
+        code {
+            font-family: var(--font-monospace);
+            background-color: var(--astro-code-color-background);
+            padding: 0 .4em;
+        }
+    }
+
+    pre {
+        font: .9em/1.4em var(--font-monospace);
+        margin: 1.5em 0;
+        padding : 1.5em;
+    }
+}

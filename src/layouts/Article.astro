@@ -1,0 +1,38 @@
+---
+import Logo from '../components/Logo.vue';
+import Meta from '../components/Meta.astro';
+
+import '../styles/article.scss';
+
+export interface Props {
+  content: any,
+};
+
+const { 
+	content,
+} = Astro.props as Props;
+---
+
+<html lang="en">
+  <head>
+    <Meta />
+  </head>
+
+  <body class="darkmode">
+    <div id="wrapper">
+      <main>
+        <section id="article">
+          <header>
+   		      <h1>{content.title}</h1>
+		        <p class="description">{content.description}</p>
+	          <!--time datetime="{content.date}">{new Date(content.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time-->
+		      </header>
+          <slot />
+		    </section>
+      </main>
+	    <aside>
+	      <Logo client:visible />
+	    </aside>
+	  </div>
+  </body>
+</html>

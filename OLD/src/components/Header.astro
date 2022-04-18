@@ -1,0 +1,50 @@
+---
+import Accessibility from "../components/Accessibility.vue"
+import Logo from "../components/Logo.vue"
+import MenuButton from "../components/MenuButton.vue"
+---
+
+<header>
+  <div id="topbar" class="pinned">
+    <h1 class="h">Kristof Dewilde</h1>
+    <div class="menu"><MenuButton client:idle /></div>
+    <div class="logo"><a href="#"><Logo client:idle /></a></div>
+    <div class="accessibility"><Accessibility client:idle /></div>
+  </div>
+</header>
+
+<style lang="scss">
+#topbar {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  width: 100%;
+  padding: 15px 45px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  background: var(--background);
+  box-shadow: 0 5px 5px rgb(0 0 0 / 2%);
+  border-bottom: 1px solid var(--border);
+  transition: transform 750ms ease-out, padding 750ms ease-out, background 500ms ease-out, border-color 750ms ease-out, box-shadow 750ms ease-out;
+  transform-style: preserve-3d;
+
+  &.pinned {
+    padding: 80px 45px;
+    background: transparent;
+    border-color: transparent;
+    box-shadow: 0 0 0 transparent;
+  }
+
+  &.hidden {
+    transform: translateY(-75px);
+  }
+
+  .logo {
+    height: 40px;
+  }
+
+  .accessibility {
+    justify-self : flex-end;
+  }
+}
+</style>

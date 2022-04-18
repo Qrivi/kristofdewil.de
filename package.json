@@ -20,20 +20,14 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "check": "astro check",
-    "lint": "prettier -w ./src"
+    "preview": "astro preview"
   },
   "devDependencies": {
-    "@astrojs/renderer-vue": "^0.3.0",
-    "astro": "^0.22.20",
-    "prettier": "^2.5.1"
+    "@astrojs/vue": "^0.1.1",
+    "astro": "^1.0.0-beta.12",
+    "sass": "^1.50.0"
   },
-  "prettier": {
-    "printWidth": 500,
-    "semi": false,
-    "singleQuote": true,
-    "tabWidth": 4,
-    "trailingComma": "all"
+  "dependencies": {
+    "preact": "^10.7.1"
   }
 }

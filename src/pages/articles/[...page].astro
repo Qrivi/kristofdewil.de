@@ -1,0 +1,34 @@
+---
+export async function getStaticPaths({ paginate, rss }) {
+  const today = new Date();
+  const content = await Astro.glob('../pages/article/*.md');
+  const articles = content
+    .map(article => ({ ...article, date: new Date(article.frontmatter.date)}))
+    .filter(article => article.date <= today)
+    .sort((a, b) => b.date.valueOf() - a.date.valueOf())
+  
+  rss({
+    title: 'Don’s Blog',
+    description: 'An example blog on Astro',
+    customData: `<language>en-us</language>`,
+    items: articles.map(article => ({
+      title: article.frontmatter.title,
+      description: article.frontmatter.description,
+      link: article.url,
+      pubDate: article.date,
+    })),
+	});
+
+	return paginate(articles, { pageSize: 3 });
+}
+
+const { page } = Astro.props;
+---
+
+<section>
+  <h1 class="reference">Latest posts</h1>
+
+  <ol>
+    {articles.map(article => <li><PostPreview post={post} /></li>)}
+  </ol>
+</section>

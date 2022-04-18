@@ -1,9 +1,12 @@
-// @ts-check
-export default /** @type {import('astro').AstroUserConfig} */ ({
-  buildOptions: {
-    site: 'https://kristofdewil.de'
+import { defineConfig } from "astro/config";
+import vue from "@astrojs/vue";
+
+// https://astro.build/config
+export default defineConfig({
+  integrations: [vue()],
+  markdown: {
+    shikiConfig: {
+      theme: "css-variables",
+    },
   },
-  renderers: [
-    '@astrojs/renderer-vue',
-  ],
 });

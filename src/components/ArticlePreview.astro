@@ -1,0 +1,76 @@
+---
+export interface Props {
+  article: any;
+};
+
+const { 
+  article,
+} = Astro.props;
+
+const meta = article.frontmatter;
+---
+
+<li class="article" data-banner="${meta.banner}" onmouseenter="document.dispatchEvent(new CustomEvent('banner', { detail: this.dataset.banner }))" onmouseleave="document.dispatchEvent(new CustomEvent('banner'))">
+  <a href="${article.url}"><h2>{meta.title}</h2></a>
+  <p>{meta.description}</p>
+  <time datetime="{meta.date}">{article.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+  <em> &mdash; {meta.read} minute read</em> 
+  <ul>
+    {meta.tags.map(tag => <li><a>{tag}</a></li>)}
+  </ul>
+</li>
+
+<style lang="scss">
+li.article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2em 1em;
+  border-bottom: 1px solid var(--border);
+
+    h2 {
+      font: 600 1.8em/1.4em var(--font-regular);
+      margin: .3em 0;
+      color: var(--accent);
+    }
+
+    time {
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-align: right;
+      font-size: .8em;
+      font-weight: 600;
+      opacity: .5;
+      order: -1;
+    }
+
+    em {
+      position: absolute;
+      bottom: 2.8em;
+      font-style: italic;
+      font-size: .75em;
+    }
+
+    ul {
+      text-align: right;
+
+      > li {
+        display: inline-block;
+        font-size: 0.75em;
+        color: var(--accent);
+
+        > a {
+          display: inline-block;
+          margin-left: .5em;
+          padding: .1em 1em;
+          background: var(--background);
+          border-radius: 5px;
+
+          &:before {
+            content: "#";
+          }
+        }
+      }
+    }
+}
+</style>

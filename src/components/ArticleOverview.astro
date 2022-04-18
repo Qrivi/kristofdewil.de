@@ -1,0 +1,20 @@
+---
+import ArticlePreview from './ArticlePreview.astro';
+
+export interface Props {
+  title: string,
+	articles: any[];
+};
+
+const {
+  title,
+  articles,
+} = Astro.props as Props;
+---
+
+<section id="article-overview">
+  <h1 class="reference">{title}</h1>
+  <ol>
+    {articles.map(article => <ArticlePreview article={article} />)}
+  </ol>
+</section>
