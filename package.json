@@ -23,11 +23,8 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@astrojs/vue": "^0.1.1",
-    "astro": "^1.0.0-beta.12",
-    "sass": "^1.50.0"
-  },
-  "dependencies": {
-    "preact": "^10.7.1"
+    "@astrojs/vue": "^0.1.3",
+    "astro": "^1.0.0-beta.17",
+    "sass": "^1.50.1"
   }
 }
