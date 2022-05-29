@@ -3,7 +3,7 @@ export interface Props {
   article: any;
 };
 
-const { 
+const {
   article,
 } = Astro.props;
 
@@ -14,7 +14,7 @@ const meta = article.frontmatter;
   <a href="${article.url}"><h2>{meta.title}</h2></a>
   <p>{meta.description}</p>
   <time datetime="{meta.date}">{article.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-  <em> &mdash; {meta.read} minute read</em> 
+  <em> &mdash; {meta.read} minute read</em>
   <ul>
     {meta.tags.map(tag => <li><a>{tag}</a></li>)}
   </ul>
@@ -29,7 +29,7 @@ li.article {
   border-bottom: 1px solid var(--border);
 
     h2 {
-      font: 600 1.8em/1.4em var(--font-regular);
+      font: 600 2.4em/1.4em var(--font-regular);
       margin: .3em 0;
       color: var(--accent);
     }
