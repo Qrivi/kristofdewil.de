@@ -1,30 +1,18 @@
 {
   "name": "kristofdewil.de",
-  "description": "My personal web page",
-  "version": "0.3.0",
+  "type": "module",
+  "version": "1.0.0",
   "private": true,
-  "author": "Kristof Dewilde <code@qrivi.dev>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Qrivi/kristofdewil.de.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Qrivi/kristofdewil.de/issues"
-  },
-  "engines": {
-    "node": ">=17.3.0",
-    "npm": ">=8.3.0"
-  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "devDependencies": {
-    "@astrojs/vue": "^0.1.4",
-    "astro": "^1.0.0-beta.27",
-    "sass": "^1.51.0"
+  "dependencies": {
+    "@astrojs/vue": "^1.0.2",
+    "astro": "^1.2.8",
+    "sass": "^1.55.0"
   }
 }

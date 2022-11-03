@@ -1,34 +1,12 @@
 ---
-import ArticleOverview from '../components/ArticleOverview.astro';
-import Banner from '../components/Banner.vue';
-import Logo from '../components/Logo.vue';
-import Meta from '../components/Meta.astro';
+import PageLayout from "../layouts/PageLayout.astro";
+import Hero from "../components/Hero.astro";
+import PostList from "../components/PostList.astro";
 
-const today = new Date();
-const content = await Astro.glob('./article/*.md');
-const articles = content
-  .map(article => ({ ...article, date: new Date(article.frontmatter.date)}))
-  .filter(article => article.date <= today)
-  .sort((a, b) => b.date.valueOf() - a.date.valueOf())
-  .slice(0, 2);
-
-// https://docs.astro.build/core-concepts/astro-components/
+const posts = await Astro.glob('./posts/*.md')
 ---
 
-<html lang="en">
-  <head>
-    <Meta />
-  </head>
-
-  <body class="darkmodex">
-    <div id="wrapper">
-      <main>
-        <ArticleOverview title="Latest articles" articles={articles} />
-	    </main>
-	    <aside>
-	      <Logo client:idle />
-	    </aside>
-	  </div>
-    <Banner client:idle />
-  </body>
-</html>
+<PageLayout>
+  <Hero />
+  <PostList posts={posts} /> 
+</PageLayout>
