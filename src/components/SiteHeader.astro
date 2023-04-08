@@ -1,0 +1,17 @@
+---
+import SiteName from "./SiteName.astro";
+import TopMenu from "./TopMenu.vue";
+---
+
+<header>
+  <TopMenu client:idle>
+    <SiteName />
+  </TopMenu>
+</header>
+
+<style lang="scss">
+  header {
+    padding: 34px 0;
+    border-bottom: solid 1px var(--color-stroke);
+  }
+</style>

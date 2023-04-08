@@ -1,18 +1,23 @@
 {
   "name": "kristofdewil.de",
   "type": "module",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "check": "astro check",
     "build": "astro build",
     "preview": "astro preview",
+    "sync": "astro sync",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vue": "^1.0.2",
-    "astro": "^1.2.8",
-    "sass": "^1.55.0"
+    "@astrojs/mdx": "^0.18.0",
+    "@astrojs/rss": "^2.3.0",
+    "@astrojs/sitemap": "^1.2.0",
+    "@astrojs/vue": "^2.1.0",
+    "astro": "^2.2.0",
+    "sass": "^1.61.0"
   }
 }

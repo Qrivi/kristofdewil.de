@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+
+const posts = await getCollection("blog");
+//   .sort(
+// 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+// );
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>my name is jeff</title>
+    <style>
+      ul {
+        list-style-type: none;
+        padding: unset;
+      }
+      ul li {
+        display: flex;
+      }
+      ul li time {
+        flex: 0 0 130px;
+        font-style: italic;
+        color: #595959;
+      }
+      ul li a:visited {
+        color: #8e32dc;
+      }
+    </style>
+  </head>
+  <body>
+    <SiteHeader />
+    <main>
+      <section>
+        <ul>
+          {
+            posts.map((post) => (
+              <li>
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString("en-us", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </time>
+                <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </main>
+    <SiteFooter />
+  </body>
+</html>

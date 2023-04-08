@@ -1,56 +1,33 @@
 ---
-import ContentWrapper from "./ContentWrapper.astro";
 import SiteName from "./SiteName.astro";
 import DarkModeToggle from "./DarkModeToggle.vue";
 ---
 
 <footer>
-  <ContentWrapper>
-    <div>
-      <SiteName />
-      <DarkModeToggle client:only="vue" />
-    </div>
-    <div>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            class="inverting github"
-            href="https://github.com/Qrivi"
-          >
-            GitHub
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            class="inverting instagram"
-            href="https://instagram.com/Qrivi"
-          >
-            Instagram
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            class="inverting spotify"
-            href="https://open.spotify.com/user/Qrivi"
-          >
-            Spotify
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            class="inverting twitter"
-            href="https://twitter.com/Qrivi"
-          >
-            Twitter
-          </a>
-        </li>
-      </ul>
-    </div>
-  </ContentWrapper>
+  <div class="wrapper">
+    <SiteName />
+    <DarkModeToggle client:only="vue" />
+  </div>
+  <div class="wrapper">
+    <ul>
+      <li>
+        <a target="_blank" class="inverting github" href="https://github.com/Qrivi"> GitHub</a>
+      </li>
+      <li>
+        <a target="_blank" class="inverting instagram" href="https://instagram.com/Qrivi">
+          Instagram</a
+        >
+      </li>
+      <li>
+        <a target="_blank" class="inverting spotify" href="https://open.spotify.com/user/Qrivi">
+          Spotify</a
+        >
+      </li>
+      <li>
+        <a target="_blank" class="inverting twitter" href="https://twitter.com/Qrivi"> Twitter</a>
+      </li>
+    </ul>
+  </div>
 </footer>
 
 <style lang="scss">
@@ -67,6 +44,7 @@ import DarkModeToggle from "./DarkModeToggle.vue";
         display: flex;
         gap: 10px;
         margin: 50px 0;
+        list-style-type: none;
 
         li {
           width: 40px;

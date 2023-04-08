@@ -1,0 +1,83 @@
+---
+import { getCollection } from "astro:content";
+
+// const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+// const latestPost = posts[0];
+---
+
+<article class="wrapper">
+  <div class="heading">
+    <div class="time">
+      <time>Aug 22, 2023</time> / <time>3 min read</time>
+    </div>
+    <h2 class="underline">
+      <a class="underline" href="#"
+        >Start here for a quick overview of everything you need to know</a
+      >
+    </h2>
+    <p class="description">
+      We've crammed the most important information to help you get started with Ghost into this one
+      post. It's your cheat-sheet to get started, and your shortcut to advanced features.
+    </p>
+    <ul class="tags">
+      <li><a href="#">kotlin</a></li>
+      <li><a href="#">typescript</a></li>
+    </ul>
+  </div>
+</article>
+
+<style lang="scss">
+  article {
+    .heading {
+      display: grid;
+      margin: 4rem 0;
+
+      .time {
+        display: flex;
+        column-gap: 0.4rem;
+        font-family: var(--font-monospace);
+        font-size: 0.8rem;
+        margin: 1rem 0;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        font-size: 4.4rem;
+        font-weight: 600;
+        line-height: 1em;
+      }
+
+      p.description {
+        font-size: 1.8rem;
+        line-height: 1.4em;
+        max-width: 860px;
+        padding: 1rem 0;
+      }
+
+      ul.tags {
+        display: flex;
+        column-gap: 1.5rem;
+        font-family: var(--font-monospace);
+        list-style-type: none;
+        margin: 0.5rem 0;
+        padding: 0;
+
+        li {
+          & :before {
+            content: "#";
+            display: inline-block;
+            margin-right: 0.5em;
+          }
+
+          a {
+            color: var(--color-accent);
+
+            & :hover {
+              font-style: italic;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>

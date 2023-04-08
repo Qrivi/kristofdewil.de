@@ -1,0 +1,214 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+---
+
+<PageLayout>
+  <section>
+    <h2>Experience</h2>
+
+    <article class="nested">
+      <div class="timeline">
+        <time title="1 yr 6 mos" datetime="P 518D"> May 2018 &mdash; Oct 2019</time>
+        <span>Napoleon Games</span>
+      </div>
+      <div class="details">
+        <h3>Full Stack/Java Developer</h3>
+        <p>
+          INTIX helps financial institutions become data centric. INTIX addresses the challenges
+          faced by financial institutions such as accessing and consolidating transaction data from
+          multiple internal systems and delivering the appropriate analytics and insights. Thanks to
+          real-time access to transaction details, the INTIX technology provides end-to-end business
+          activity monitoring which serves transaction processing operations as well as enhances
+          detection of internal fraud.
+        </p>
+      </div>
+      <aside>
+        <ul>
+          <li>Adobe AEM</li>
+          <li>Spring Boot</li>
+          <li>Java 8</li>
+        </ul>
+      </aside>
+    </article>
+
+    <article class="nested first">
+      <div class="timeline">
+        <time title="1 yr 6 mos" datetime="P 518D"> May 2018 &mdash; Oct 2019</time>
+        <span>Intix NV</span>
+      </div>
+      <div class="details">
+        <h3>Full Stack/Java Developer</h3>
+        <p>
+          INTIX helps financial institutions become data centric. INTIX addresses the challenges
+          faced by financial institutions such as accessing and consolidating transaction data from
+          multiple internal systems and delivering the appropriate analytics and insights. Thanks to
+          real-time access to transaction details, the INTIX technology provides end-to-end business
+          activity monitoring which serves transaction processing operations as well as enhances
+          detection of internal fraud.
+        </p>
+      </div>
+      <aside>
+        <ul>
+          <li>Adobe AEM</li>
+          <li>Spring Boot</li>
+          <li>Java 8</li>
+        </ul>
+      </aside>
+    </article>
+
+    <article>
+      <div class="timeline">
+        <time title="1 yr 6 mos" datetime="P 518D"> May 2018 &mdash; Oct 2019</time>
+        <span>Komma Board</span>
+      </div>
+      <div class="details">
+        <h3>Full Stack/Java Developer</h3>
+        <p>
+          It was time for a new professional challenge and an opportunity as a consultant for Komma
+          Board knocked at the door. I joined Komma Board as a full stack developer with a main
+          focus on Java development, but the idea is to grow and shift my focus a bit more towards
+          front end and — who knows — maybe native technologies over time.
+        </p>
+      </div>
+      <aside>
+        <ul>
+          <li>Adobe AEM</li>
+          <li>Spring Boot</li>
+          <li>Java 8</li>
+        </ul>
+      </aside>
+    </article>
+
+    <article class="nested first">
+      <div class="timeline">
+        <time title="1 yr 6 mos" datetime="P 518D"> May 2018 &mdash; Oct 2019</time>
+        <span>Telenet Group</span>
+      </div>
+      <div class="details">
+        <h3>Full Stack/Java Developer</h3>
+        <p>
+          Worked at Telenet on a great team responsible for BASE’s AEM powered website and a couple
+          of Java based internal Telenet and BASE applications. Gained a lot of hands-on experience
+          with AEM, Spring Boot, and Angular &mdash; the main technology stack used at BASE.
+        </p>
+      </div>
+      <aside>
+        <ul>
+          <li>Adobe AEM</li>
+          <li>Spring Boot</li>
+          <li>Java 8</li>
+        </ul>
+      </aside>
+    </article>
+
+    <article>
+      <div class="timeline">
+        <time datetime="P 518D">May 2018 &mdash; Oct 2019</time>
+        <span>Design is Dead</span>
+      </div>
+      <div class="details">
+        <h3>Full Stack/Java Developer</h3>
+        <p>
+          When I decided work field experience would be more valuable to the further development of
+          my career, I applied for a job as a junior full stack developer with a main focus on Java
+          at Design is Dead. I was given a great opportunity to work with very skilled and overall
+          great people on interesting in-house projects and big business projects for Design is
+          Dead's clients.
+        </p>
+      </div>
+      <aside>
+        <ul>
+          <li>Adobe AEM</li>
+          <li>Spring Boot</li>
+          <li>Java 8</li>
+        </ul>
+      </aside>
+    </article>
+  </section>
+</PageLayout>
+
+<style lang="scss">
+  h2 {
+    padding: 2em 0;
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 2.4em;
+    text-transform: uppercase;
+    line-height: 1.4em;
+    color: var(--color-title);
+  }
+
+  article {
+    display: flex;
+    column-gap: 2em;
+
+    &.nested .timeline {
+      border-right: none;
+      padding: 1em calc(2em + 30px) 1em 0;
+
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        right: -1px;
+        width: 29px;
+        height: 100%;
+        border-left: dashed 1px var(--color-background-lighter);
+        border-right: solid 1px var(--color-background-lighter);
+      }
+    }
+
+    &.first.nested .timeline::before {
+      border-bottom-right-radius: 100px;
+      border-bottom: solid 1px var(--color-background-lighter);
+    }
+
+    .timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      flex: 0 0 200px;
+      padding: 1em 2em 1em 0;
+      border-right: solid 1px var(--color-background-lighter);
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 1.4em;
+        right: -6px;
+        width: 11px;
+        height: 11px;
+        background: var(--color-accent);
+        border-radius: 100%;
+      }
+
+      time {
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+    }
+
+    .details {
+      width: 100%;
+      padding: 1em 0;
+
+      h3 {
+        font-family: var(--font-title);
+        font-weight: 700;
+        font-size: 1.4em;
+        color: var(--color-title);
+      }
+
+      p {
+        padding: 1em 0 0.5em;
+      }
+    }
+
+    aside {
+      width: 100%;
+      padding: 1em 0;
+    }
+  }
+</style>
