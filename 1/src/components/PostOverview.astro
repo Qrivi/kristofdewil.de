@@ -1,0 +1,86 @@
+---
+import PostPreview from "../components/PostPreview.astro"
+
+const content = Astro.fetchContent('../pages/posts/*.md')
+const today = new Date()
+const posts = content
+  .map(post => ({ ...post, published: new Date(post.published)}))
+  .filter(post => post.published < today)
+  .sort((a, b) => b.published - a.published)
+---
+
+<section>
+  <h2>Recent activity</h2>
+  <ul>
+    {posts.map(post => <li><PostPreview post={post} /></li>)}
+  </ul>
+</section>
+
+<style lang="scss">
+  section{
+    margin: -60px 0 60px;
+    padding: 0 25px;
+    width: 100%;
+
+    h2 {
+      display: none;
+    }
+
+    ul {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 1280px;
+      columns: 1;
+      column-gap: 25px;
+
+      @media only screen and (min-width: 2500px) {
+        max-width: 2400px;
+        columns: 2;
+      }
+
+      li {
+        animation: postListSlideIn 500ms 900ms ease-out forwards;
+        transform: translateY(75px);
+        opacity: 0;
+
+        &:nth-child(1) {
+          animation-delay: 0ms;
+        }
+        &:nth-child(2) {
+          animation-delay: 100ms;
+        }
+        &:nth-child(3) {
+          animation-delay: 200ms;
+        }
+        &:nth-child(4) {
+          animation-delay: 300ms;
+        }
+        &:nth-child(5) {
+          animation-delay: 400ms;
+        }
+        &:nth-child(6) {
+          animation-delay: 500ms;
+        }
+        &:nth-child(7) {
+          animation-delay: 600ms;
+        }
+        &:nth-child(8) {
+          animation-delay: 700ms;
+        }
+        &:nth-child(9) {
+          animation-delay: 800ms;
+        }
+
+        @keyframes postListSlideIn {
+          75% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+</style>

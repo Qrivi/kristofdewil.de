@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import ExperienceItem from "@components/ExperienceItem.astro";
+
+const experiences = (await getCollection("experiences")) //
+  .flatMap((experience) => ({ ...experience.data, id: experience.id }))
+  .sort((a, b) => b.startDate.getTime() - a.startDate.getTime());
+---
+
+<style>
+  ul {
+    list-style: none;
+    display: grid;
+    gap: 2rem;
+    padding: 0;
+  }
+</style>
+
+<ul>
+  {
+    experiences.map((experience) => (
+      <li>
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ul>

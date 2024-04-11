@@ -1,0 +1,43 @@
+---
+import dayjs from "dayjs";
+
+interface Props {
+  slug: string;
+  title: string;
+  description: string;
+  publishDate: Date;
+  readTime: number;
+  tags: string[];
+}
+
+const { slug, title, description, publishDate, readTime, tags } = Astro.props;
+---
+
+<style>
+  article {
+    display: grid;
+    gap: 0.5rem;
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--color-text);
+    }
+
+    .meta {
+      order: -1;
+      font-family: var(--font-monospace);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+  }
+</style>
+
+<article>
+  <h3><a class="underline" href={`/blog/${slug}`}>{title}</a></h3>
+  <p class="meta">{dayjs(publishDate).format("MMM D, YYYY")} / {readTime} min read</p>
+  <p class="description">{description}</p>
+  <ul class="tags">
+    {tags.map((tag) => <li>{tag}</li>)}
+  </ul>
+</article>

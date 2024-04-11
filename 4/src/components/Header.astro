@@ -1,0 +1,33 @@
+---
+// interface Props {
+//   title: string;
+//   body: string;
+//   href: string;
+// }
+
+// const { href, title, body } = Astro.props;
+---
+
+<style>
+  h1 {
+    width: min-content;
+    font-size: 2.6em;
+    font-weight: 900;
+    letter-spacing: 0.2rem;
+    line-height: 0.9em;
+    text-indent: 3rem;
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+
+  p {
+    font-weight: 600;
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+</style>
+
+<h1>Kristof Dewilde</h1>
+<!-- @ts-expect-error Astro doesn't seem to know doc-subtitle is a valid role -->
+<p role="doc-subtitle">Full-Stack Java Developer</p>

@@ -1,0 +1,214 @@
+$block-width: 850px;
+$block-margin: 0 auto;
+$block-padding: 16px 20px;
+$title-margin: 1em auto 0;
+$title-padding: 16px 20px;
+
+main.post {
+  position: relative;
+
+  > header {
+    position: relative;
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 420px 0 0px;
+
+    figure {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 510px;
+      margin: 0;
+      padding: 0;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      transition: opacity 500ms ease-in-out;
+      opacity: 0;
+      animation: 500ms ease-out 250ms forwards normal figure;
+
+      @keyframes figure {
+        0% {
+          opacity: 0;
+          transform: translateY(33px);
+        }
+        100% {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      &::before {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: var(--color-background);
+        opacity: 0.4;
+        transition: opacity 500ms ease-in-out;
+        content: "";
+      }
+
+      &::after {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: var(--color-background-lighter);
+        opacity: 0.15;
+        content: "";
+      }
+
+      &:hover::before {
+        opacity: 0;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    div {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      background: var(--color-background);
+      box-sizing: border-box;
+      width: 100%;
+      max-width: $block-width;
+      margin: $block-margin;
+      padding: 20px;
+      border-radius: 1.5rem;
+
+      h1 {
+        padding: 0.8em 0;
+        font-family: var(--font-title);
+        font-weight: 700;
+        font-size: 2.4em;
+        line-height: 1.4em;
+        text-align: center;
+        color: var(--color-title);
+      }
+
+      time {
+        font-size: 0.9em;
+        text-align: center;
+        color: var(--color-title);
+      }
+
+      ul {
+        order: -1;
+        display: flex;
+        justify-content: center;
+        gap: 0.3em;
+
+        li {
+          background: var(--color-accent);
+          color: var(--color-title);
+          border-radius: 100px;
+          font-family: var(--font-title);
+          font-size: 0.69em;
+          line-height: 1em;
+          font-weight: 600;
+          text-transform: uppercase;
+          transition: opacity 200ms;
+
+          &:hover {
+            opacity: 0.8;
+          }
+
+          a {
+            display: inline-block;
+            padding: 0.6em 1.2em;
+            color: var(--color-title);
+          }
+        }
+      }
+    }
+  }
+
+  > h1 {
+    color: red;
+  }
+
+  > h2 {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: $block-width;
+    margin: $title-margin;
+    padding: $title-padding;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.7em;
+    color: var(--color-title);
+
+    &::after {
+      display: block;
+      width: 50px;
+      height: 5px;
+      margin: 0.6em 0 0;
+      border-radius: 100px;
+      background: var(--color-accent);
+      content: "";
+    }
+  }
+
+  > p {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: $block-width;
+    margin: $block-margin;
+    padding: $block-padding;
+    font-size: 1.1em;
+    line-height: 1.9em;
+    font-family: var(--font-title);
+
+    &.description {
+      font-family: var(--font-body);
+
+      &::after {
+        display: block;
+        width: 50px;
+        height: 5px;
+        margin: 1em 0;
+        border-radius: 100px;
+        background: var(--color-accent);
+        content: "";
+      }
+    }
+
+    a {
+      color: var(--color-title);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    code {
+      font-family: var(--font-monospace);
+    }
+  }
+
+  > pre {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: $block-width;
+    margin: 1em auto;
+    padding: $block-padding;
+    font-family: var(--font-monospace);
+  }
+}

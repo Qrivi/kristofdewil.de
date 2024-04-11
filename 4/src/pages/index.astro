@@ -1,0 +1,31 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ExperienceOverview from "@components/ExperienceOverview.astro";
+import PostOverview from "@components/PostOverview.astro";
+---
+
+<style>
+  section {
+    padding: 0 0 3rem;
+
+    h2 {
+      margin: 1.2rem 0 2rem;
+      border-top: 1px solid var(--color-background-accent);
+      font-family: var(--font-monospace);
+      font-size: 0.8rem;
+      text-align: right;
+      text-transform: uppercase;
+    }
+  }
+</style>
+
+<BaseLayout>
+  <section>
+    <h2>Blog</h2>
+    <PostOverview />
+  </section>
+  <section>
+    <h2>Experience</h2>
+    <ExperienceOverview />
+  </section>
+</BaseLayout>
