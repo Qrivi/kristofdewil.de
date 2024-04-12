@@ -1,0 +1,134 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import dayjs from "dayjs";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+type Props = CollectionEntry<"posts">;
+const post = Astro.props;
+const { title, publishDate, readTime, description } = post.data;
+const { Content } = await post.render();
+---
+
+<style>
+  header {
+    display: grid;
+    gap: 0.5rem;
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--color-text);
+    }
+
+    .meta {
+      order: -1;
+      font-family: var(--font-monospace);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+  }
+
+  #content {
+    padding: 2rem 0;
+
+    div,
+    p,
+    pre,
+    figure,
+    div {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    p {
+      padding: 1rem 0;
+      line-height: 2;
+    }
+
+    pre {
+      border-left: 1px solid var(--color-background-accent);
+      padding: 0.4rem 0;
+      font-family: var(--font-monospace);
+      font-size: 0.85rem;
+      line-height: 2;
+
+      code {
+        display: grid;
+        counter-reset: step;
+        counter-increment: step 0;
+
+        .line:not(:last-child)::before {
+          content: counter(step);
+          counter-increment: step;
+          width: 2.2rem;
+          margin-right: 0.6rem;
+          padding-right: 0.6rem;
+          position: sticky;
+          left: 0;
+          display: inline-block;
+          text-align: right;
+          background-color: rgb(250, 250, 250);
+          color: rgb(128 128 128 /0.25) !important;
+        }
+
+        .line {
+          position: relative;
+          padding-right: 0.6rem;
+
+          &.highlighted::after,
+          &.diff::after {
+            content: "";
+            pointer-events: none;
+            position: absolute;
+            inset: 0;
+            background-color: rgba(100, 185, 255, 0.1);
+          }
+
+          &.highlighted.warning::after {
+            background-color: rgba(255, 220, 100, 0.1);
+          }
+
+          &.highlighted.error::after {
+            background-color: rgba(255, 100, 100, 0.1);
+          }
+
+          &.diff.add::before {
+            content: "+";
+          }
+
+          &.diff.add::after {
+            background-color: rgba(50, 200, 70, 0.2);
+          }
+
+          &.diff.remove::before {
+            content: "-";
+          }
+
+          &.diff.remove::after {
+            background-color: rgba(200, 50, 50, 0.2);
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<BaseLayout title={title}>
+  <header>
+    <h2>{title}</h2>
+    <p class="meta">{dayjs(publishDate).format("MMM D, YYYY")} / {readTime} min read</p>
+    <p class="description">{description}</p>
+  </header>
+  <div id="content">
+    <Content />
+  </div>
+</BaseLayout>

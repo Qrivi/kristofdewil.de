@@ -1,0 +1,133 @@
+---
+import dayjs from "dayjs";
+
+interface Props {
+  name: string;
+  link: string;
+  location: string;
+  startDate: Date;
+  endDate?: Date | null;
+  topics: string[];
+  jobs: {
+    title: string;
+    description: string;
+  }[];
+}
+
+const { name, link, location, startDate, endDate, topics, jobs } = Astro.props;
+---
+
+<style>
+  article {
+    display: flex;
+    gap: 10px;
+
+    aside {
+      order: -1;
+      width: 140px;
+      font-family: var(--font-monospace);
+
+      p {
+        padding: 0.45rem 0 0;
+        font-size: 0.75rem;
+        font-weight: 600;
+
+        &.duration {
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    .info {
+      position: relative;
+      flex: 1;
+
+      h3 {
+        font-size: 1.15rem;
+        font-weight: 500;
+        color: var(--color-text);
+      }
+
+      .icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: 0;
+      }
+
+      &:hover .icon {
+        opacity: 1;
+      }
+
+      input {
+        display: none;
+      }
+
+      label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--color-text);
+        cursor: pointer;
+        transition:
+          color 0.25s ease-in-out,
+          opacity 0.25s ease-in-out;
+      }
+
+      label:hover {
+        opacity: 0.5;
+      }
+
+      label:has(:checked) {
+        opacity: 1 !important;
+        color: var(--color-accent);
+        cursor: text;
+      }
+
+      .description {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.25s ease-in-out;
+
+        p {
+          overflow: hidden;
+        }
+      }
+
+      label:has(:checked) + .description {
+        grid-template-rows: 1fr;
+        padding-bottom: 0.5rem;
+      }
+    }
+  }
+</style>
+
+<article>
+  <div class="info">
+    <h3>{name}</h3>
+    <a href={link} title={link} class="icon clickable" target="_blank">open_in_new</a>
+    {
+      jobs.map((job, index) => (
+        <>
+          <label>
+            <input type="radio" name={name} checked={index === jobs.length - 1} />
+            {job.title}
+          </label>
+          <div class="description">
+            <p>{job.description}</p>
+          </div>
+        </>
+      ))
+    }
+    <ul class="topics">
+      {topics.map((topic) => <li>{topic}</li>)}
+    </ul>
+  </div>
+  <aside>
+    <p class="duration">
+      {dayjs(startDate).format("MMM 'YY")} &mdash; {endDate ? dayjs(endDate).format("MMM 'YY") : "present"}
+    </p>
+    <p class="location">{location}</p>
+    <aside></aside>
+  </aside>
+</article>
