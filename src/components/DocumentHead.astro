@@ -1,0 +1,67 @@
+---
+import { ClientRouter } from "astro:transitions";
+
+type Props = {
+  title?: string;
+  description?: string;
+};
+const { title, description }: Props = Astro.props;
+
+const defaultTitle = "Kristof Dewilde";
+const pageTitle = title ? `${title} | ${defaultTitle}` : defaultTitle;
+const pageDescription = description || "Full Stack Java Developer"; // TODO be more original
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const cardUrl = new URL("og_card.png", Astro.site); // TODO Make a card
+---
+
+<head>
+  <slot/>
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width"/>
+
+  <meta name="health-check" content="ok">
+  <meta name="generator" content={Astro.generator}/>
+  <meta name="description" content={pageDescription}/>
+
+  {/* We will want to make this way more dynamic once we have a blog. We will probably want a small component that renders a beautiful card as HTML, based on the blog
+  title and images used -- maybe a oneliner -- then when we generate each page, also generate an image from that HTML card that we can use as og:image. */}
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonicalUrl}>
+  <meta property="og:locale" content="nl_BE"/>
+  <meta property="og:site_name" content={defaultTitle}>
+  <meta property="og:title" content={pageTitle}>
+  <meta property="og:description" content={pageDescription}>
+  <meta property="og:image" content={cardUrl}>
+  <meta property="og:image:secure_url" content={cardUrl}/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:image:alt" content={pageDescription}>
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="sitemap" href="/sitemap-index.xml"/>
+
+  <title>{pageTitle}</title>
+
+  <script is:inline>
+    function loadColorTheme() {
+      try {
+        const userPref = JSON.parse(localStorage.getItem('theme')) || "system";
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (userPref === 'dark' || (userPref === "system" && systemPrefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {
+        console.error('Dark mode detection failed:', e);
+      }
+    }
+
+    loadColorTheme();
+  </script>
+
+  <ClientRouter />
+</head>

@@ -2,23 +2,19 @@
 import { onBeforeUnmount, onMounted, ref } from "vue";
 
 const customCursor = ref<HTMLDivElement | null>(null);
-
-const updateCursorPosition = (x: number, y: number) => {
-  if (customCursor.value) {
-    customCursor.value.style.opacity = "1";
-    customCursor.value.style.top = `${y}px`;
-    customCursor.value.style.left = `${x}px`;
-  }
-};
+const isOverLink = ref(false);
 
 const mouseMoveHandler = (e: MouseEvent) => {
-  return updateCursorPosition(e.pageX, e.pageY);
+  if (customCursor.value) {
+    customCursor.value.style.opacity = "1";
+    customCursor.value.style.top = `${e.pageY}px`;
+    customCursor.value.style.left = `${e.pageX}px`;
+  }
 };
 
 const mouseOverHandler = ({ target }: MouseEvent) => {
   if (customCursor.value && target instanceof HTMLElement) {
-    const isReactive = target.tagName === "A";
-    customCursor.value.classList.toggle("reactive", isReactive);
+    isOverLink.value = target.tagName === "A";
   }
 };
 
@@ -29,6 +25,7 @@ const mouseOutHandler = () => {
 };
 
 onMounted(() => {
+  document.documentElement.classList.add("no-cursor");
   document.addEventListener("mousemove", mouseMoveHandler);
   document.addEventListener("mouseover", mouseOverHandler);
   document.addEventListener("mouseout", mouseOutHandler);
@@ -43,10 +40,15 @@ onBeforeUnmount(() => {
 });
 </script>
 
+<template>
+  <div ref="customCursor" :class="[
+         'absolute w-[1rem] h-[1rem] z-[9999] -translate-1/2 bg-foreground/75 rounded-full opacity-0 pointer-events-none mix-blend-exclusion duration-500 transition-[color,opacity]',
+         {'hidden': !customCursor},
+         {'bg-primary': isOverLink}
+         ]">&nbsp;</div>
+</template>
+
 <style>
-#cursor {
-  display: none;
-}
 
 body.custom-cursor {
   cursor: none !important;
@@ -79,7 +81,3 @@ body.custom-cursor {
   }
 }
 </style>
-
-<template>
-  <div ref="customCursor" id="cursor">&nbsp;</div>
-</template>

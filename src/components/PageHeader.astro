@@ -1,0 +1,25 @@
+---
+const menu = [
+  { title: "Blog", href: "/blog", active: Astro.url.pathname.startsWith("/blog") },
+  { title: "Resume", href: "/resume", active: Astro.url.pathname.startsWith("/resume") },
+];
+---
+
+<header class="wrapper sticky top-0 flex items-center gap-x-10">
+<h1>
+  <a href="/">
+  <svg viewBox="0 0 55 72" xmlns="http://www.w3.org/2000/svg" class="h-[50px]">
+    <path d="M20.712 5.98V30.2879C19.0642 29.7631 17.3086 29.48 15.488 29.48H2.21201H1.71201V29.98V63V63.5H2.21201H16.5C25.5749 63.5 32.608 55.4578 32.608 46.512C32.608 43.0766 31.5856 39.8791 29.828 37.2045V31.5552L31.8684 29.3888L40.8443 39.335L40.9932 39.5H41.2155H52.1573H53.2699L52.5312 38.668L37.9886 22.2904L52.1309 6.31138L52.8667 5.48H51.7565H41.4824H41.2616L41.1129 5.64317L29.828 18.0237V5.98V5.48H29.328H21.212H20.712V5.98ZM15.972 54.736H10.828V38.244H15.488C19.799 38.244 23.404 41.9189 23.404 46.512C23.404 51.0143 19.9393 54.736 15.972 54.736Z" fill="currentColor"/>
+    <circle cx="27" cy="34" r="11" fill="var(--color-primary)"/>
+  </svg></a>
+</h1>
+  <nav>
+    <ul class="font-mono uppercase text-sm flex items-center gap-x-4">
+      {menu.map(item=>(
+        <li>
+          <a class="before:content-['/']" href={item.href}>{item.title}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>

@@ -1,8 +1,6 @@
-import { defineConfig } from "astro/config";
+// @ts-check
+import sitemap from "@astrojs/sitemap";
 import vue from "@astrojs/vue";
-import rehypeShikiji, { type RehypeShikijiOptions } from "rehype-shikiji";
-import rehypeShiftHeading, { type Options as RehypeShiftHeadingOptions } from "rehype-shift-heading";
-
 import {
   // transformerCompactLineOptions,
   transformerNotationDiff,
@@ -10,29 +8,41 @@ import {
   transformerNotationHighlight,
   // transformerRemoveLineBreak,
   // transformerRenderWhitespace,
-} from "shikiji-transformers";
-
-const rehypeShiftHeadingOptions: RehypeShiftHeadingOptions = {
-  shift: 2,
-};
-
-const rehypeShikijiOptions: RehypeShikijiOptions = {
-  themes: {
-    light: "material-theme-lighter",
-    dark: "material-theme-darker",
-  },
-  transformers: [transformerNotationDiff(), transformerNotationHighlight(), transformerNotationErrorLevel()],
-};
+} from "@shikijs/transformers";
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
+import rehypeExternalLinks from "rehype-external-links";
+import rehypeShiftHeading from "rehype-shift-heading";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://kristofdewil.de",
-  integrations: [vue()],
+  integrations: [sitemap(), vue()],
   markdown: {
     rehypePlugins: [
-      [rehypeShiftHeading, rehypeShiftHeadingOptions],
-      [rehypeShikiji, rehypeShikijiOptions],
+      [
+        rehypeExternalLinks,
+        {
+          rel: ["nofollow"],
+          target: "_blank",
+        },
+      ],
+      [
+        rehypeShiftHeading,
+        {
+          shift: 2,
+        },
+      ],
     ],
-    syntaxHighlight: false,
+    shikiConfig: {
+      themes: {
+        light: "material-theme-lighter",
+        dark: "material-theme-darker",
+      },
+      transformers: [transformerNotationDiff(), transformerNotationHighlight(), transformerNotationErrorLevel()],
+    },
+  },
+  vite: {
+    plugins: [tailwindcss()],
   },
 });
