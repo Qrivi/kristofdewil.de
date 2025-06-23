@@ -1,4 +1,23 @@
-<div class="wrapper flex items-center flex-col gap-y-8 py-32" aria-hidden="true">
-  <span class="w-min text-[2.6rem]/[2.4rem] indent-[2.79rem] tracking-[0.2rem] uppercase font-black">Kristof Dewilde</span>
-  <span class="w-max font-semibold tracking-[0.3rem] uppercase text-primary">Full-Stack Java Developer</span>
+<div class="mt-28 flex flex-col items-center gap-y-8 wrapper text-foreground inline-mainhero" aria-hidden="true">
+  <span class="w-min font-black uppercase text-[2.6rem]/[2.4rem] indent-[2.79rem] tracking-[0.2rem]">Kristof Dewilde</span> <span class="w-max font-semibold uppercase tracking-[0.3rem] text-primary">Full-Stack Java Developer</span>
 </div>
+
+<style>
+  .inline-mainhero {
+    padding-block: 70px 130px;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .inline-mainhero {
+      animation: shrinkPadding linear both;
+      animation-timeline: scroll();
+      animation-range: 0 200px;
+    }
+
+    @keyframes shrinkPadding {
+      100% {
+        padding-block: 10px;
+      }
+    }
+  }
+</style>

@@ -42,42 +42,18 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="customCursor" :class="[
-         'absolute w-[1rem] h-[1rem] z-[9999] -translate-1/2 bg-foreground/75 rounded-full opacity-0 pointer-events-none mix-blend-exclusion duration-500 transition-[color,opacity]',
+         'absolute w-[1rem] h-[1rem] z-[9999] -translate-1/2 bg-foreground/75 rounded-full opacity-0 pointer-events-none mix-blend-exclusion duration-500 transition-[background,opacity]',
          {'hidden': !customCursor},
-         {'bg-primary': isOverLink}
+         {'bg-primary/50': isOverLink}
          ]">&nbsp;</div>
 </template>
 
 <style>
-
-body.custom-cursor {
+html.no-cursor {
   cursor: none !important;
 
   * {
     cursor: none !important;
-  }
-
-  #cursor {
-    --radius: 0.5rem;
-
-    display: block;
-    position: absolute;
-    z-index: 1069;
-    top: 50dvh;
-    left: 50dvw;
-    width: calc(var(--radius) * 2);
-    height: calc(var(--radius) * 2);
-    margin: calc(var(--radius) * -1) 0 0 calc(var(--radius) * -1);
-    background-color: var(--color-text-muted);
-    border-radius: 50%;
-    opacity: 0;
-    pointer-events: none;
-    mix-blend-mode: exclusion;
-    transition: background-color 500ms, opacity 250ms;
-
-    &.reactive {
-      background-color: var(--color-accent);
-    }
   }
 }
 </style>

@@ -47,20 +47,21 @@ const cardUrl = new URL("og_card.png", Astro.site); // TODO Make a card
   <script is:inline>
     function loadColorTheme() {
       try {
-        const userPref = JSON.parse(localStorage.getItem('theme')) || "system";
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const userPref = JSON.parse(localStorage.getItem("theme")) || "system";
+        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-        if (userPref === 'dark' || (userPref === "system" && systemPrefersDark)) {
-          document.documentElement.classList.add('dark');
+        if (userPref === "dark" || (userPref === "system" && systemPrefersDark)) {
+          document.documentElement.classList.add("dark");
         } else {
-          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.remove("dark");
         }
       } catch (e) {
-        console.error('Dark mode detection failed:', e);
+        console.error("Dark mode detection failed:", e);
       }
     }
 
     loadColorTheme();
+    document.addEventListener("astro:after-swap", loadColorTheme);
   </script>
 
   <ClientRouter />

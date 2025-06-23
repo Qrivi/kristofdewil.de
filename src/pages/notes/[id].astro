@@ -1,0 +1,39 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { dateForComputer, dateForHuman } from "../../utils/date-util";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes");
+  return notes.map((note) => ({
+    params: { id: note.id },
+    props: { note },
+  }));
+}
+const { note } = Astro.props;
+
+const { Content } = await render(note);
+---
+
+<BaseLayout title={`${note.data.title} - Notes`}>
+  <main>
+    <section class="wrapper">
+      <h2 class="sticky z-40 title-section top-[80px]">Notes</h2>
+
+      <article class="grid gap-2">
+        <h3><a class="title-page" href={`/notes/${note.id}`}>{note.data.title}</a></h3>
+        <p class="order-first font-mono text-xs uppercase">
+          <time datetime={dateForComputer(note.data.publishDate)}>{dateForHuman(note.data.publishDate)}</time>
+          /
+          <time datetime={`PT${note.data.readTime}M`}>{note.data.readTime} min</time>
+          read
+        </p>
+        <p class="leading-8">{note.data.description}</p>
+
+        <div class="pt-10 component-markdown">
+          <Content/>
+        </div>
+      </article>
+    </section>
+  </main>
+</BaseLayout>

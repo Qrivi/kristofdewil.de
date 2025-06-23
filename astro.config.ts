@@ -30,7 +30,7 @@ export default defineConfig({
       [
         rehypeShiftHeading,
         {
-          shift: 2,
+          shift: 3,
         },
       ],
     ],
