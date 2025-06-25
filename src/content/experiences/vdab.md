@@ -1,0 +1,36 @@
+---
+organization: VDAB
+link: https://vdab.be
+title: Full Stack / Java Developer
+startDate: 2024-08-01
+endDate: 2025-04-01
+locations:
+  - Brussels, BE
+  - Remote
+topics:
+  - Java
+  - Spring Boot
+  - TypeScript
+  - Angular
+  - Preact
+  - Hibernate
+  - OracleDB
+  - Flyway
+  - Kafka
+  - Axon
+  - Jenkins
+  - Argo CD
+  - Docker
+  - Kubernetes
+summary:
+  - Developed Java applications to support job seekers and employers in finding the right match.
+  - Integrated with government systems to securely access and process citizen data.
+  - Built and maintained backend microservices using Spring Boot, JPA/Hibernate and Axon.
+  - Developed frontend features with Angular and Preact, ensuring a seamless user experience.
+  - Implemented event-driven architectures with Apache Kafka for reliable data processing.
+  - Managed build and deployment pipelines with Maven, Jenkins and Argo CD.
+  - Optimized database queries and performance for Oracle Database.
+  - Collaborated with cross-functional teams to align development with business needs.
+---
+
+As a full stack developer at VDAB, I work on tools that assist citizens in their job search and help employers find the right candidates. My role involves developing Java applications and integrating with other government systems to access citizen data, as well as occasionally crafting frontend features using Angular and Preact.
