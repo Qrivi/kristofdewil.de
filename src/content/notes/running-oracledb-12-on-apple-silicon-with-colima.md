@@ -1,8 +1,7 @@
 ---
 title: Running OracleDB 12 on Apple Silicon with Colima
 description: OracleDB 12 won't run on ARM, not even in an emulated container, but there's a workaround.
-publishDate: 2025-01-22
-readTime: 3
+publishDate: 2024-11-22
 topics:
   - docker
   - macos

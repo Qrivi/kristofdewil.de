@@ -97,15 +97,15 @@
 
 @layer components {
   .component-underline {
-    @apply bg-no-repeat ease-out transition-[background-size] duration-250 bg-position-[left_123%] bg-size-[0_12px] bg-linear-to-b from-primary to-primary;
+    @apply bg-no-repeat ease-out transition-[background-size] duration-250 bg-position-[left_123%] bg-size-[0_6px] bg-linear-to-b from-primary to-primary;
 
     &:hover {
-      @apply bg-size-[95%_12px];
+      @apply bg-size-[95%_6px];
     }
   }
 
   .component-markdown {
-    @apply mb-52 leading-8 space-y-4 clearfix;
+    @apply mb-52 leading-8 space-y-4 clearfix w-full overflow-hidden;
 
     h2,
     h3 {
@@ -118,7 +118,11 @@
     }
 
     ul {
-      @apply list-outside list-disc pl-4;
+      @apply list-outside list-disc pl-6;
+    }
+
+    ol {
+      @apply list-outside list-decimal pl-6;
     }
 
     img {
@@ -131,7 +135,7 @@
     }
 
     code {
-      @apply px-1 font-mono text-sm/7;
+      @apply px-1 font-mono text-sm/7 wrap-break-word;
     }
 
     pre {
@@ -146,7 +150,7 @@
 
         .line {
           @apply relative pr-3 [counter-increment:step];
-          @apply before:inline-block before:sticky before:left-0 before:w-10 before:pr-3 before:text-right before:text-[rgba(128,128,128,0.25)] before:content-[counter(step)];
+          @apply before:inline-block before:sticky before:left-0 before:w-10 before:pr-3 before:text-right before:bg-inherit before:text-[rgba(128,128,128,0.25)] before:content-[counter(step)];
           @apply after:pointer-events-none after:absolute after:inset-0;
 
           &.highlighted {
