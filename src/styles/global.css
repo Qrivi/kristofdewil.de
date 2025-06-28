@@ -52,7 +52,7 @@
   }
 
   body {
-    @apply overflow-x-clip antialiased text-pretty bg-background text-foreground/70 min-h-dvh;
+    @apply overflow-x-clip antialiased text-pretty text-foreground/70 min-h-dvh mb-60 opaque;
   }
 
   section {
@@ -73,6 +73,10 @@
   strong {
     @apply font-bold;
   }
+}
+
+@utility opaque {
+  @apply bg-background transition-colors duration-500 ease-out;
 }
 
 @utility clearfix {
@@ -105,7 +109,7 @@
   }
 
   .component-markdown {
-    @apply mb-52 leading-8 space-y-4 clearfix w-full overflow-hidden;
+    @apply leading-8 space-y-4 clearfix w-full overflow-hidden;
 
     h2,
     h3 {
@@ -189,6 +193,20 @@
     .float-right,
     .float-left {
       @apply max-w-1/2;
+    }
+  }
+
+  .component-switch {
+    @apply relative w-full text-sm text-foreground/70;
+    @apply before:absolute before:right-0 before:top-0 before:w-[32px] before:h-[20px] before:rounded-full before:border-1;
+    @apply after:absolute after:right-[2px] after:top-[2px] after:w-[20px] after:h-[16px] after:rounded-full after:bg-foreground/30 after:translate-x-0 after:duration-500 after:transition-[background-color,translate] after:ease-out;
+
+    &:has(input[type="checkbox"]:checked) {
+      @apply after:bg-primary after:-translate-x-[8px];
+    }
+
+    input[type="checkbox"] {
+      @apply invisible absolute right-0;
     }
   }
 }

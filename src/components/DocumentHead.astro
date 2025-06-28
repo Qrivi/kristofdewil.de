@@ -57,11 +57,13 @@ const cardUrl = new URL("og_card.png", Astro.site); // TODO Make a card
         }
       } catch (e) {
         console.error("Dark mode detection failed:", e);
+        localStorage.setItem("theme");
       }
     }
 
     loadColorTheme();
     document.addEventListener("astro:after-swap", loadColorTheme);
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", loadColorTheme);
   </script>
 
   <ClientRouter />

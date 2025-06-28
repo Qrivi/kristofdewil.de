@@ -1,11 +1,13 @@
 ---
+import SiteSettings from "./SiteSettings.vue";
+
 const menu = [
   { title: "Resume", href: "/resume" },
   { title: "Notes", href: "/notes" },
 ];
 ---
 
-<header class="sticky top-0 z-50 flex items-center gap-x-10 py-4 wrapper bg-background">
+<header class="sticky top-0 z-50 flex items-center gap-x-10 py-4 wrapper opaque">
   <h1>
     <a href="/">
       <svg viewBox="0 0 55 72" xmlns="http://www.w3.org/2000/svg" class="h-[50px]">
@@ -25,4 +27,9 @@ const menu = [
       ))}
     </ul>
   </nav>
+  <ul>
+    <li>
+        <SiteSettings client:only />
+    </li>
+  </ul>
 </header>
