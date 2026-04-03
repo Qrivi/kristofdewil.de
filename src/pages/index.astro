@@ -1,25 +1,57 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import MainHero from "./_components/MainHero.astro";
+import { getCollection } from "astro:content";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import ExperienceDetails from "~/pages/_components/ExperienceDetails.astro";
+import PostDetails from "~/pages/_components/PostDetails.astro";
+import AboutSection from "./_components/AboutSection.astro";
+
+const limit = 3;
+
+const posts = (await getCollection("posts")).sort((a, b) => {
+  const dateA = (a.data.editDate ?? a.data.publishDate).getTime();
+  const dateB = (b.data.editDate ?? b.data.publishDate).getTime();
+  return dateB - dateA; // newest to oldest
+}).slice(0, limit);
+
+const experiences = (await getCollection("experiences")).sort((a, b) => {
+  return b.data.startDate.getTime() - a.data.startDate.getTime(); // newest to oldest
+}).slice(0, limit);
 ---
 
 <BaseLayout>
-  <MainHero/>
+    <AboutSection/>
 
-  <main>
-
-    <section class="wrapper component-markdown">
-      <h2 class="sr-only">About me</h2>
-
-      <p>
-        Versatile software developer with a strong foundation in <strong>Java</strong> and a curiosity that drives me to explore new technologies across the entire stack. Whether it’s <strong>backend
-        architecture, frontend UX, or DevOps</strong>, I thrive on learning and adapting to new challenges. </p>
-      <p>
-        I enjoy building tools and applications to improve workflows and experiment with emerging tech. A firm believer in <strong>clean code and software design patterns</strong>, I prioritize
-        maintainability and efficiency in every project. </p>
-      <p>
-        Comfortable working independently yet highly collaborative, I excel at <strong>leading teams, mentoring developers, and delivering high- quality software</strong>. Always eager to step outside
-        my comfort zone and push the boundaries of what I can create. </p>
+    <section class="wrapper mesh">
+      <h2 class="mesh-center">Recent blog posts</h2>
+      <p class="uppercase text-xs">
+        <a href="/posts">Read more</a>
+      </p>
+      <ul class="contents">
+        {posts.map(post => (
+          <li class="contents">
+            <PostDetails post={post}/>
+          </li>
+        ))}
+      </ul>
     </section>
-  </main>
+
+    <section class="wrapper mesh">
+      <h2 class="mesh-center">Recent work experience</h2>
+      <p class="uppercase text-xs">
+        <a href="/resume">Full resume</a>
+      </p>
+      <ul class="contents">
+        {experiences.map(experience => (
+          <li class="contents">
+            <ExperienceDetails experience={experience}/>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="wrapper mesh">
+      <div class="mesh-left">hello 1</div>
+      <div class="mesh-center">hello 2</div>
+      <div class="mesh-right">hello 3</div>
+    </section>
 </BaseLayout>

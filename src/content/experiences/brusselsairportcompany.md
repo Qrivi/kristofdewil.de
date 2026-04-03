@@ -1,8 +1,11 @@
 ---
 organization: Brussels Airport Company
+description: Backend-focused Java role building and migrating data-driven Spring Boot microservices on AWS for airport data services.
 link: https://brusselsairport.be
-title: Java Developer
+titles:
+  - Java Developer
 startDate: 2025-05-05
+endDate: 2025-12-31
 locations:
   - Zaventem, BE
   - Remote
@@ -32,4 +35,4 @@ summary:
   - Collaborated with cross-functional teams to align development with business needs.
 ---
 
-As a full stack developer at VDAB, I work on tools that assist citizens in their job search and help employers find the right candidates. My role involves developing Java applications and integrating with other government systems to access citizen data, as well as occasionally crafting frontend features using Angular and Preact.
+At Brussels Airport Company, I took on a backend-leaning Java role within an amazing team under the Data Service Delivery unit. The focus was all about bringing together data from various internal and external partners, transforming it, and exposing it again with the proper access controls for the right consumers. I contributed to building a modern landscape of Spring Boot microservices running on AWS and helped migrate several legacy on-prem applications into this new cloud-based environment.

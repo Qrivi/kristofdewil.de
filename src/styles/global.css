@@ -28,10 +28,24 @@
   --value-foreground: 32 32 32;
   --value-primary: 250 170 20;
 
+  --cursor: image-set(url(/assets/cursor/default-b.png) 1x, url(/assets/cursor/default-b@2x.png) 2x) 3 3, auto;
+  --cursor-pressed: image-set(url(/assets/cursor/default-b-p.png) 1x, url(/assets/cursor/default-b-p@2x.png) 2x) 3 3, auto;
+  --cursor-pointer: image-set(url(/assets/cursor/pointer-b.png) 1x, url(/assets/cursor/pointer-b@2x.png) 2x) 8 2, auto;
+  --cursor-pointer-pressed: image-set(url(/assets/cursor/pointer-b-p.png) 1x, url(/assets/cursor/pointer-b-p@2x.png) 2x) 8 2, auto;
+  --cursor-text: image-set(url(/assets/cursor/text-b.png) 1x, url(/assets/cursor/text-b@2x.png) 2x) 10 10, auto;
+  --cursor-text-pressed: image-set(url(/assets/cursor/text-b-p.png) 1x, url(/assets/cursor/text-b-p@2x.png) 2x) 10 10, auto;
+
   &.dark {
     --value-background: 32 32 32;
     --value-foreground: 240 240 255;
     --value-primary: 250 170 20;
+
+    --cursor: image-set(url(/assets/cursor/default-w.png) 1x, url(/assets/cursor/default-w@2x.png) 2x) 3 3, auto;
+    --cursor-pressed: image-set(url(/assets/cursor/default-w-p.png) 1x, url(/assets/cursor/default-w-p@2x.png) 2x) 3 3, auto;
+    --cursor-pointer: image-set(url(/assets/cursor/pointer-w.png) 1x, url(/assets/cursor/pointer-w@2x.png) 2x) 8 2, auto;
+    --cursor-pointer-pressed: image-set(url(/assets/cursor/pointer-w-p.png) 1x, url(/assets/cursor/pointer-w-p@2x.png) 2x) 8 2, auto;
+    --cursor-text: image-set(url(/assets/cursor/text-w.png) 1x, url(/assets/cursor/text-w@2x.png) 2x) 10 10, auto;
+    --cursor-text-pressed: image-set(url(/assets/cursor/text-w-p.png) 1x, url(/assets/cursor/text-w-p@2x.png) 2x) 10 10, auto;
   }
 }
 
@@ -51,8 +65,18 @@
     @apply bg-primary/50 text-foreground;
   }
 
+  html {
+    @apply min-h-svh;
+    scrollbar-gutter: stable;
+  }
+
   body {
-    @apply overflow-x-clip antialiased text-pretty text-foreground/70 min-h-dvh mb-60 opaque;
+    @apply overflow-x-clip antialiased text-pretty text-foreground/70 my-[15vh] opaque;
+    cursor: var(--cursor);
+
+    &:active {
+      cursor: var(--cursor-pressed);
+    }
   }
 
   section {
@@ -65,51 +89,116 @@
   h4,
   h5,
   h6 {
-    @apply scroll-mt-28 text-balance text-foreground;
+    @apply scroll-mt-12 text-balance text-foreground font-medium;
     text-rendering: optimizeLegibility;
+  }
+
+  h2 {
+    @apply uppercase text-xs text-foreground/50 flex items-center gap-3 text-nowrap tracking-widest pb-12;
+    @apply after:w-full after:h-px after:bg-foreground/5;
+  }
+
+  p {
+    @apply text-sm/6 pb-6;
   }
 
   b,
   strong {
     @apply font-bold;
   }
+
+  a {
+    cursor: var(--cursor-pointer);
+
+    &:active {
+      cursor: var(--cursor-pointer-pressed);
+    }
+
+    &:not(nav a) {
+      @apply transition-colors duration-500 inline-flex flex-row items-center gap-x-1;
+
+      &::after {
+        @apply content-['→'] transition-transform text-primary select-none;
+      }
+
+      &:hover {
+        @apply text-foreground;
+      }
+
+      &:hover::after {
+        @apply translate-x-1;
+      }
+
+      &[href^="http"]:hover::after {
+        @apply -translate-y-0.5 -rotate-45;
+      }
+    }
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  article ul,
+  article ol {
+    cursor: var(--cursor-text);
+
+    &:active {
+      cursor: var(--cursor-text-pressed);
+    }
+  }
+}
+
+@utility wrapper {
+  @apply container mx-auto px-2 max-w-246 py-8;
+}
+
+@utility mesh {
+  @apply grid gap-x-12;
+  grid-template-columns: [left] 160px [center] 1fr [right] 160px;
+}
+
+@utility mesh-left {
+  @apply col-[left] text-right text-foreground/50 text-xs font-medium pt-1.5 uppercase font-mono;
+}
+
+@utility mesh-center {
+  @apply col-[center];
+}
+
+@utility mesh-right {
+  @apply col-[right] text-foreground/50 text-xs font-medium pt-1.5 uppercase font-mono;
 }
 
 @utility opaque {
   @apply bg-background transition-colors duration-500 ease-out;
 }
 
-@utility clearfix {
-  @apply after:clear-both after:table;
-}
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
-@utility wrapper {
-  @apply container mx-auto px-2 max-w-[1000px] sm:px-4;
-}
-
-@utility title-section {
-  @apply border-t-4 pb-8 text-right font-mono text-sm uppercase border-primary/30 text-foreground/70;
-}
-
-@utility title-article {
-  @apply text-lg font-medium;
-}
-
-@utility title-page {
-  @apply text-3xl font-medium;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer components {
-  .component-underline {
-    @apply bg-no-repeat ease-out transition-[background-size] duration-250 bg-position-[left_123%] bg-size-[0_6px] bg-linear-to-b from-primary to-primary;
+  .component-collapsible {
+    @apply h-0 opacity-0 hidden transition-all overflow-clip ease-out duration-500;
+    transition-behavior: allow-discrete;
 
-    &:hover {
-      @apply bg-size-[95%_6px];
+    &[data-open="true"] {
+      @apply h-auto opacity-100 block;
+
+      @starting-style {
+        @apply h-0 opacity-0;
+      }
     }
   }
 
   .component-markdown {
-    @apply leading-8 space-y-4 clearfix w-full overflow-hidden;
+    @apply leading-8 space-y-4 w-full overflow-hidden;
 
     h2,
     h3 {
@@ -183,7 +272,7 @@
     }
 
     a {
-      @apply underline decoration-primary underline-offset-2 transition-[text-decoration-color,color];
+      @apply underline decoration-primary underline-offset-2 transition-colors;
 
       &:hover {
         @apply text-foreground;
@@ -193,20 +282,6 @@
     .float-right,
     .float-left {
       @apply max-w-1/2;
-    }
-  }
-
-  .component-switch {
-    @apply relative w-full text-sm text-foreground/70;
-    @apply before:absolute before:right-0 before:top-0 before:w-[32px] before:h-[20px] before:rounded-full before:border-1;
-    @apply after:absolute after:right-[2px] after:top-[2px] after:w-[20px] after:h-[16px] after:rounded-full after:bg-foreground/30 after:translate-x-0 after:duration-500 after:transition-[background-color,translate] after:ease-out;
-
-    &:has(input[type="checkbox"]:checked) {
-      @apply after:bg-primary after:-translate-x-[8px];
-    }
-
-    input[type="checkbox"] {
-      @apply invisible absolute right-0;
     }
   }
 }

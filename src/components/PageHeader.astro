@@ -1,6 +1,4 @@
 ---
-import SiteSettings from "./SiteSettings.vue";
-
 const menu = [
   { title: "Resume", href: "/resume" },
   { title: "Notes", href: "/notes" },
@@ -27,9 +25,4 @@ const menu = [
       ))}
     </ul>
   </nav>
-  <ul>
-    <li>
-        <SiteSettings client:only />
-    </li>
-  </ul>
 </header>

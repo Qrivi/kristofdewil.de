@@ -1,7 +1,9 @@
 ---
 organization: Napoleon Sports & Casino Online
+description: Improved release quality by building Java-based test automation and supporting QA for customer service tooling in an agile team.
 link: https://napoleongames.be
-title: QA Automation Engineer / Java Developer
+titles:
+  - QA Automation Engineer / Java Developer
 startDate: 2021-07-01
 endDate: 2022-08-01
 locations:

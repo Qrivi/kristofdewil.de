@@ -1,7 +1,9 @@
 ---
 organization: BASE / Telenet
+description: Maintained BASE's AEM website and internal Java applications, contributing across Spring Boot backend and Angular frontend work.
 link: https://telenet.be
-title: Full Stack / Java Developer
+titles:
+  - Full Stack / Java Developer
 startDate: 2018-05-01
 endDate: 2019-11-01
 locations:

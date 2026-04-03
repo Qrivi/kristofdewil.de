@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { dateForSummary } from "~/utils/date-util";
+import {  formatIsoDuration } from "~/utils/duration-util";
+
+type Props = {
+  experience: CollectionEntry<"experiences">;
+};
+const { experience } = Astro.props;
+
+---
+
+<time class="mesh-left" datetime={formatIsoDuration(experience.data.startDate, experience.data.endDate)}>
+  {dateForSummary(experience.data.startDate)} — {dateForSummary(experience.data.endDate)}
+</time>
+<div class="mesh-center">
+  <a class="text-foreground font-medium" href={`/experiences/${experience.id}`}>
+    {experience.data.organization}
+  </a>
+  <ul class="text-sm text-foreground/50 pb-6">
+    {experience.data.titles.map((title) => (
+      <li>{title}</li>
+    ))}
+  </ul>
+  <p>{experience.data.description}</p>
+</div>

@@ -1,7 +1,9 @@
 ---
 organization: Komma Board
+description: Led architecture and delivery of an internal people-project matching platform with Kotlin microservices and a Next.js frontend.
 link: https://kommaboard.be
-title: Technical Architect / Lead Java Developer
+titles:
+  - Technical Architect / Lead Java Developer
 startDate: 2022-08-01
 endDate: 2024-08-01
 locations:

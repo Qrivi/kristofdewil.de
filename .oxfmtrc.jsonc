@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "singleAttributePerLine": true,
+  "sortTailwindcssClasses": {
+    "enabled": true,
+    "functions": ["cn", "clsx", "cva"],
+  },
+  "sortImports": {
+    "groups": ["type-import", ["value-builtin", "value-external"], "type-internal", "value-internal", ["value-parent", "value-sibling", "value-index"], "unknown"],
+    "newlinesBetween": true,
+  },
+}

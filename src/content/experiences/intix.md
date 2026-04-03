@@ -1,7 +1,9 @@
 ---
 organization: Intix
+description: Built and optimized Java tooling and backend services for banking clients, including high-performance data processing for Bank of America.
 link: https://intix.eu
-title: Full Stack / Java Developer
+titles:
+  - Full Stack / Java Developer
 startDate: 2019-11-01
 endDate: 2021-07-01
 locations:

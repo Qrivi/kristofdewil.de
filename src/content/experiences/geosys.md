@@ -1,7 +1,9 @@
 ---
 organization: GeoSYS
+description: Developed geospatial Android and iOS apps with ArcGIS/Qt and later led a small team while contributing to Java backend services.
 link: https://geosys.com.mt
-title: Mobile Application Developer
+titles:
+  - Mobile Application Developer
 startDate: 2017-06-01
 endDate: 2017-09-01
 locations:

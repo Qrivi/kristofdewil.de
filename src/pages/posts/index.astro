@@ -4,7 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { dateForComputer, dateForHuman } from "../../utils/date-util";
 import { estimateReadingTime } from "../../utils/duration-util";
 
-const notes = (await getCollection("notes")).sort((a, b) => {
+const notes = (await getCollection("posts")).sort((a, b) => {
   const dateA = a.data.editDate ?? a.data.publishDate;
   const dateB = b.data.editDate ?? b.data.publishDate;
   return dateB.getTime() - dateA.getTime(); // newest to oldest

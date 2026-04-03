@@ -1,11 +1,11 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { dateForComputer, dateForHuman } from "../../utils/date-util";
-import { estimateReadingTime } from "../../utils/duration-util";
+import { dateForComputer, dateForHuman } from "~/utils/date-util";
+import { estimateReadingTime } from "~/utils/duration-util";
 
 export async function getStaticPaths() {
-  const notes = await getCollection("notes");
+  const notes = await getCollection("posts");
   return notes.map((note) => ({
     params: { id: note.id },
     props: { note },
@@ -19,7 +19,7 @@ const { Content } = await render(note);
 <BaseLayout title={`${note.data.title} - Notes`}>
   <main>
     <section class="wrapper">
-      <h2 class="sticky z-40 title-section top-[80px]">Notes</h2>
+      <h2 class="sticky z-40 title-section top-20">Notes</h2>
 
       <article class="grid gap-2">
         <h3 class="title-page">{note.data.title}</h3>

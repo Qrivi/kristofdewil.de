@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { dateForSummary } from "../../utils/date-util";
-import { formatIsoDuration } from "../../utils/duration-util";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { dateForSummary } from "~/utils/date-util";
+import { formatIsoDuration } from "~/utils/duration-util";
 
 const experiences = (await getCollection("experiences")).sort((a, b) => {
   return b.data.startDate.getTime() - a.data.startDate.getTime(); // newest to oldest
@@ -21,7 +21,7 @@ const experiences = (await getCollection("experiences")).sort((a, b) => {
               <div class="grid gap-1">
                 <hgroup>
                   <h3 class="title-article">{experience.data.organization}</h3>
-                  <p class="uppercase py-2 font-bold text-primary text-xs">{experience.data.title}</p>
+                  <p class="uppercase py-2 font-bold text-primary text-xs">{experience.data.titles[0]}</p>
                 </hgroup>
                 <div class="py-1" set:html={experience.rendered?.html}/>
                 <ul class="mt-1 flex flex-wrap text-xs gap-1.5">

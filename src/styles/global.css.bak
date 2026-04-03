@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  @apply scroll-smooth;
+  interpolate-size: allow-keywords;
+
+  @media (prefers-reduced-motion) {
+    * {
+      animation-duration: 0ms !important;
+      transition-duration: 0ms !important;
+      animation-delay: 0ms !important;
+      transition-delay: 0ms !important;
+    }
+  }
+
+  --light-background: 255 255 255;
+  --light-foreground: 32 32 32;
+  --light-primary: 250 170 20;
+
+  --dark-background: 32 32 32;
+  --dark-foreground: 240 240 255;
+  --dark-primary: 250 170 20;
+
+  /* light */
+  --value-background: 255 255 255;
+  --value-foreground: 32 32 32;
+  --value-primary: 250 170 20;
+
+  &.dark {
+    --value-background: 32 32 32;
+    --value-foreground: 240 240 255;
+    --value-primary: 250 170 20;
+  }
+}
+
+@theme {
+  --breakpoint-xs: 26rem;
+
+  --color-background: rgb(var(--value-background));
+  --color-foreground: rgb(var(--value-foreground));
+  --color-primary: rgb(var(--value-primary));
+
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: "Inter Variable", Inter, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@layer base {
+  ::selection {
+    @apply bg-primary/50 text-foreground;
+  }
+
+  body {
+    @apply overflow-x-clip antialiased text-pretty text-foreground/70 min-h-dvh mb-60 opaque;
+  }
+
+  section {
+    @apply relative;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply scroll-mt-28 text-balance text-foreground;
+    text-rendering: optimizeLegibility;
+  }
+
+  b,
+  strong {
+    @apply font-bold;
+  }
+}
+
+@utility opaque {
+  @apply bg-background transition-colors duration-500 ease-out;
+}
+
+@utility clearfix {
+  @apply after:clear-both after:table;
+}
+
+@utility wrapper {
+  @apply container mx-auto px-2 max-w-[1000px] sm:px-4;
+}
+
+@utility title-section {
+  @apply border-t-4 pb-8 text-right font-mono text-sm uppercase border-primary/30 text-foreground/70;
+}
+
+@utility title-article {
+  @apply text-lg font-medium;
+}
+
+@utility title-page {
+  @apply text-3xl font-medium;
+}
+
+@layer components {
+  .component-underline {
+    @apply bg-no-repeat ease-out transition-[background-size] duration-250 bg-position-[left_123%] bg-size-[0_6px] bg-linear-to-b from-primary to-primary;
+
+    &:hover {
+      @apply bg-size-[95%_6px];
+    }
+  }
+
+  .component-markdown {
+    @apply leading-8 space-y-4 clearfix w-full overflow-hidden;
+
+    h2,
+    h3 {
+      /* Should not be used in blogposts -- title is already h3 */
+      @apply text-2xl text-red-600 before:content-[⚠];
+    }
+
+    h4 {
+      @apply pt-5 pb-1 text-lg font-medium;
+    }
+
+    ul {
+      @apply list-outside list-disc pl-6;
+    }
+
+    ol {
+      @apply list-outside list-decimal pl-6;
+    }
+
+    img {
+      @apply max-w-full;
+    }
+
+    strong,
+    b {
+      @apply font-bold;
+    }
+
+    code {
+      @apply px-1 font-mono text-sm/7 wrap-break-word;
+    }
+
+    pre {
+      @apply border-l border-primary/30 py-1.5 font-mono text-sm/7 dark:bg-[var(--shiki-dark-bg)]! dark:text-[var(--shiki-dark)]!;
+
+      code {
+        @apply grid px-0;
+
+        span {
+          @apply dark:bg-[var(--shiki-dark-bg)]! dark:text-[var(--shiki-dark)]!;
+        }
+
+        .line {
+          @apply relative pr-3 [counter-increment:step];
+          @apply before:inline-block before:sticky before:left-0 before:w-10 before:pr-3 before:text-right before:bg-inherit before:text-[rgba(128,128,128,0.25)] before:content-[counter(step)];
+          @apply after:pointer-events-none after:absolute after:inset-0;
+
+          &.highlighted {
+            @apply after:bg-[rgba(100,185,255,0.1)];
+
+            &.warning {
+              @apply after:bg-[rgba(255,220,100,0.1)];
+            }
+
+            &.error {
+              @apply after:bg-[rgba(255,100,100,0.1)];
+            }
+          }
+
+          &.diff {
+            &.add {
+              @apply before:content-['+'] after:bg-[rgba(50,200,70,0.2)];
+            }
+
+            &.remove {
+              @apply [counter-increment:step_0] before:content-['-'] after:bg-[rgba(200,50,50,0.2)];
+            }
+          }
+        }
+      }
+    }
+
+    a {
+      @apply underline decoration-primary underline-offset-2 transition-[text-decoration-color,color];
+
+      &:hover {
+        @apply text-foreground;
+      }
+    }
+
+    .float-right,
+    .float-left {
+      @apply max-w-1/2;
+    }
+  }
+
+  .component-switch {
+    @apply relative w-full text-sm text-foreground/70;
+    @apply before:absolute before:right-0 before:top-0 before:w-[32px] before:h-[20px] before:rounded-full before:border-1;
+    @apply after:absolute after:right-[2px] after:top-[2px] after:w-[20px] after:h-[16px] after:rounded-full after:bg-foreground/30 after:translate-x-0 after:duration-500 after:transition-[background-color,translate] after:ease-out;
+
+    &:has(input[type="checkbox"]:checked) {
+      @apply after:bg-primary after:-translate-x-[8px];
+    }
+
+    input[type="checkbox"] {
+      @apply invisible absolute right-0;
+    }
+  }
+}
