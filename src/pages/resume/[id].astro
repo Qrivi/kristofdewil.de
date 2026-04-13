@@ -1,0 +1,63 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { dateOfExperienceForHuman } from "~/utils/date-util";
+import { formatIsoDuration } from "~/utils/duration-util";
+
+export async function getStaticPaths() {
+  const experiences = await getCollection("experiences");
+  return experiences.map((experience) => ({
+    params: { id: experience.id },
+    props: { experience },
+  }));
+}
+
+const { experience } = Astro.props;
+const { Content } = await render(experience);
+---
+
+<BaseLayout title={experience.data.organization}>
+  <article class="wrapper mesh">
+    <hgroup class="mesh-center">
+      <h2 class="text-foreground text-2xl">{experience.data.organization}</h2>
+      <ul class="text-sm text-foreground/50 pt-1 pb-6">
+        {experience.data.titles.map((title) => (
+          <li>{title}</li>
+        ))}
+      </ul>
+      <p>{experience.data.description}</p>
+      <p class="text-sm text-foreground/50">
+        {experience.data.locations.join(" · ")}
+      </p>
+      <p class="text-sm text-foreground/50">
+        <a href={experience.data.link} rel="nofollow" target="_blank">Visit organization</a>
+      </p>
+    </hgroup>
+
+    <time class="mesh-left -order-1 pt-3" datetime={formatIsoDuration(experience.data.startDate, experience.data.endDate)}>
+      {dateOfExperienceForHuman(experience.data.startDate)} — {dateOfExperienceForHuman(experience.data.endDate)}
+    </time>
+
+    <div class="mesh-right pt-3">
+      <p class="pb-2">Topics</p>
+      <ul class="space-y-1">
+        {experience.data.topics.map((topic) => (
+          <li>{topic}</li>
+        ))}
+      </ul>
+    </div>
+
+    <section class="mesh-center pb-8">
+      <h3 class="title-section pb-6">Highlights</h3>
+      <ul class="list-disc pl-5">
+        {experience.data.summary.map((item) => (
+          <li class="pb-2">{item}</li>
+        ))}
+      </ul>
+    </section>
+
+    <div class="component-content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
