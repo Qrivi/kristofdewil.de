@@ -24,9 +24,9 @@
   --dark-primary: 250 170 20;
 
   /* light */
-  --value-background: 255 255 255;
-  --value-foreground: 32 32 32;
-  --value-primary: 250 170 20;
+  --color-value-background: 255 255 255;
+  --color-value-foreground: 32 32 32;
+  --color-value-primary: 250 170 20;
 
   --cursor: image-set(url(/assets/cursor/default-b.png) 1x, url(/assets/cursor/default-b@2x.png) 2x) 3 3, auto;
   --cursor-pressed: image-set(url(/assets/cursor/default-b-p.png) 1x, url(/assets/cursor/default-b-p@2x.png) 2x) 3 3, auto;
@@ -35,10 +35,19 @@
   --cursor-text: image-set(url(/assets/cursor/text-b.png) 1x, url(/assets/cursor/text-b@2x.png) 2x) 10 10, auto;
   --cursor-text-pressed: image-set(url(/assets/cursor/text-b-p.png) 1x, url(/assets/cursor/text-b-p@2x.png) 2x) 10 10, auto;
 
+  .astro-code,
+  .astro-code span {
+    color: var(--shiki-light) !important;
+    background-color: var(--shiki-light-bg) !important;
+    font-style: var(--shiki-light-font-style) !important;
+    font-weight: var(--shiki-light-font-weight) !important;
+    text-decoration: var(--shiki-light-text-decoration) !important;
+  }
+
   &.dark {
-    --value-background: 32 32 32;
-    --value-foreground: 240 240 255;
-    --value-primary: 250 170 20;
+    --color-value-background: 32 32 32;
+    --color-value-foreground: 240 240 255;
+    --color-value-primary: 250 170 20;
 
     --cursor: image-set(url(/assets/cursor/default-w.png) 1x, url(/assets/cursor/default-w@2x.png) 2x) 3 3, auto;
     --cursor-pressed: image-set(url(/assets/cursor/default-w-p.png) 1x, url(/assets/cursor/default-w-p@2x.png) 2x) 3 3, auto;
@@ -46,18 +55,27 @@
     --cursor-pointer-pressed: image-set(url(/assets/cursor/pointer-w-p.png) 1x, url(/assets/cursor/pointer-w-p@2x.png) 2x) 8 2, auto;
     --cursor-text: image-set(url(/assets/cursor/text-w.png) 1x, url(/assets/cursor/text-w@2x.png) 2x) 10 10, auto;
     --cursor-text-pressed: image-set(url(/assets/cursor/text-w-p.png) 1x, url(/assets/cursor/text-w-p@2x.png) 2x) 10 10, auto;
+
+    .astro-code,
+    .astro-code span {
+      color: var(--shiki-dark) !important;
+      background-color: var(--shiki-dark-bg) !important;
+      font-style: var(--shiki-dark-font-style) !important;
+      font-weight: var(--shiki-dark-font-weight) !important;
+      text-decoration: var(--shiki-dark-text-decoration) !important;
+    }
   }
 }
 
 @theme {
   --breakpoint-xs: 26rem;
 
-  --color-background: rgb(var(--value-background));
-  --color-foreground: rgb(var(--value-foreground));
-  --color-primary: rgb(var(--value-primary));
+  --color-background: rgb(var(--color-value-background));
+  --color-foreground: rgb(var(--color-value-foreground));
+  --color-primary: rgb(var(--color-value-primary));
 
-  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --font-sans: "Inter Variable", Inter, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: var(--font-value-sans), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: var(--font-value-mono);
 }
 
 @layer base {
@@ -65,9 +83,12 @@
     @apply bg-primary/50 text-foreground;
   }
 
+  *:focus {
+    @apply outline-primary/5;
+  }
+
   html {
-    @apply min-h-svh;
-    scrollbar-gutter: stable;
+    @apply min-h-svh scrollbar-thin;
   }
 
   body {
@@ -93,18 +114,19 @@
     text-rendering: optimizeLegibility;
   }
 
-  h2 {
-    @apply uppercase text-xs text-foreground/50 flex items-center gap-3 text-nowrap tracking-widest pb-12;
-    @apply after:w-full after:h-px after:bg-foreground/5;
-  }
-
-  p {
-    @apply text-sm/6 pb-6;
+  p,
+  ul,
+  ol {
+    @apply text-sm/6 pb-4;
   }
 
   b,
   strong {
     @apply font-bold;
+  }
+
+  kbd {
+    @apply bg-foreground/10 py-0.5 px-1.5 rounded-md text-xs font-sans font-semibold;
   }
 
   a {
@@ -114,7 +136,7 @@
       cursor: var(--cursor-pointer-pressed);
     }
 
-    &:not(nav a) {
+    &:not(nav a, article a) {
       @apply transition-colors duration-500 inline-flex flex-row items-center gap-x-1;
 
       &::after {
@@ -155,7 +177,7 @@
 
 @utility mesh {
   @apply grid gap-x-12;
-  grid-template-columns: [left] 160px [center] 1fr [right] 160px;
+  grid-template-columns: [left] 160px [center] 1fr [right] 160px [end];
 }
 
 @utility mesh-left {
@@ -170,17 +192,27 @@
   @apply col-[right] text-foreground/50 text-xs font-medium pt-1.5 uppercase font-mono;
 }
 
+@utility mesh-full {
+  @apply col-[left/end];
+}
+
+@utility title-section {
+  @apply uppercase text-xs text-foreground/50 flex items-center gap-3 text-nowrap tracking-widest pb-12;
+  @apply after:w-full after:h-px after:bg-foreground/5;
+}
+
 @utility opaque {
   @apply bg-background transition-colors duration-500 ease-out;
 }
 
 @utility scrollbar-hide {
-  -ms-overflow-style: none;
   scrollbar-width: none;
+}
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  scrollbar-color: var(--color-primary) var(--color-background);
 }
 
 @layer components {
@@ -197,25 +229,45 @@
     }
   }
 
-  .component-markdown {
-    @apply leading-8 space-y-4 w-full overflow-hidden;
+  .component-content {
+    @apply contents;
 
-    h2,
-    h3 {
-      /* Should not be used in blogposts -- title is already h3 */
+    a {
+      @apply underline decoration-primary underline-offset-4 transition-colors duration-500;
+      @apply hover:text-foreground focus:text-foreground;
+    }
+
+    h1,
+    h2 {
+      /* Should not be used in blogposts -- title is already h2 */
       @apply text-2xl text-red-600 before:content-[⚠];
     }
 
-    h4 {
-      @apply pt-5 pb-1 text-lg font-medium;
+    h3 {
+      @apply mesh-center py-4 text-lg;
     }
 
-    ul {
+    p,
+    ul,
+    ol {
+      @apply mesh-center;
+
+      code {
+        @apply px-0.5 font-mono text-xs;
+      }
+    }
+
+    ul,
+    ol {
       @apply list-outside list-disc pl-6;
+
+      li {
+        @apply pb-2;
+      }
     }
 
     ol {
-      @apply list-outside list-decimal pl-6;
+      @apply list-decimal;
     }
 
     img {
@@ -227,19 +279,12 @@
       @apply font-bold;
     }
 
-    code {
-      @apply px-1 font-mono text-sm/7 wrap-break-word;
-    }
-
     pre {
-      @apply border-l border-primary/30 py-1.5 font-mono text-sm/7 dark:bg-[var(--shiki-dark-bg)]! dark:text-[var(--shiki-dark)]!;
+      @apply mesh-full rounded-md border border-foreground/10 max-w-full w-200 mx-auto py-1.5 mb-6 text-xs/6 mt-2 relative scrollbar-thin;
+      @apply before:content-[attr(data-language)] before:text-foreground/50 before:pl-10 before:pb-1 before:block before:sticky before:left-0;
 
       code {
-        @apply grid px-0;
-
-        span {
-          @apply dark:bg-[var(--shiki-dark-bg)]! dark:text-[var(--shiki-dark)]!;
-        }
+        @apply grid;
 
         .line {
           @apply relative pr-3 [counter-increment:step];
@@ -269,19 +314,6 @@
           }
         }
       }
-    }
-
-    a {
-      @apply underline decoration-primary underline-offset-2 transition-colors;
-
-      &:hover {
-        @apply text-foreground;
-      }
-    }
-
-    .float-right,
-    .float-left {
-      @apply max-w-1/2;
     }
   }
 }

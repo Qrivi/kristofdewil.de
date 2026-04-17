@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import PostDetails from "~/pages/_components/PostDetails.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = (await getCollection("posts")).sort((a, b) => {
+  const dateA = (a.data.editDate ?? a.data.publishDate).getTime();
+  const dateB = (b.data.editDate ?? b.data.publishDate).getTime();
+  return dateB - dateA; // newest to oldest
+});
+---
+
+<BaseLayout title="Blog">
+  <main>
+    <section class="wrapper mesh">
+      <h2 class="mesh-center title-section">All blog posts</h2>
+      <ul class="contents">
+        {posts.map(post => (
+          <li class="contents">
+            <PostDetails post={post}/>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </main>
+</BaseLayout>

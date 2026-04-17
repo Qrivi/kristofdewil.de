@@ -1,8 +1,8 @@
 ---
 import "../styles/global.css";
-import "@fontsource-variable/inter";
-import "@fontsource-variable/jetbrains-mono";
+import PageHeader from "~/components/PageHeader.astro";
 import DocumentHead from "../components/DocumentHead.astro";
+import Font from "astro/components/Font.astro";
 
 type Props = {
   title?: string;
@@ -10,26 +10,13 @@ type Props = {
 const {title}: Props = Astro.props;
 ---
 
+<Font cssVariable="--font-value-sans" preload />
+<Font cssVariable="--font-value-mono" preload />
+
 <html lang="en">
   <DocumentHead title={title}/>
   <body>
-    <header class="wrapper mesh -top-30 sticky z-50 bg-linear-to-b from-background via-background to-transparent via-80%">
-      <div class="mesh-center flex flex-col-reverse">
-        <hgroup class="pt-4">
-          <h1>Kristof Dewilde</h1>
-          <p>Consultant Software Engineer</p>
-        </hgroup>
-        <nav class="border-b border-foreground/5 py-4 sticky top-0 bg-background">
-          <ul class="flex items-center uppercase text-xs gap-6">
-            <li class="rounded aspect-square w-10 overflow-clip bg-primary mr-2">
-              <a href="/"> <img alt="Kristof Dewilde" src="/kristof.jpeg" class="object-cover w-full h-full hover:opacity-0 transition-opacity duration-500"> </a>
-            </li>
-            <li><a href="/resume">resume</a></li>
-            <li><a href="/posts">blog</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <PageHeader />
 
     <main>
       <slot/>

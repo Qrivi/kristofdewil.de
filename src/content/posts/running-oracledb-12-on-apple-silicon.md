@@ -8,7 +8,7 @@ topics:
 draft: false
 ---
 
-During a project for a previous client, I had to deal with some seriously old codebases. They'd all been containerized before the move to Kubernetes, which helped... until I hit OracleDB 12. That one refuses to run on Apple Silicon, and unlike most x86_64 images, you can't just emulate your way out of it.
+During a project for a previous client, I had to deal with some seriously old codebases. They'd all been containerized before the move to Kubernetes, which helped... until I met OracleDB 12. That one refuses to run on Apple Silicon, and unlike most x86_64 images, you can't just emulate your way out of it.
 
 The root cause is subtle. Most container tools handle the amd64→arm64 mismatch fine: they pull the image, QEMU's emulation steps in, and you pay a performance tax but it just works™. OracleDB 12 however breaks at a lower level, because it relies on certain kernel behaviors during initialization that QEMU doesn't faithfully replicate. The container spins up, hangs silently, and that's it. No logs, no crash, no useful signal. For comparison, OracleDB 19 emulated just fine under [OrbStack](https://orbstack.dev) on the same machine. The hanging is specific to 12.
 

@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { dateForSummary } from "~/utils/date-util";
+import { dateOfExperienceForHuman } from "~/utils/date-util";
 import {  formatIsoDuration } from "~/utils/duration-util";
 
 type Props = {
@@ -11,9 +11,9 @@ const { experience } = Astro.props;
 ---
 
 <time class="mesh-left" datetime={formatIsoDuration(experience.data.startDate, experience.data.endDate)}>
-  {dateForSummary(experience.data.startDate)} — {dateForSummary(experience.data.endDate)}
+  {dateOfExperienceForHuman(experience.data.startDate)} — {dateOfExperienceForHuman(experience.data.endDate)}
 </time>
-<div class="mesh-center">
+<div class="mesh-center pb-3">
   <a class="text-foreground font-medium" href={`/experiences/${experience.id}`}>
     {experience.data.organization}
   </a>

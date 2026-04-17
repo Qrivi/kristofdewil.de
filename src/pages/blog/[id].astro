@@ -1,0 +1,38 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { dateForComputer, dateOfPostForHuman } from "~/utils/date-util";
+import { estimateReadingTime } from "~/utils/duration-util";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: {id: post.id},
+    props: {note: post},
+  }));
+}
+const {note: post} = Astro.props;
+
+const readingTime = estimateReadingTime(post.body);
+const {Content} = await render(post);
+---
+
+<BaseLayout title={`${post.data.title}`}>
+  <main>
+    <article class="wrapper mesh">
+      <hgroup class="mesh-center">
+        <h2 class="text-foreground text-2xl">{post.data.title}</h2>
+        <p class="text-sm text-foreground/50 pt-1 pb-8">
+          <time datetime={`PT${readingTime}M`}>{readingTime} min</time> read
+        </p>
+      </hgroup>
+      <time class="mesh-left -order-1 pt-3" datetime={dateForComputer(post.data.publishDate)}>
+        {dateOfPostForHuman(post.data.publishDate)}
+      </time>
+
+      <div class="component-content">
+        <Content/>
+      </div>
+    </article>
+  </main>
+</BaseLayout>

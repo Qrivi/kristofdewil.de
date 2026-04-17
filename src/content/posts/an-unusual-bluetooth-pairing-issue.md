@@ -7,13 +7,13 @@ topics:
 draft: false
 ---
 
-Last week, a friend hit me up for a gaming session. I powered on my Windows PC, untouched for over two months, and braced for a flood of updates. What I didn't brace for was my Ryzen 7 9800X3D hitting 95°C on cold boot, all fans screaming and the desktop running at what felt like 20 FPS. The system shut itself off after 3–4 minutes, right in the middle of a cumulative Windows Update. When it came back up, two things were broken.
+Last week, a friend hit me up for a gaming session. I powered on my Windows PC, untouched for over two months, and braced for a flood of updates. What I didn't brace for was my CPU hitting over 100°C on cold boot, all fans screaming and the desktop running at what felt like 10 FPS. The system shut itself off after 3–4 minutes, right in the middle of a cumulative Windows Update. When it came back up, two things were broken.
 
 # Windows Update stuck at 16%
 
 The interrupted update left Windows Update in a bad state: stuck at 16% every time, eventually spitting out error code `0x80073712` and a message about missing update files. It never self-healed, and manually downloading the update from Microsoft's Update Catalog didn't help either. What did work was running these two DISM commands from an elevated prompt, in order:
 
-```powershell
+```batch
 DISM /Online /Cleanup-Image /StartComponentCleanup
 DISM /Online /Cleanup-Image /RestoreHealth
 ```
@@ -22,22 +22,22 @@ If `RestoreHealth` appears to freeze at **62.3%**, that's a known Windows quirk:
 
 # Bluetooth pairing completely broken
 
-This one was weirder. After the reboot, my MX Keys keyboard stopped working on the login screen — but my MX Master mouse, also Bluetooth, was fine. I'd get in using the on-screen keyboard, and about a minute later: BSOD, instant restart. Second boot everything worked normally. This behavior repeated for four days straight.
+This one was weirder. After the reboot, my MX Keys keyboard stopped working on the login screen — but my MX Anywhere mouse, also Bluetooth, was fine. I'd get in using the on-screen keyboard, and about a minute later: BSOD, instant restart. Second boot everything worked normally. This behavior repeated for four days straight.
 
-On day four I tried the obvious: unpair and re-pair the keyboard. The unpairing hung, which left me with no mouse since I'd disabled Bluetooth mid-process. 🧠 After sorting that out and finally getting the keyboard unpaired, I hit a new wall — pairing wouldn't work at all, for any device. Always the same: _"Try connecting the device again"_, and Swift Pair timing out after a minute.
+On day four I tried the obvious: unpair and re-pair the keyboard. The unpairing hung, which left me with no mouse since I'd disabled Bluetooth mid-process. 🧠 After sorting that out and finally getting the keyboard unpaired, I hit a new wall — pairing wouldn't work at all, for any device. Always the same: "Try connecting the device again" and Swift Pair timing out after a minute.
 
-The driver was up to date and functional, so I started digging. First I cleared all known Bluetooth devices from the registry at `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\BTHPORT\Parameters\Devices`. You can do this manually, or from an elevated command prompt (post: this is `cmd` syntax, not PowerShell):
+The driver was up to date and functional, so I started digging. First I cleared all known Bluetooth devices from the registry at <code>HKEY_LOCAL_MACHINE\\<wbr>SYSTEM\\<wbr>CurrentControlSet<wbr>\Services\\<wbr>BTHPORT\\<wbr>Parameters\\<wbr>Devices</code>. You can do this manually, or from an elevated command prompt (note: this is `cmd` syntax, not PowerShell). Perhaps run this once without the `reg delete "%i" /f` first.
 
-```cmd
+```batch
 for /f "tokens=*" %i in ('reg query HKLM\SYSTEM\CurrentControlSet\Services\BTHPORT\Parameters\Devices') do (
   echo Deleting %i
-  reg delete "%i" /f # perhaps run this once without this line first
+  reg delete "%i" /f
 )
 ```
 
 I'm not certain cleaning the registry was strictly necessary, but it doesn't hurt. The actual fix was this:
 
-1. Open **Services** (<kbd>⊞R</kbd> and type `services.msc` or search for "services")
+1. Open **Services** (<kbd>⊞</kbd>+<kbd>R</kbd> and type `services.msc` or search for "services")
 2. Find **Bluetooth Support Service**, right-click and choose **Properties**
 3. Go to the **Log On** tab
 

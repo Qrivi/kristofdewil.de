@@ -8,7 +8,7 @@ type Props = {
 const { title, description }: Props = Astro.props;
 
 const defaultTitle = "Kristof Dewilde";
-const pageTitle = title ? `${title} | ${defaultTitle}` : defaultTitle;
+const pageTitle = title ? `${title} / ${defaultTitle}` : defaultTitle;
 const pageDescription = description || "Full Stack Java Developer"; // TODO be more original
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);

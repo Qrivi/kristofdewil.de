@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { dateForComputer, dateForHuman } from "~/utils/date-util";
+import { dateForComputer, dateOfPostForHuman } from "~/utils/date-util";
 import { estimateReadingTime } from "~/utils/duration-util";
 
 type Props = {
@@ -12,10 +12,10 @@ const readingTime = estimateReadingTime(post.body);
 ---
 
 <time class="mesh-left" datetime={dateForComputer(post.data.publishDate)}>
-  {dateForHuman(post.data.publishDate)}
+  {dateOfPostForHuman(post.data.publishDate)}
 </time>
-<div class="mesh-center">
-  <a class="text-foreground font-medium" href={`/posts/${post.id}`}>
+<div class="mesh-center pb-3">
+  <a class="text-foreground font-medium" href={`/blog/${post.id}`}>
     {post.data.title}
   </a>
   <p class="text-sm text-foreground/50">

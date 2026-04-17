@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "~/layouts/BaseLayout.astro";
-import ExperienceDetails from "~/pages/_components/ExperienceDetails.astro";
+import ExperienceDetails from "~/components/ExperienceDetails.astro";
 import PostDetails from "~/pages/_components/PostDetails.astro";
 import AboutSection from "./_components/AboutSection.astro";
 
@@ -22,9 +22,9 @@ const experiences = (await getCollection("experiences")).sort((a, b) => {
     <AboutSection/>
 
     <section class="wrapper mesh">
-      <h2 class="mesh-center">Recent blog posts</h2>
+      <h2 class="mesh-center title-section">Recent blog posts</h2>
       <p class="uppercase text-xs">
-        <a href="/posts">Read more</a>
+        <a href="/blog">Read more</a>
       </p>
       <ul class="contents">
         {posts.map(post => (
@@ -36,7 +36,7 @@ const experiences = (await getCollection("experiences")).sort((a, b) => {
     </section>
 
     <section class="wrapper mesh">
-      <h2 class="mesh-center">Recent work experience</h2>
+      <h2 class="mesh-center title-section">Recent work experience</h2>
       <p class="uppercase text-xs">
         <a href="/resume">Full resume</a>
       </p>
