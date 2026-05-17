@@ -3,6 +3,7 @@ import "../styles/global.css";
 import PageHeader from "~/components/PageHeader.astro";
 import DocumentHead from "../components/DocumentHead.astro";
 import Font from "astro/components/Font.astro";
+import { ClientRouter } from "astro:transitions";
 
 type Props = {
   title?: string;
@@ -10,13 +11,16 @@ type Props = {
 const {title}: Props = Astro.props;
 ---
 
-<Font cssVariable="--font-value-sans" preload />
-<Font cssVariable="--font-value-mono" preload />
+<html transition:name="root" transition:animate="fade">
+  <DocumentHead title={title}>
+    <Font cssVariable="--font-value-sans" preload />
+    <Font cssVariable="--font-value-mono" preload />
 
-<html lang="en">
-  <DocumentHead title={title}/>
+    <ClientRouter/>
+  </DocumentHead>
+
   <body>
-    <PageHeader />
+    <PageHeader/>
 
     <main>
       <slot/>
@@ -27,3 +31,4 @@ const {title}: Props = Astro.props;
     </footer>
   </body>
 </html>
+

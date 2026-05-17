@@ -1,11 +1,9 @@
 ---
-import { ClientRouter } from "astro:transitions";
-
 type Props = {
   title?: string;
   description?: string;
 };
-const { title, description }: Props = Astro.props;
+const {title, description}: Props = Astro.props;
 
 const defaultTitle = "Kristof Dewilde";
 const pageTitle = title ? `${title} / ${defaultTitle}` : defaultTitle;
@@ -16,8 +14,6 @@ const cardUrl = new URL("og_card.png", Astro.site); // TODO Make a card
 ---
 
 <head>
-  <slot/>
-
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width"/>
 
@@ -44,27 +40,25 @@ const cardUrl = new URL("og_card.png", Astro.site); // TODO Make a card
 
   <title>{pageTitle}</title>
 
-  <script is:inline>
-    function loadColorTheme() {
+  <script>
+    function applyTheme(doc = document) {
       try {
-        const userPref = JSON.parse(localStorage.getItem("theme")) || "system";
-        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const userPref = JSON.parse(localStorage.getItem("theme") ?? `"system"`);
+        const systemPref = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 
-        if (userPref === "dark" || (userPref === "system" && systemPrefersDark)) {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
+        doc.documentElement.classList.toggle("dark", userPref === "dark" || (userPref === "system" && systemPref === "dark"));
       } catch (e) {
-        console.error("Dark mode detection failed:", e);
-        localStorage.setItem("theme");
+        localStorage.removeItem("theme");
       }
     }
 
-    loadColorTheme();
-    document.addEventListener("astro:after-swap", loadColorTheme);
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", loadColorTheme);
+    applyTheme();
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => applyTheme());
+
+    document.addEventListener("astro:before-swap", (e) => {
+      applyTheme(e.newDocument);
+    });
   </script>
 
-  <ClientRouter />
+  <slot/>
 </head>

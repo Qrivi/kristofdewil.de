@@ -4,6 +4,7 @@
 
 :root {
   @apply scroll-smooth;
+  color-scheme: light;
   interpolate-size: allow-keywords;
 
   @media (prefers-reduced-motion) {
@@ -45,6 +46,8 @@
   }
 
   &.dark {
+    color-scheme: dark;
+
     --color-value-background: 32 32 32;
     --color-value-foreground: 240 240 255;
     --color-value-primary: 250 170 20;
@@ -92,7 +95,7 @@
   }
 
   body {
-    @apply overflow-x-clip antialiased text-pretty text-foreground/70 my-[15vh] opaque;
+    @apply overflow-x-clip antialiased text-pretty text-foreground/70 opaque;
     cursor: var(--cursor);
 
     &:active {
@@ -140,7 +143,7 @@
       @apply transition-colors duration-500 inline-flex flex-row items-center gap-x-1;
 
       &::after {
-        @apply content-['→'] transition-transform text-primary select-none;
+        @apply content-["→"/""] transition-transform text-primary select-none;
       }
 
       &:hover {
@@ -288,7 +291,7 @@
 
         .line {
           @apply relative pr-3 [counter-increment:step];
-          @apply before:inline-block before:sticky before:left-0 before:w-10 before:pr-3 before:text-right before:bg-inherit before:text-[rgba(128,128,128,0.25)] before:content-[counter(step)];
+          @apply before:inline-block before:sticky before:left-0 before:w-10 before:pr-3 before:text-right before:bg-inherit before:text-[rgba(128,128,128,0.25)] before:content-[counter(step)/""];
           @apply after:pointer-events-none after:absolute after:inset-0;
 
           &.highlighted {
@@ -305,11 +308,11 @@
 
           &.diff {
             &.add {
-              @apply before:content-['+'] after:bg-[rgba(50,200,70,0.2)];
+              @apply before:content-["+"/""] after:bg-[rgba(50,200,70,0.2)];
             }
 
             &.remove {
-              @apply [counter-increment:step_0] before:content-['-'] after:bg-[rgba(200,50,50,0.2)];
+              @apply [counter-increment:step_0] before:content-["-"/""] after:bg-[rgba(200,50,50,0.2)];
             }
           }
         }
