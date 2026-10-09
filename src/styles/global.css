@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Include island utilities even before their client modules load during navigation. */
+@source "../";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
