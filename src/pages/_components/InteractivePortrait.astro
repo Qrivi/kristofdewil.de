@@ -14,7 +14,7 @@ const frontFrame = Math.floor(frames.length / 2);
 ---
 
 <div class="relative my-2">
-  <cursor-portrait class="contents" data-frames={JSON.stringify(frames)} data-dark-frames={JSON.stringify(darkFrames)}>
+  <interactive-portrait class="contents" data-frames={JSON.stringify(frames)} data-dark-frames={JSON.stringify(darkFrames)}>
     <picture class="block aspect-square w-full mix-blend-multiply opacity-40 dark:mix-blend-lighten">
       <source srcset={darkFrames[frontFrame]} media="(prefers-color-scheme: dark)" />
       <img src={frames[frontFrame]} alt="Pencil portrait of Kristof Dewilde" width={512} height={512} draggable="false" class="block aspect-square w-full select-none" />
@@ -25,13 +25,13 @@ const frontFrame = Math.floor(frames.length / 2);
         <path d="M3 13a9 9 0 0 1 2-7M2 6h3v3M21 11a9 9 0 0 1-2 7m3 0h-3v-3" />
       </svg>
     </button>
-  </cursor-portrait>
+  </interactive-portrait>
 </div>
 
 <script>
   import { getPortraitOrientation, getPortraitTilt, type PortraitOrientation } from "~/utils/portrait-tilt";
 
-  class CursorPortrait extends HTMLElement {
+  class InteractivePortrait extends HTMLElement {
     private visibilityObserver?: IntersectionObserver;
     private cleanup?: () => void;
 
@@ -233,7 +233,7 @@ const frontFrame = Math.floor(frames.length / 2);
     }
   }
 
-  if (!customElements.get("cursor-portrait")) {
-    customElements.define("cursor-portrait", CursorPortrait);
+  if (!customElements.get("interactive-portrait")) {
+    customElements.define("interactive-portrait", InteractivePortrait);
   }
 </script>

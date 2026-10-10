@@ -26,6 +26,13 @@ export default defineConfig({
     },
     {
       provider: fontProviders.fontsource(),
+      name: "Literata",
+      cssVariable: "--font-value-serif",
+      subsets: ["latin", "latin-ext"],
+      fallbacks: ["Georgia", "Cambria", "Times New Roman", "Times", "serif"],
+    },
+    {
+      provider: fontProviders.fontsource(),
       name: "JetBrains Mono",
       cssVariable: "--font-value-mono",
       subsets: ["latin", "latin-ext"],

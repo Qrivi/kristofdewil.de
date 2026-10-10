@@ -15,6 +15,7 @@ const {title}: Props = Astro.props;
 <html transition:name="root" transition:animate={fade({ duration: "250ms" })}>
   <DocumentHead title={title}>
     <Font cssVariable="--font-value-sans" preload />
+    <Font cssVariable="--font-value-serif" preload />
     <Font cssVariable="--font-value-mono" preload />
 
     <ClientRouter/>

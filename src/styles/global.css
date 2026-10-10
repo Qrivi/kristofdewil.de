@@ -17,6 +17,10 @@
     font-size: 112.5%;
   }
 
+  &.reading-font-serif {
+    --font-reading: var(--font-serif);
+  }
+
   @media (prefers-reduced-motion) {
     * {
       animation-duration: 0ms !important;
@@ -88,7 +92,9 @@
   --color-primary: rgb(var(--color-value-primary));
 
   --font-sans: var(--font-value-sans), "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: var(--font-value-serif);
   --font-mono: var(--font-value-mono);
+  --font-reading: var(--font-sans);
 }
 
 @layer base {
@@ -327,6 +333,23 @@
 
   .component-content {
     @apply contents;
+
+    p,
+    ul,
+    ol,
+    blockquote,
+    dl {
+      @apply font-reading;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply font-sans;
+    }
 
     a {
       @apply underline decoration-primary underline-offset-4 transition-colors duration-500;

@@ -1,10 +1,13 @@
-export const colorThemes = ["system", "light", "dark"] as const;
+export const colorThemes = ["default", "light", "dark"] as const;
 type ColorTheme = (typeof colorThemes)[number];
 export const textSizes = ["default", "smaller", "larger"] as const;
 type TextSize = (typeof textSizes)[number];
+export const readingFonts = ["default", "serif"] as const;
+type ReadingFont = (typeof readingFonts)[number];
 
 export const colorThemeKey = "colorTheme";
 export const textSizeKey = "textSize";
+export const readingFontKey = "readingFont";
 
 function readPreference(key: string): unknown {
   try {
@@ -15,23 +18,27 @@ function readPreference(key: string): unknown {
 }
 
 const storedTheme = readPreference(colorThemeKey);
-let colorTheme: ColorTheme = colorThemes.includes(storedTheme as ColorTheme) ? (storedTheme as ColorTheme) : "system";
+let colorTheme: ColorTheme = colorThemes.includes(storedTheme as ColorTheme) ? (storedTheme as ColorTheme) : "default";
 const storedTextSize = readPreference(textSizeKey);
 let textSize: TextSize = textSizes.includes(storedTextSize as TextSize) ? (storedTextSize as TextSize) : "default";
+const storedReadingFont = readPreference(readingFontKey);
+let readingFont: ReadingFont = readingFonts.includes(storedReadingFont as ReadingFont) ? (storedReadingFont as ReadingFont) : "default";
 
 export function getPreferences() {
-  return { [colorThemeKey]: colorTheme, [textSizeKey]: textSize };
+  return { [colorThemeKey]: colorTheme, [textSizeKey]: textSize, [readingFontKey]: readingFont };
 }
 
 export function applyPreferences(doc: Document = document) {
-  doc.documentElement.classList.toggle("dark", colorTheme === "dark" || (colorTheme === "system" && matchMedia("(prefers-color-scheme: dark)").matches));
+  doc.documentElement.classList.toggle("dark", colorTheme === "dark" || (colorTheme === "default" && matchMedia("(prefers-color-scheme: dark)").matches));
   doc.documentElement.classList.toggle("text-size-smaller", textSize === "smaller");
   doc.documentElement.classList.toggle("text-size-larger", textSize === "larger");
+  doc.documentElement.classList.toggle("reading-font-serif", readingFont === "serif");
 }
 
 export function setPreference(key: string, value: string) {
   if (key === colorThemeKey && colorThemes.includes(value as ColorTheme)) colorTheme = value as ColorTheme;
   else if (key === textSizeKey && textSizes.includes(value as TextSize)) textSize = value as TextSize;
+  else if (key === readingFontKey && readingFonts.includes(value as ReadingFont)) readingFont = value as ReadingFont;
   else return;
   try {
     localStorage.setItem(key, JSON.stringify(value));

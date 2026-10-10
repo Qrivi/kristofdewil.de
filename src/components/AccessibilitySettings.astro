@@ -1,5 +1,5 @@
 ---
-import {colorThemes, textSizes, colorThemeKey, textSizeKey} from "~/utils/preferences";
+import {colorThemes, textSizes, readingFonts, colorThemeKey, textSizeKey, readingFontKey} from "~/utils/preferences";
 ---
 
 <accessibility-settings class="relative">
@@ -14,13 +14,19 @@ import {colorThemes, textSizes, colorThemeKey, textSizeKey} from "~/utils/prefer
     <label>
       <span>Theme</span>
       <select name={colorThemeKey}>
-        {colorThemes.map(value => <option value={value}>{value}</option>)}
+        {colorThemes.map(value => <option value={value}>{value.toUpperCase()}</option>)}
+      </select>
+    </label>
+    <label>
+      <span>Font</span>
+      <select name={readingFontKey}>
+        {readingFonts.map(value => <option value={value}>{value.toUpperCase()}</option>)}
       </select>
     </label>
     <label>
       <span>Size</span>
       <select name={textSizeKey}>
-        {textSizes.map(value => <option value={value}>{value}</option>)}
+        {textSizes.map(value => <option value={value}>{value.toUpperCase()}</option>)}
       </select>
     </label>
   </form>
@@ -41,13 +47,6 @@ import {colorThemes, textSizes, colorThemeKey, textSizeKey} from "~/utils/prefer
       this.querySelectorAll<HTMLSelectElement>("select").forEach(select => {
         select.value = preferences[select.name as keyof typeof preferences];
       });
-
-      const panel = this.querySelector<HTMLElement>("[popover]")!;
-      panel.addEventListener("toggle", () => {
-        if (panel.matches(":popover-open")) {
-          panel.querySelector<HTMLSelectElement>("select")?.focus({ preventScroll: true });
-        }
-      }, { signal });
 
       this.addEventListener("change", event => {
         const select = event.target;
@@ -87,7 +86,7 @@ import {colorThemes, textSizes, colorThemeKey, textSizeKey} from "~/utils/prefer
     }
 
     label {
-      @apply grid items-center gap-x-3;
+      @apply grid items-center gap-x-4;
       grid-template-columns: minmax(3rem, max-content) minmax(0, 1fr);
     }
 
