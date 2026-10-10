@@ -23,7 +23,7 @@ const website = new URL(link).hostname.replace(/^www\./, "");
 <BaseLayout title={organization}>
   <article class="wrapper mesh experience gap-y-0 pt-8 pb-24">
     <nav class="mesh-center experience-back row-1 mb-12 text-xs" aria-label="Back to resume">
-      <a class="inline-flex items-center gap-2 hover:text-foreground" href="/resume"><span class="text-primary" aria-hidden="true">←</span> All experience</a>
+      <a class="inline-flex items-center gap-2 hover:text-foreground" href="/work"><span class="text-primary" aria-hidden="true">←</span> All experience</a>
     </nav>
 
     <div class="experience-identity col-[left] row-2 flex justify-end pt-7">
@@ -44,7 +44,7 @@ const website = new URL(link).hostname.replace(/^www\./, "");
           <dd><a class="inline-flex items-center gap-1.5 max-w-full break-all hover:underline decoration-primary underline-offset-4" href={link} rel="nofollow noopener noreferrer" target="_blank">{website}<span class="text-primary" aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></dd>
         </div>
       </dl>
-      <p class="experience-intro text-base/7 pt-6 pb-10">{description}</p>
+      <p class="experience-intro font-reading text-base/7 pt-6 pb-10">{description}</p>
     </header>
 
     <aside class="experience-context col-[left] row-3 text-right" aria-label="Period and location map">
@@ -67,7 +67,7 @@ const website = new URL(link).hostname.replace(/^www\./, "");
 
       {summary.length > 0 && <section aria-labelledby="contributions-title" class="experience-contributions">
         <h2 id="contributions-title" class="title-section pb-6">Contributions</h2>
-        <ul class="p-0 list-none">{summary.map((item) => <li class="relative pl-5 pb-5">{item}</li>)}</ul>
+        <ul class="font-reading p-0 list-none">{summary.map((item) => <li class="relative pl-5 pb-5">{item}</li>)}</ul>
       </section>}
     </div>
 

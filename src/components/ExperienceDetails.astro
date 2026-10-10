@@ -14,7 +14,7 @@ const { experience } = Astro.props;
   {dateOfExperienceForHuman(experience.data.startDate)} — {dateOfExperienceForHuman(experience.data.endDate)}
 </time>
 <div class="mesh-center pb-3">
-  <a class="text-foreground font-semibold" href={`/resume/${experience.id}`}>
+  <a class="text-foreground font-semibold" href={`/work/${experience.id}`}>
     {experience.data.organization}
   </a>
   <ul class="text-xs text-foreground/70 pb-6">
@@ -22,5 +22,5 @@ const { experience } = Astro.props;
       <li>{title}</li>
     ))}
   </ul>
-  <p>{experience.data.description}</p>
+  <p class="font-reading">{experience.data.description}</p>
 </div>
