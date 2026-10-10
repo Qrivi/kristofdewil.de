@@ -19,7 +19,7 @@ const menu = [
       <a href="/" class="rounded aspect-square w-10 shrink-0 overflow-clip bg-primary after:hidden"><img alt="Kristof Dewilde — home" src="/kristof.jpeg" class="object-cover w-full h-full grayscale group-hover/header:grayscale-0 hover:opacity-0 transition-[filter,opacity] duration-500"></a>
       <IdentityGroup class="min-w-0 flex flex-col gap-2">
         <Name class="text-box-trim text-base font-semibold text-foreground pb-0">Kristof Dewilde</Name>
-        <p class="text-box-trim pb-0" data-header-subtitle>Consultant Software Engineer</p>
+        <p class="text-box-trim pb-0" data-header-subtitle transition:persist="header-subtitle">Consultant Software Engineer</p>
       </IdentityGroup>
       <nav aria-label="Main" class="header-desktop-nav ml-auto">
       <ul class="flex items-center uppercase text-xs gap-6 pb-0">
@@ -79,6 +79,7 @@ const menu = [
   ];
 
   let observer: IntersectionObserver | undefined;
+  let index = 0;
 
   function setupSubtitle() {
     observer?.disconnect();
@@ -86,7 +87,6 @@ const menu = [
     const subtitle = header?.querySelector<HTMLElement>("[data-header-subtitle]");
     if (!header || !subtitle) return;
 
-    let index = 0;
     let wasVisible: boolean | undefined;
 
     // Observe the translated header so native CSS and the JS fallback both work.
