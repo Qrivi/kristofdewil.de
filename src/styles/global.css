@@ -9,6 +9,14 @@
   color-scheme: light;
   interpolate-size: allow-keywords;
 
+  &[data-text-size="smaller"] {
+    font-size: 87.5%;
+  }
+
+  &[data-text-size="larger"] {
+    font-size: 112.5%;
+  }
+
   @media (prefers-reduced-motion) {
     * {
       animation-duration: 0ms !important;
@@ -20,16 +28,16 @@
 
   --light-background: 255 255 255;
   --light-foreground: 32 32 32;
-  --light-primary: 250 170 20;
+  --light-primary: 204 134 4;
 
   --dark-background: 32 32 32;
   --dark-foreground: 240 240 255;
   --dark-primary: 250 170 20;
 
-  /* light */
-  --color-value-background: 255 255 255;
-  --color-value-foreground: 32 32 32;
-  --color-value-primary: 250 170 20;
+  /* default to light */
+  --color-value-background: var(--light-background);
+  --color-value-foreground: var(--light-foreground);
+  --color-value-primary: var(--light-primary);
 
   --cursor: image-set(url(/assets/cursor/default-b.png) 1x, url(/assets/cursor/default-b@2x.png) 2x) 3 3, auto;
   --cursor-pressed: image-set(url(/assets/cursor/default-b-p.png) 1x, url(/assets/cursor/default-b-p@2x.png) 2x) 3 3, auto;
@@ -177,7 +185,7 @@
 }
 
 @utility wrapper {
-  @apply container mx-auto px-2 max-w-246 py-8;
+  @apply container mx-auto px-2 max-w-246 py-12;
 }
 
 @utility mesh {
@@ -186,7 +194,7 @@
 }
 
 @utility mesh-left {
-  @apply col-[left] text-right text-foreground/50 text-xs font-medium pt-1.5 uppercase font-mono;
+  @apply col-[left] text-right text-foreground/70 text-xs font-medium pt-1.5 uppercase font-mono;
 }
 
 @utility mesh-center {
@@ -194,7 +202,7 @@
 }
 
 @utility mesh-right {
-  @apply col-[right] text-foreground/50 text-xs font-medium pt-1.5 uppercase font-mono;
+  @apply col-[right] text-foreground/70 text-xs font-medium pt-1.5 uppercase font-mono;
 }
 
 @utility mesh-full {
@@ -202,7 +210,7 @@
 }
 
 @utility title-section {
-  @apply uppercase text-xs text-foreground/50 flex items-center gap-3 text-nowrap tracking-widest pb-12;
+  @apply uppercase text-xs text-foreground/70 flex items-center gap-3 text-nowrap tracking-widest pb-12;
   @apply after:w-full after:h-px after:bg-foreground/5;
 }
 
@@ -220,7 +228,73 @@
   scrollbar-color: var(--color-primary) var(--color-background);
 }
 
+@utility text-box-trim {
+  text-box: trim-both cap alphabetic;
+}
+
 @layer components {
+  .item-indicator {
+    @apply relative text-foreground/70 transition-colors;
+
+    &::after {
+      @apply absolute font-sans text-primary select-none pointer-events-none opacity-0;
+      content: "→" / "";
+      top: calc(100% + 0.25rem);
+      left: 50%;
+      line-height: 1;
+      transform: translateX(-50%) rotate(-90deg);
+      --indicator-offset: 0.375rem;
+      translate: 0 var(--indicator-offset);
+      transition:
+        opacity 180ms ease-out,
+        translate 180ms ease-out;
+    }
+
+    &:is(a):not([aria-current="page"])::after,
+    input:not(:checked) + &::after {
+      top: auto;
+      bottom: calc(100% + 0.25rem);
+      transform: translateX(-50%) rotate(90deg);
+      --indicator-offset: -0.375rem;
+    }
+
+    &[aria-current="page"],
+    &:hover,
+    &:focus-visible,
+    input:checked + &,
+    input:focus-visible + & {
+      @apply text-foreground;
+    }
+
+    &:hover::after,
+    &:focus-visible::after,
+    &[aria-current="page"]::after,
+    input:checked + &::after,
+    input:focus-visible + &::after {
+      @apply opacity-100;
+      translate: 0 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      &::after {
+        transition: none;
+      }
+    }
+  }
+
+  .page-header,
+  .page-footer {
+    transition: translate 500ms 50ms ease-out;
+  }
+
+  html[data-scroll-direction="down"]:not([data-near-top], [data-near-bottom]) .page-header:not(:focus-within) {
+    translate: 0 -100%;
+  }
+
+  html[data-scroll-direction="up"]:not([data-near-top], [data-near-bottom]) .page-footer:not(:focus-within):not(:has(:popover-open)) {
+    translate: 0 100%;
+  }
+
   .component-collapsible {
     @apply h-0 opacity-0 hidden transition-all overflow-clip ease-out duration-500;
     transition-behavior: allow-discrete;
@@ -242,13 +316,12 @@
       @apply hover:text-foreground focus:text-foreground;
     }
 
-    h1,
-    h2 {
-      /* Should not be used in blogposts -- title is already h2 */
+    h1 {
+      /* Should not be used in blogposts -- title is already h1 */
       @apply text-2xl text-red-600 before:content-[⚠];
     }
 
-    h3 {
+    h2 {
       @apply mesh-center py-4 text-lg;
     }
 
@@ -286,7 +359,7 @@
 
     pre {
       @apply mesh-full rounded-md border border-foreground/10 max-w-full w-200 mx-auto py-1.5 mb-6 text-xs/6 mt-2 relative scrollbar-thin;
-      @apply before:content-[attr(data-language)] before:text-foreground/50 before:pl-10 before:pb-1 before:block before:sticky before:left-0;
+      @apply before:content-[attr(data-language)] before:text-foreground/70 before:pl-10 before:pb-1 before:block before:sticky before:left-0;
 
       code {
         @apply grid;

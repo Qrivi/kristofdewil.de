@@ -1,9 +1,10 @@
 ---
 import "../styles/global.css";
 import PageHeader from "~/components/PageHeader.astro";
+import PageFooter from "~/components/PageFooter.astro";
 import DocumentHead from "../components/DocumentHead.astro";
 import Font from "astro/components/Font.astro";
-import { ClientRouter } from "astro:transitions";
+import { ClientRouter, fade } from "astro:transitions";
 
 type Props = {
   title?: string;
@@ -11,7 +12,7 @@ type Props = {
 const {title}: Props = Astro.props;
 ---
 
-<html transition:name="root" transition:animate="fade">
+<html transition:name="root" transition:animate={fade({ duration: "250ms" })}>
   <DocumentHead title={title}>
     <Font cssVariable="--font-value-sans" preload />
     <Font cssVariable="--font-value-mono" preload />
@@ -20,15 +21,71 @@ const {title}: Props = Astro.props;
   </DocumentHead>
 
   <body>
-    <PageHeader/>
+    <PageHeader isHomePage={Astro.url.pathname === "/"}/>
 
     <main>
       <slot/>
     </main>
 
-    <footer class="wrapper pb-0 mesh sticky bottom-0 z-50 bg-linear-to-t from-background via-background to-transparent via-60%">
-      <div class="mesh-center border-t border-foreground/5 text-xs py-4 bg-background">Copyright © {new Date().getFullYear()} Kristof Dewilde</div>
-    </footer>
+    <PageFooter/>
   </body>
 </html>
+
+<script>
+  let cleanup: (() => void) | undefined;
+
+  // Update direction and edge proximity together so bars never hide inside the buffer.
+  function setupScrollDirection() {
+    cleanup?.();
+
+    const root = document.documentElement;
+    delete root.dataset.scrollDirection;
+
+    // Distance from top and bottom when in viewport always shows header and footer
+    const edgeBuffer = 150;
+
+    const controller = new AbortController();
+    let previousY = Math.max(0, window.scrollY);
+    let frame = 0;
+
+    function updateDirection() {
+      frame = 0;
+      // Clamp Safari's rubber-band scrolling at both ends.
+      const maxY = Math.max(0, root.scrollHeight - window.innerHeight);
+      const currentY = Math.min(maxY, Math.max(0, window.scrollY));
+      const delta = currentY - previousY;
+
+      root.toggleAttribute("data-near-top", currentY <= edgeBuffer);
+      root.toggleAttribute("data-near-bottom", maxY - currentY <= edgeBuffer);
+
+      if (currentY === 0) {
+        delete root.dataset.scrollDirection;
+        previousY = currentY;
+      } else if (Math.abs(delta) >= 4) {
+        root.dataset.scrollDirection = delta > 0 ? "down" : "up";
+        previousY = currentY;
+      }
+    }
+
+    function scheduleUpdate() {
+      if (!frame) frame = requestAnimationFrame(updateDirection);
+    }
+
+    window.addEventListener("scroll", scheduleUpdate, { passive: true, signal: controller.signal });
+    window.addEventListener("resize", scheduleUpdate, { signal: controller.signal });
+    updateDirection();
+
+    cleanup = () => {
+      controller.abort();
+      cancelAnimationFrame(frame);
+      delete root.dataset.scrollDirection;
+      root.removeAttribute("data-near-top");
+      root.removeAttribute("data-near-bottom");
+      cleanup = undefined;
+    };
+  }
+
+  document.addEventListener("astro:page-load", setupScrollDirection);
+  document.addEventListener("astro:before-swap", () => cleanup?.());
+</script>
 

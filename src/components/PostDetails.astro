@@ -14,11 +14,11 @@ const readingTime = estimateReadingTime(post.body);
 <time class="mesh-left" datetime={dateForComputer(post.data.publishDate)}>
   {dateOfPostForHuman(post.data.publishDate)}
 </time>
-<div class="mesh-center pb-3">
-  <a class="text-foreground font-medium" href={`/blog/${post.id}`}>
+<div class="mesh-center pb-4">
+  <a class="text-foreground font-semibold" href={`/blog/${post.id}`}>
     {post.data.title}
   </a>
-  <p class="text-sm text-foreground/50">
+  <p class="text-xs text-foreground/70">
     <time datetime={`PT${readingTime}M`}>{readingTime} min</time> read
   </p>
   <p>{post.data.description}</p>

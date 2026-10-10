@@ -20,16 +20,16 @@ const { Content } = await render(experience);
   <article class="wrapper mesh">
     <hgroup class="mesh-center">
       <h2 class="text-foreground text-2xl">{experience.data.organization}</h2>
-      <ul class="text-sm text-foreground/50 pt-1 pb-6">
+      <ul class="text-sm text-foreground/70 pt-1 pb-6">
         {experience.data.titles.map((title) => (
           <li>{title}</li>
         ))}
       </ul>
       <p>{experience.data.description}</p>
-      <p class="text-sm text-foreground/50">
+      <p class="text-sm text-foreground/70">
         {experience.data.locations.join(" · ")}
       </p>
-      <p class="text-sm text-foreground/50">
+      <p class="text-sm text-foreground/70">
         <a href={experience.data.link} rel="nofollow" target="_blank">Visit organization</a>
       </p>
     </hgroup>

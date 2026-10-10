@@ -1,8 +1,6 @@
+---
 import type { ImageMetadata } from "astro";
 
-import { useEffect, useRef, useState } from "react";
-
-// Only the eleven views between -75° and 75° are included in this directory.
 const portraits = import.meta.glob<ImageMetadata>("/src/assets/portrait-rotation/*.webp", { eager: true, import: "default" });
 const frames = Object.entries(portraits)
   .sort(([a], [b]) => a.localeCompare(b))
@@ -13,21 +11,62 @@ const darkFrames = Object.entries(darkPortraits)
   .map(([, image]) => image.src);
 const frontFrame = Math.floor(frames.length / 2);
 
-export default function CursorPortrait() {
-  const portrait = useRef<HTMLPictureElement>(null);
-  const [frame, setFrame] = useState(frontFrame);
-  const [darkMode, setDarkMode] = useState<boolean | null>(null);
+---
 
-  useEffect(() => {
-    // Media queries handle the initial render; the site's class also supports a saved theme override.
-    const syncTheme = () => setDarkMode(document.documentElement.classList.contains("dark"));
-    syncTheme();
-    const observer = new MutationObserver(syncTheme);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
-    return () => observer.disconnect();
-  }, []);
+<cursor-portrait class="contents" data-frames={JSON.stringify(frames)} data-dark-frames={JSON.stringify(darkFrames)}>
+  <picture class="block aspect-square w-full mix-blend-multiply opacity-40 dark:mix-blend-lighten my-2">
+    <source srcset={darkFrames[frontFrame]} media="(prefers-color-scheme: dark)" />
+    <img src={frames[frontFrame]} alt="Pencil portrait of Kristof Dewilde" width={512} height={512} draggable="false" class="block aspect-square w-full select-none" />
+  </picture>
+</cursor-portrait>
 
-  useEffect(() => {
+<script>
+  class CursorPortrait extends HTMLElement {
+    private visibilityObserver?: IntersectionObserver;
+    private cleanup?: () => void;
+
+    connectedCallback() {
+      // Match the previous client:visible hydration behavior.
+      const picture = this.querySelector("picture");
+      if (!picture) return;
+      this.visibilityObserver = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        this.visibilityObserver?.disconnect();
+        this.cleanup = this.initialize();
+      });
+      this.visibilityObserver.observe(picture);
+    }
+
+    disconnectedCallback() {
+      this.visibilityObserver?.disconnect();
+      this.cleanup?.();
+      this.cleanup = undefined;
+    }
+
+    private initialize() {
+      const portrait = this.querySelector("picture")!;
+      const image = portrait.querySelector("img")!;
+      const source = portrait.querySelector("source")!;
+      const frames: string[] = JSON.parse(this.dataset.frames!);
+      const darkFrames: string[] = JSON.parse(this.dataset.darkFrames!);
+      const frontFrame = Math.floor(frames.length / 2);
+      let frame = frontFrame;
+
+      function setFrame(nextFrame: number) {
+        if (frame === nextFrame) return;
+        frame = nextFrame;
+        source.srcset = darkFrames[frame];
+        image.src = frames[frame];
+      }
+
+      // Respect saved theme overrides as well as the initial media query.
+      const syncTheme = () => {
+        source.media = document.documentElement.classList.contains("dark") ? "all" : "not all";
+      };
+      syncTheme();
+      const themeObserver = new MutationObserver(syncTheme);
+      themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
     const pointer = window.matchMedia("(any-hover: hover) and (any-pointer: fine)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let ready = false;
@@ -59,9 +98,9 @@ export default function CursorPortrait() {
 
     function update() {
       pendingFrame = 0;
-      if (!ready || cursorX === null || !portrait.current || !pointer.matches || reducedMotion.matches) return;
+      if (!ready || cursorX === null || !pointer.matches || reducedMotion.matches) return;
 
-      const bounds = portrait.current.getBoundingClientRect();
+      const bounds = portrait.getBoundingClientRect();
       const center = bounds.left + bounds.width / 2;
       // Face forward over the portrait, reaching either extreme at the corresponding viewport edge.
       const distance = cursorX - center;
@@ -105,6 +144,7 @@ export default function CursorPortrait() {
     reducedMotion.addEventListener("change", preferencesChanged);
 
     return () => {
+      themeObserver.disconnect();
       disposed = true;
       window.cancelAnimationFrame(pendingFrame);
       window.removeEventListener("pointermove", track);
@@ -115,25 +155,10 @@ export default function CursorPortrait() {
       pointer.removeEventListener("change", preferencesChanged);
       reducedMotion.removeEventListener("change", preferencesChanged);
     };
-  }, []);
+    }
+  }
 
-  return (
-    <picture
-      ref={portrait}
-      className="block aspect-square w-full mix-blend-multiply opacity-40 dark:mix-blend-lighten"
-    >
-      <source
-        srcSet={darkFrames[frame]}
-        media={darkMode === null ? "(prefers-color-scheme: dark)" : darkMode ? "all" : "not all"}
-      />
-      <img
-        src={frames[frame]}
-        alt="Pencil portrait of Kristof Dewilde"
-        width={512}
-        height={512}
-        draggable={false}
-        className="block aspect-square w-full select-none"
-      />
-    </picture>
-  );
-}
+  if (!customElements.get("cursor-portrait")) {
+    customElements.define("cursor-portrait", CursorPortrait);
+  }
+</script>

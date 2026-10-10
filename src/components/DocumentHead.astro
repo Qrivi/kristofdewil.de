@@ -41,23 +41,11 @@ const cardUrl = new URL("og_card.png", Astro.site); // TODO Make a card
   <title>{pageTitle}</title>
 
   <script>
-    function applyTheme(doc = document) {
-      try {
-        const userPref = JSON.parse(localStorage.getItem("theme") ?? `"system"`);
-        const systemPref = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    import { applyPreferences } from "~/utils/preferences";
 
-        doc.documentElement.classList.toggle("dark", userPref === "dark" || (userPref === "system" && systemPref === "dark"));
-      } catch (e) {
-        localStorage.removeItem("theme");
-      }
-    }
-
-    applyTheme();
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => applyTheme());
-
-    document.addEventListener("astro:before-swap", (e) => {
-      applyTheme(e.newDocument);
-    });
+    applyPreferences();
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => applyPreferences());
+    document.addEventListener("astro:before-swap", (event) => applyPreferences(event.newDocument));
   </script>
 
   <slot/>

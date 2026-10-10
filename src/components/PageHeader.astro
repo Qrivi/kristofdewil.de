@@ -1,29 +1,71 @@
 ---
+type Props = {
+  isHomePage?: boolean;
+};
+
+const { isHomePage = false }: Props = Astro.props;
+
+const IdentityGroup = isHomePage ? "hgroup" : "div";
+const Name = isHomePage ? "h1" : "p";
+
 const menu = [
   { title: "Resume", href: "/resume" },
   { title: "Blog", href: "/blog" },
 ];
-
-// header is pinned -top-25 so h1 and subtitle scroll behind nav pinned at top-0
 ---
 
-<header class="wrapper mesh -top-25 sticky z-50 bg-linear-to-b from-background via-background to-transparent via-80%">
-  <div class="mesh-center flex flex-col-reverse">
-    <hgroup class="pt-4">
-      <h1>Kristof Dewilde</h1>
-      <p>Consultant Software Engineer</p>
-    </hgroup>
-    <nav class="border-b border-foreground/5 py-4 sticky top-0 bg-background">
-      <ul class="flex items-center uppercase text-xs gap-6">
-        <li class="rounded aspect-square w-10 overflow-clip bg-primary mr-2">
-          <a href="/"> <img alt="Kristof Dewilde" src="/kristof.jpeg" class="object-cover w-full h-full hover:opacity-0 transition-opacity duration-500"> </a>
-        </li>
+<header class="page-header group/header wrapper pt-2 mesh top-0 sticky z-50 bg-linear-to-b from-background via-background to-transparent via-80%">
+    <div class="mesh-center flex items-center gap-4 border-b border-foreground/5 py-4">
+      <a href="/" class="rounded aspect-square w-10 shrink-0 overflow-clip bg-primary after:hidden"><img alt="Kristof Dewilde — home" src="/kristof.jpeg" class="object-cover w-full h-full grayscale group-hover/header:grayscale-0 hover:opacity-0 transition-[filter,opacity] duration-500"></a>
+      <IdentityGroup class="flex flex-col gap-2">
+        <Name class="text-box-trim text-base font-semibold text-foreground pb-0">Kristof Dewilde</Name>
+        <p class="text-box-trim pb-1" data-header-subtitle>Consultant Software Engineer</p>
+      </IdentityGroup>
+      <nav aria-label="Main" class="ml-auto">
+      <ul class="flex items-center uppercase text-xs gap-6 pb-0">
         {menu.map(item => (
           <li>
-            <a class="before:content-['/']" href={item.href} data-active={Astro.url.pathname.startsWith(item.href)}>{item.title}</a>
+            <a class="item-indicator font-mono" href={item.href} aria-current={Astro.url.pathname.startsWith(item.href) ? "page" : undefined}>{item.title}</a>
           </li>
         ))}
       </ul>
-    </nav>
-  </div>
+      </nav>
+    </div>
 </header>
+
+<script>
+  const subtitles = [
+    "Consultant Software Engineer",
+    "Backend brain, frontend curiosity",
+    "Turning coffee into software",
+    "Down another technical rabbit hole",
+    "Making complex things feel simple",
+  ];
+
+  let observer: IntersectionObserver | undefined;
+
+  function setupSubtitle() {
+    observer?.disconnect();
+    const header = document.querySelector<HTMLElement>(".page-header");
+    const subtitle = header?.querySelector<HTMLElement>("[data-header-subtitle]");
+    if (!header || !subtitle) return;
+
+    let index = 0;
+    let wasVisible: boolean | undefined;
+
+    // Observe the translated header so native CSS and the JS fallback both work.
+    observer = new IntersectionObserver(([entry]) => {
+      const visible = entry.isIntersecting && entry.intersectionRatio > 0.01;
+      if (visible && wasVisible === false) {
+        index = (index + 1) % subtitles.length;
+        subtitle.textContent = subtitles[index];
+      }
+      wasVisible = visible;
+    }, { threshold: 0.01 });
+
+    observer.observe(header);
+  }
+
+  document.addEventListener("astro:page-load", setupSubtitle);
+  document.addEventListener("astro:before-swap", () => observer?.disconnect());
+</script>

@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import PostDetails from "~/pages/_components/PostDetails.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostDetails from "~/components/PostDetails.astro";
+import BaseLayout from "~/layouts/BaseLayout.astro";
 
 const posts = (await getCollection("posts")).sort((a, b) => {
   const dateA = (a.data.editDate ?? a.data.publishDate).getTime();
@@ -13,7 +13,7 @@ const posts = (await getCollection("posts")).sort((a, b) => {
 <BaseLayout title="Blog">
   <main>
     <section class="wrapper mesh">
-      <h2 class="mesh-center title-section">All blog posts</h2>
+      <h1 class="sr-only">All blog posts</h1>
       <ul class="contents">
         {posts.map(post => (
           <li class="contents">

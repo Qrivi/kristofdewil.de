@@ -10,7 +10,7 @@ const experiences = (await getCollection("experiences")).sort((a, b) => {
 
 <BaseLayout title="Resume">
   <section class="wrapper mesh">
-    <h2 class="mesh-center title-section">Work experience</h2>
+    <h1 class="sr-only">Work experience</h1>
     <ul class="contents">
       {experiences.map((experience) => (
         <li class="contents">

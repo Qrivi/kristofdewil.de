@@ -13,7 +13,7 @@ I recently fell down a bit of a rabbit hole regarding database primary keys, and
 
 If you've spent any time building distributed systems or debugging performance issues on large tables, you know the classic dilemma: you want the security and decentralized nature of a UUID, but you hate the index fragmentation and performance tax that comes with the randomness of UUIDv4. Reading through the UUIDv7 spec felt like a massive hit of déjà vu,immediately reminding me of a previous project where we used [ULIDs](https://github.com/ulid/spec) for exactly the same reasons.
 
-# The "Time-Ordered" Philosophy
+# "Time-ordered" identifiers
 
 Both ULID and UUIDv7 operate on the same clever principle that they aren't just a blob of random bits. Instead, they are "comb" identifiers: half timestamp, half randomness:
 
@@ -22,7 +22,7 @@ Both ULID and UUIDv7 operate on the same clever principle that they aren't just 
 
 In my previous project, we loved ULIDs because they gave us "mechanical sympathy". Because they are sequential, the database's B-tree index doesn't have to reshuffle or perform expensive page splits to insert a new row in the middle of a table. It just appends it to the right-most edge, much like a traditional auto-incrementing integer.
 
-# A drop-in upgrade
+# UUIDv7 is a drop-in upgrade
 
 The best part about moving to UUIDv7, especially if you are already using the common UUIDv4, is that **the format is identical**: they are both 128-bit values.
 
@@ -30,7 +30,7 @@ This means you don't have to migrate your database columns, change your API sche
 
 # Comparison with ULID
 
-While I still have a soft spot for the human-readability of ULIDs because of how they use [Crockford's Base32](https://www.crockford.com/base32.html) to avoid ambiguous characters like `1`/`l` or `0`/`O`, UUIDv7 feels like the more professional choice. The main friction point with ULIDs in a PostgreSQL environment is the lack of a native type. You either store them as strings, which is storage-heavy, or perform manual binary casts to squeeze them into a `UUID` column. It works, but it feels like a hack.
+While I still have a soft spot for the human-readability of ULIDs because of how they use [Crockford's Base32](https://www.crockford.com/base32.html) to avoid ambiguous characters like `1`/`l` or `0`/`O`, UUIDv7 feels like the more professional choice. The main friction point with ULIDs in a PostgreSQL environment is the lack of a native type. You either store them as strings, which is storage-heavy, or perform manual binary casts to squeeze them into a `UUID` column. It works, but ~feels like~ is a hack.
 
 With UUIDv7 now becoming a native citizen in Postgres:
 

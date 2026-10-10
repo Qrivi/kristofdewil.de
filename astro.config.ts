@@ -1,6 +1,5 @@
 // @ts-check
 import mdx from "@astrojs/mdx";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
@@ -33,14 +32,14 @@ export default defineConfig({
       fallbacks: ["JetBrains Mono Variable", "JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
     },
   ],
-  integrations: [mdx(), react(), sitemap()],
+  integrations: [mdx(), sitemap()],
   markdown: {
     rehypePlugins: [
       // rehypeAddClass(["h1", "h2"], "mesh-center pt-4 pb-6 text-lg"), //
       // rehypeAddClass(["p", "ul", "ol"], "mesh-center"), //
       // rehypeAddClass(["pre"], "mesh-full"), //
       [rehypeExternalLinks, { rel: ["nofollow"], target: "_blank" }],
-      [rehypeShiftHeading, { shift: 2 }],
+      [rehypeShiftHeading, { shift: 1 }],
     ],
     remarkPlugins: [remarkDefinitionList],
     remarkRehype: { handlers: defListHastHandlers },
