@@ -185,20 +185,37 @@
 }
 
 @utility wrapper {
-  @apply container mx-auto px-2 max-w-246 py-12;
+  @apply container mx-auto px-2 max-w-246 py-4 sm:py-12;
+
+  @media (max-width: 55rem) {
+    @apply px-6;
+  }
 }
 
 @utility mesh {
   @apply grid gap-x-12;
-  grid-template-columns: [left] 160px [center] 1fr [right] 160px [end];
+  grid-template-columns: [left] 160px [center] minmax(0, 1fr) [right] 160px [end];
+
+  @media (max-width: 55rem) {
+    @apply gap-x-8;
+    grid-template-columns: [left] 120px [center right] minmax(0, 1fr) [end];
+  }
+
+  @media (max-width: 40rem) {
+    grid-template-columns: [left center right] minmax(0, 1fr) [end];
+  }
 }
 
 @utility mesh-left {
   @apply col-[left] text-right text-foreground/70 text-xs font-medium pt-1.5 uppercase font-mono;
+
+  @media (max-width: 40rem) {
+    @apply text-left pb-2;
+  }
 }
 
 @utility mesh-center {
-  @apply col-[center];
+  @apply col-[center] min-w-0;
 }
 
 @utility mesh-right {
@@ -358,7 +375,7 @@
     }
 
     pre {
-      @apply mesh-full rounded-md border border-foreground/10 max-w-full w-200 mx-auto py-1.5 mb-6 text-xs/6 mt-2 relative scrollbar-thin;
+      @apply mesh-full rounded-md border border-foreground/10 max-w-full w-200 min-w-0 mx-auto py-1.5 mb-6 text-xs/6 mt-2 relative scrollbar-thin;
       @apply before:content-[attr(data-language)] before:text-foreground/70 before:pl-10 before:pb-1 before:block before:sticky before:left-0;
 
       code {

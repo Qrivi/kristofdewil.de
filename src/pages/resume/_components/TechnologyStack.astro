@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+type Props = { technologies: CollectionEntry<"experiences">["data"]["technologies"] };
+const { technologies } = Astro.props;
+
+const categoryLabels = {
+  backend: "Backend",
+  frontend: "Frontend",
+  "frontend-mobile": "Frontend & mobile",
+  data: "Data & messaging",
+  devops: "Delivery & infrastructure",
+  testing: "Testing & collaboration",
+  other: "Other tools",
+} satisfies Record<keyof Props["technologies"], string>;
+
+const groups = Object.entries(technologies);
+---
+
+{groups.length > 0 && (
+  <section aria-labelledby="technologies-title">
+    <h2 id="technologies-title" class="title-section pb-6">Technologies</h2>
+    <dl class="grid gap-6 [@media(width<=55rem)]:grid-cols-2">
+      {groups.map(([name, tools]) => (
+        <div>
+          <dt class="text-xs text-foreground/60 mb-2">{categoryLabels[name as keyof typeof categoryLabels]}</dt>
+          <dd><ul class="p-0 text-xs/6 text-foreground">{tools.map((tool) => <li>{tool}</li>)}</ul></dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+)}
+

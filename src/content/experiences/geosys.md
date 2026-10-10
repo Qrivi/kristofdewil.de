@@ -2,21 +2,29 @@
 organization: GeoSYS
 description: Developed geospatial Android and iOS apps with ArcGIS/Qt and later led a small team while contributing to Java backend services.
 link: https://geosys.com.mt
+logo: ./geosys.png
+locationMap:
+  image: /assets/map/malta.svg
+  alt: Map of Malta with San Ġwann and Ta' Xbiex marked on the northeastern coast.
+  link: https://maps.app.goo.gl/rpMb6wbXuT5wYVuR9
 titles:
   - Mobile Application Developer
 startDate: 2017-06-01
 endDate: 2017-09-01
 locations:
   - San Ġwann, MT
-  - Il-Gżira, MT
-topics:
-  - Java
-  - Spring Boot
-  - Qt
-  - Hibernate
-  - PostgreSQL
-  - PostGIS
-  - ArcGIS
+  - Ta' Xbiex, MT
+technologies:
+  backend:
+    - Java
+    - Spring Boot
+    - Hibernate
+  frontend-mobile:
+    - Qt
+  data:
+    - PostgreSQL
+    - PostGIS
+    - ArcGIS
 summary:
   - Developed and maintained the mobile apps for Android and iOS.
   - Used ArcGIS Runtime SDK for Qt to integrate geospatial features into the applications.

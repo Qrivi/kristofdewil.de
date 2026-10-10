@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 175" fill="none">
+<!-- Country outlines: Natural Earth, public domain. Markers indicate approximate city centres, not office addresses. -->
+<path d="M161.9,121.3 L149.7,135.9 L114.5,135.2 L83.9,112.5 L83.5,64.7 L118.9,74.2 L151.3,106.2 L161.9,121.3 Z" fill="#808080" fill-opacity=".08" stroke="#808080" stroke-opacity=".5" stroke-width="1"/>
+<path d="M69.7,42.6 L47.8,49.5 L26.1,36.0 L21.1,27.8 L51.3,20.9 L66.1,27.0 L72.4,38.7 L69.7,42.6 Z" fill="#808080" fill-opacity=".08" stroke="#808080" stroke-opacity=".5" stroke-width="1"/>
+<circle cx="129.0" cy="97.8" r="9" fill="#cc8604" fill-opacity=".12"/>
+<circle cx="129.0" cy="97.8" r="3" fill="#cc8604"/>
+<path d="M129.0,97.8 L109.0,80.8" stroke="#808080" stroke-opacity=".6"/>
+<text x="109.0" y="75.8" text-anchor="end" fill="#808080" font-family="system-ui,sans-serif" font-size="9">San Ġwann</text>
+<circle cx="135.9" cy="97.8" r="9" fill="#cc8604" fill-opacity=".12"/>
+<circle cx="135.9" cy="97.8" r="3" fill="#cc8604"/>
+<path d="M135.9,97.8 L155.9,127.8" stroke="#808080" stroke-opacity=".6"/>
+<text x="155.9" y="122.8" text-anchor="start" fill="#808080" font-family="system-ui,sans-serif" font-size="9">Ta' Xbiex</text>
+</svg>

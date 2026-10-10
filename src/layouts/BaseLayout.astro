@@ -71,7 +71,12 @@ const {title}: Props = Astro.props;
       if (!frame) frame = requestAnimationFrame(updateDirection);
     }
 
-    window.addEventListener("scroll", scheduleUpdate, { passive: true, signal: controller.signal });
+    function handleScroll() {
+      document.querySelectorAll<HTMLElement>("[popover]:popover-open").forEach(panel => panel.hidePopover());
+      scheduleUpdate();
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true, signal: controller.signal });
     window.addEventListener("resize", scheduleUpdate, { signal: controller.signal });
     updateDirection();
 

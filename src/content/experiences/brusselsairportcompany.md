@@ -2,6 +2,11 @@
 organization: Brussels Airport Company
 description: Backend-focused Java role building and migrating data-driven Spring Boot microservices on AWS for airport data services.
 link: https://brusselsairport.be
+logo: ./brusselsairportcompany.png
+locationMap:
+  image: /assets/map/zaventem.svg
+  alt: Map of Belgium with Zaventem marked near Brussels.
+  link: https://maps.app.goo.gl/Gyjz5JvA7Jm3qmok8
 titles:
   - Java Developer
 startDate: 2025-05-05
@@ -9,21 +14,25 @@ endDate: 2025-12-31
 locations:
   - Zaventem, BE
   - Remote
-topics:
-  - Java
-  - Spring Boot
-  - TypeScript
-  - Angular
-  - Preact
-  - Hibernate
-  - OracleDB
-  - Flyway
-  - Kafka
-  - Axon
-  - Jenkins
-  - Argo CD
-  - Docker
-  - Kubernetes
+technologies:
+  backend:
+    - Java
+    - Spring Boot
+    - Hibernate
+    - Axon
+  frontend:
+    - TypeScript
+    - Angular
+    - Preact
+  data:
+    - OracleDB
+    - Flyway
+    - Kafka
+  devops:
+    - Jenkins
+    - Argo CD
+    - Docker
+    - Kubernetes
 summary:
   - Developed Java applications to support job seekers and employers in finding the right match.
   - Integrated with government systems to securely access and process citizen data.

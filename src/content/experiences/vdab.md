@@ -2,6 +2,11 @@
 organization: VDAB
 description: Built full stack Java applications that match job seekers and employers, with secure government integrations and event-driven microservices.
 link: https://vdab.be
+logo: ./vdab.png
+locationMap:
+  image: /assets/map/brussels.svg
+  alt: Map of Belgium with Brussels marked in the centre of the country.
+  link: https://maps.app.goo.gl/tjdq2LtjA6ggAYQBA
 titles:
   - Full Stack / Java Developer
 startDate: 2024-08-01
@@ -9,21 +14,25 @@ endDate: 2025-04-01
 locations:
   - Brussels, BE
   - Remote
-topics:
-  - Java
-  - Spring Boot
-  - TypeScript
-  - Angular
-  - Preact
-  - Hibernate
-  - OracleDB
-  - Flyway
-  - Kafka
-  - Axon
-  - Jenkins
-  - Argo CD
-  - Docker
-  - Kubernetes
+technologies:
+  backend:
+    - Java
+    - Spring Boot
+    - Hibernate
+    - Axon
+  frontend:
+    - TypeScript
+    - Angular
+    - Preact
+  data:
+    - OracleDB
+    - Flyway
+    - Kafka
+  devops:
+    - Jenkins
+    - Argo CD
+    - Docker
+    - Kubernetes
 summary:
   - Developed Java applications to support job seekers and employers in finding the right match.
   - Integrated with government systems to securely access and process citizen data.

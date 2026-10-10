@@ -2,7 +2,7 @@
 import CursorPortrait from "~/pages/_components/CursorPortrait.astro";
 ---
 
-<section class="wrapper mesh about-section">
+<section class="wrapper mesh">
   <h2 class="sr-only">About me</h2>
   <div class="mesh-center">
     <CursorPortrait />
@@ -11,22 +11,3 @@ import CursorPortrait from "~/pages/_components/CursorPortrait.astro";
     <p>Outside client work, I tend to disappear into technical rabbit holes: operating systems, developer tooling, awkward platform quirks, and the kind of bugs that turn into a good story afterwards.</p>
   </div>
 </section>
-
-<style>
-  @media (max-width: 48rem) {
-    .about-section {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    .about-portrait {
-      grid-column: 1;
-      width: 10rem;
-      justify-self: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .mesh-center {
-      grid-column: 1;
-    }
-  }
-</style>

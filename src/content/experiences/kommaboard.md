@@ -2,6 +2,11 @@
 organization: Komma Board
 description: Led architecture and delivery of an internal people-project matching platform with Kotlin microservices and a Next.js frontend.
 link: https://kommaboard.be
+logo: ./kommaboard.jpeg
+locationMap:
+  image: /assets/map/mechelen.svg
+  alt: Map of Belgium with Mechelen marked in the north, between Brussels and Antwerp.
+  link: https://maps.app.goo.gl/K91ey3BPrnRCVWaG7
 titles:
   - Technical Architect / Lead Java Developer
 startDate: 2022-08-01
@@ -9,19 +14,23 @@ endDate: 2024-08-01
 locations:
   - Mechelen, BE
   - Remote
-topics:
-  - Kotlin
-  - Spring Boot
-  - TypeScript
-  - React
-  - Next.js
-  - Hibernate
-  - PostgreSQL
-  - MongoDB
-  - Liquibase
-  - RabbitMQ
-  - GitHub Actions
-  - Docker
+technologies:
+  backend:
+    - Kotlin
+    - Spring Boot
+    - Hibernate
+  frontend:
+    - TypeScript
+    - React
+    - Next.js
+  data:
+    - PostgreSQL
+    - MongoDB
+    - Liquibase
+    - RabbitMQ
+  devops:
+    - GitHub Actions
+    - Docker
 summary:
   - Led the development of an internal tool to improve project and talent matching, increasing transparency.
   - Designed the system architecture and guided a team of 2–4 developers and a designer.
@@ -32,4 +41,4 @@ summary:
   - Fostered collaboration across development, design, and business teams, improving alignment.
 ---
 
-I led an internal project at Komma Board to develop a tool that streamlined the process of matching people and projects, enhancing transparency. As the architect and team lead, I guided a small team of 2–4 developers and a designer in building a web app utilizing Kotlin microservices for the backend and Next.js/React for the frontend, following thorough analysis completed beforehand.
+The project brought people and projects together in one internal platform, making the matching process more transparent. With the initial analysis already completed, our team of 2–4 developers and a designer took the web app through architecture and implementation.

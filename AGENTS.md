@@ -62,11 +62,13 @@ Use the repo scripts instead of ad hoc commands when possible.
   - `organization`
   - `description`
   - `link`
+  - `logo` (relative image path beside the Markdown entry, validated with Astro's `image()` helper)
+  - `locationMap` (`image`, descriptive `alt`, and map `link`)
   - `titles`
   - `startDate`
   - optional `endDate`
   - `locations`
-  - `topics`
+  - `technologies` (technical category keys mapped to lists of technology names, in display order; supported keys: `backend`, `frontend`, `frontend-mobile`, `data`, `devops`, `testing`, `other`)
   - `summary`
 
 ## Style Notes
