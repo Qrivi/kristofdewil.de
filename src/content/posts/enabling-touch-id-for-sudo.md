@@ -1,6 +1,6 @@
 ---
 title: Enabling Touch ID for sudo
-description: Quite a public secret nowadays, but you can enable Touch ID for sudo authentication on macOS.
+description: Quite a public secret nowadays, but you can enable Touch ID for sudo authentication in your terminal on macOS.
 publishDate: 2026-02-13
 topics:
   - macos

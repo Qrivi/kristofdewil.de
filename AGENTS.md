@@ -58,6 +58,7 @@ Use the repo scripts instead of ad hoc commands when possible.
   - optional `editDate`
   - `topics`
   - optional `draft`
+  - optional `rss` (set to `false` to exclude a published post from `/rss.xml`; drafts are always excluded from the feed)
 - `experiences` frontmatter currently expects:
   - `organization`
   - `description`

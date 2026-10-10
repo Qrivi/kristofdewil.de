@@ -6,7 +6,7 @@ type Props = {
 const {title, description}: Props = Astro.props;
 
 const defaultTitle = "Kristof Dewilde";
-const pageTitle = title ? `${title} / ${defaultTitle}` : defaultTitle;
+const pageTitle = title ? `${defaultTitle} → ${title}` : defaultTitle;
 const pageDescription = description || "Full Stack Java Developer"; // TODO be more original
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
@@ -36,7 +36,8 @@ const cardUrl = new URL("og_card.png", Astro.site); // TODO Make a card
   <meta property="og:image:alt" content={pageDescription}>
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-  <link rel="sitemap" href="/sitemap-index.xml"/>
+  <link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/>
+  <link rel="alternate" type="application/rss+xml" href={new URL("rss.xml", Astro.site)} title="Kristof Dewilde / Blog"/>
 
   <title>{pageTitle}</title>
 

@@ -5,11 +5,9 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
-import rehypeExternalLinks from "rehype-external-links";
-import rehypeShiftHeading from "rehype-shift-heading";
-import { defListHastHandlers, remarkDefinitionList } from "remark-definition-list";
 
 import packageData from "./package.json" with { type: "json" };
+import { markdownOptions } from "./src/markdown.config";
 
 // https://astro.build/config
 export default defineConfig({
@@ -44,24 +42,8 @@ export default defineConfig({
   ],
   integrations: [mdx(), sitemap()],
   markdown: {
-    processor: unified({
-      rehypePlugins: [
-        // rehypeAddClass(["h1", "h2"], "mesh-center pt-4 pb-6 text-lg"), //
-        // rehypeAddClass(["p", "ul", "ol"], "mesh-center"), //
-        // rehypeAddClass(["pre"], "mesh-full"), //
-        [rehypeExternalLinks, { rel: ["nofollow"], target: "_blank" }],
-        [rehypeShiftHeading, { shift: 1 }],
-      ],
-      remarkPlugins: [remarkDefinitionList],
-      remarkRehype: { handlers: defListHastHandlers },
-    }),
-    shikiConfig: {
-      defaultColor: false,
-      themes: {
-        light: "material-theme-lighter",
-        dark: "material-theme-darker",
-      },
-    },
+    processor: unified(markdownOptions),
+    shikiConfig: markdownOptions.shikiConfig,
   },
   vite: {
     plugins: [tailwindcss()],

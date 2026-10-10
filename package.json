@@ -24,6 +24,7 @@
     "@astrojs/check": "^0.9.10",
     "@astrojs/markdown-remark": "^7.3.2",
     "@astrojs/mdx": "^8.0.3",
+    "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
     "@astrojs/ts-plugin": "^1.10.12",
     "@fontsource-variable/inter": "^5.3.0",
@@ -37,11 +38,13 @@
     "rehype-pretty-code": "^0.14.5",
     "rehype-shift-heading": "^2.0.0",
     "remark-definition-list": "^2.0.1",
+    "sanitize-html": "^2.18.0",
     "shiki": "^4.5.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3"
   },
   "devDependencies": {
+    "@types/sanitize-html": "^2.16.2",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
     "oxfmt": "^0.72.0",

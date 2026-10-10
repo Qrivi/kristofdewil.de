@@ -34,6 +34,7 @@ const posts = defineCollection({
       editDate: z.date().nullish(),
       topics: z.array(z.string()),
       draft: z.boolean().nullish(),
+      rss: z.boolean().optional(),
     }),
 });
 
