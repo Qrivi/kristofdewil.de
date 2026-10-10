@@ -1,4 +1,6 @@
 // @ts-check
+
+import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
@@ -16,6 +18,7 @@ export default defineConfig({
     allowedHosts: true, // fine for dev
   },
   site: packageData.homepage,
+  compressHTML: true,
   fonts: [
     {
       provider: fontProviders.fontsource(),
@@ -41,15 +44,17 @@ export default defineConfig({
   ],
   integrations: [mdx(), sitemap()],
   markdown: {
-    rehypePlugins: [
-      // rehypeAddClass(["h1", "h2"], "mesh-center pt-4 pb-6 text-lg"), //
-      // rehypeAddClass(["p", "ul", "ol"], "mesh-center"), //
-      // rehypeAddClass(["pre"], "mesh-full"), //
-      [rehypeExternalLinks, { rel: ["nofollow"], target: "_blank" }],
-      [rehypeShiftHeading, { shift: 1 }],
-    ],
-    remarkPlugins: [remarkDefinitionList],
-    remarkRehype: { handlers: defListHastHandlers },
+    processor: unified({
+      rehypePlugins: [
+        // rehypeAddClass(["h1", "h2"], "mesh-center pt-4 pb-6 text-lg"), //
+        // rehypeAddClass(["p", "ul", "ol"], "mesh-center"), //
+        // rehypeAddClass(["pre"], "mesh-full"), //
+        [rehypeExternalLinks, { rel: ["nofollow"], target: "_blank" }],
+        [rehypeShiftHeading, { shift: 1 }],
+      ],
+      remarkPlugins: [remarkDefinitionList],
+      remarkRehype: { handlers: defListHastHandlers },
+    }),
     shikiConfig: {
       defaultColor: false,
       themes: {
