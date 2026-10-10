@@ -111,7 +111,7 @@
   }
 
   body {
-    @apply overflow-x-clip antialiased text-pretty text-foreground/70 opaque;
+    @apply overflow-x-clip antialiased text-pretty text-foreground/70 opaque min-h-dvh;
     cursor: var(--cursor);
 
     &:active {
@@ -146,6 +146,14 @@
 
   kbd {
     @apply bg-foreground/10 py-0.5 px-1.5 rounded-md text-xs font-sans font-semibold;
+  }
+
+  button {
+    cursor: var(--cursor-pointer);
+
+    &:active {
+      cursor: var(--cursor-pointer-pressed);
+    }
   }
 
   a {

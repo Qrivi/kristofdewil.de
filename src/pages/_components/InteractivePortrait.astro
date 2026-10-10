@@ -19,7 +19,7 @@ const frontFrame = Math.floor(frames.length / 2);
       <source srcset={darkFrames[frontFrame]} media="(prefers-color-scheme: dark)" />
       <img src={frames[frontFrame]} alt="Pencil portrait of Kristof Dewilde" width={512} height={512} draggable="false" class="block aspect-square w-full select-none" />
     </picture>
-    <button type="button" hidden aria-label="Enable tilt" title="Enable tilt" class="absolute top-0 right-0 flex size-11 cursor-pointer items-center justify-center rounded text-foreground/60 transition-colors hover:bg-foreground/5 hover:text-primary focus-visible:outline-2 focus-visible:outline-primary">
+    <button type="button" hidden aria-label="Enable tilt" title="Enable tilt" class="absolute top-0 right-0 flex size-11 items-center justify-center rounded text-foreground/60 transition-colors hover:bg-foreground/5 hover:text-primary focus-visible:outline-2 focus-visible:outline-primary">
       <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <rect x="8" y="4" width="8" height="16" rx="1.5" transform="rotate(-15 12 12)" />
         <path d="M3 13a9 9 0 0 1 2-7M2 6h3v3M21 11a9 9 0 0 1-2 7m3 0h-3v-3" />
