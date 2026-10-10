@@ -9,11 +9,11 @@
   color-scheme: light;
   interpolate-size: allow-keywords;
 
-  &[data-text-size="smaller"] {
+  &.text-size-smaller {
     font-size: 87.5%;
   }
 
-  &[data-text-size="larger"] {
+  &.text-size-larger {
     font-size: 112.5%;
   }
 

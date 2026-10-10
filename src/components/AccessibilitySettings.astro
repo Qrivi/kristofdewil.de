@@ -1,3 +1,7 @@
+---
+import {colorThemes, textSizes, colorThemeKey, textSizeKey} from "~/utils/preferences";
+---
+
 <accessibility-settings class="relative">
   <button type="button" popovertarget="accessibility-settings-panel" title="Appearance and accessibility settings" aria-label="Appearance and accessibility settings" class="settings-trigger flex size-7 cursor-pointer items-center justify-center rounded hover:bg-foreground/5 focus-visible:outline-2 focus-visible:outline-primary">
     <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -7,18 +11,18 @@
   </button>
   <form id="accessibility-settings-panel" popover="auto" aria-label="Appearance and accessibility settings" class="settings-popover gap-2 py-2 w-max max-w-[calc(100vw-1rem)] rounded-sm border border-foreground/10 bg-background p-3 text-xs text-foreground/70">
     <p class="sr-only">Appearance & accessibility</p>
-    <fieldset>
-      <legend>Theme</legend>
-      <div class="settings-segments">
-        {["dark", "system", "light"].map(value => <label><input type="radio" name="theme" value={value} checked={value === "system"} /><span class="item-indicator">{value}</span></label>)}
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend>Size</legend>
-      <div class="settings-segments">
-        {["smaller", "default", "larger"].map(value => <label><input type="radio" name="textSize" value={value} checked={value === "default"} /><span class="item-indicator">{value}</span></label>)}
-      </div>
-    </fieldset>
+    <label>
+      <span>Theme</span>
+      <select name={colorThemeKey}>
+        {colorThemes.map(value => <option value={value}>{value}</option>)}
+      </select>
+    </label>
+    <label>
+      <span>Size</span>
+      <select name={textSizeKey}>
+        {textSizes.map(value => <option value={value}>{value}</option>)}
+      </select>
+    </label>
   </form>
 </accessibility-settings>
 
@@ -32,20 +36,24 @@
       this.controller?.abort();
       this.controller = new AbortController();
       const { signal } = this.controller;
+
       const preferences = getPreferences();
-      this.querySelectorAll<HTMLInputElement>("input").forEach(input => {
-        input.checked = input.value === preferences[input.name as keyof typeof preferences];
+      this.querySelectorAll<HTMLSelectElement>("select").forEach(select => {
+        select.value = preferences[select.name as keyof typeof preferences];
       });
+
       const panel = this.querySelector<HTMLElement>("[popover]")!;
       panel.addEventListener("toggle", () => {
         if (panel.matches(":popover-open")) {
-          panel.querySelector<HTMLInputElement>('input[name="theme"]:checked')?.focus({ preventScroll: true });
+          panel.querySelector<HTMLSelectElement>("select")?.focus({ preventScroll: true });
         }
       }, { signal });
+
       this.addEventListener("change", event => {
-        const input = event.target;
-        if (input instanceof HTMLInputElement) setPreference(input.name, input.value);
+        const select = event.target;
+        if (select instanceof HTMLSelectElement) setPreference(select.name, select.value);
       }, { signal });
+
       this.addEventListener("submit", event => event.preventDefault(), { signal });
     }
 
@@ -78,13 +86,17 @@
       display: grid;
     }
 
-    fieldset {
+    label {
       @apply grid items-center gap-x-3;
       grid-template-columns: minmax(3rem, max-content) minmax(0, 1fr);
     }
 
-    legend {
-      @apply float-left whitespace-nowrap text-box-trim pb-px text-foreground text-sm font-medium after:content-[':'];
+    span {
+      @apply whitespace-nowrap text-box-trim pb-px text-foreground text-sm font-medium after:content-[':'];
+    }
+
+    select {
+      @apply rounded-sm border border-foreground/10 bg-background px-2 py-1 text-foreground font-mono focus-visible:outline-2 focus-visible:outline-primary uppercase;
     }
 
     @supports (position-area: top span-left) {
@@ -93,26 +105,6 @@
       inset: auto;
       margin-bottom: 0.375rem;
       position-try-fallbacks: flip-block, flip-inline;
-    }
-  }
-
-  .settings-segments {
-    @apply flex gap-1 py-4;
-
-    label {
-      @apply relative flex-1;
-    }
-
-    input {
-      @apply sr-only;
-    }
-
-    span {
-      @apply block cursor-pointer px-2 py-px uppercase text-center text-box-trim font-mono;
-    }
-
-    input:focus-visible + span {
-      @apply outline-2 outline-primary;
     }
   }
 </style>

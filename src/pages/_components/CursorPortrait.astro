@@ -13,14 +13,24 @@ const frontFrame = Math.floor(frames.length / 2);
 
 ---
 
-<cursor-portrait class="contents" data-frames={JSON.stringify(frames)} data-dark-frames={JSON.stringify(darkFrames)}>
-  <picture class="block aspect-square w-full mix-blend-multiply opacity-40 dark:mix-blend-lighten my-2">
-    <source srcset={darkFrames[frontFrame]} media="(prefers-color-scheme: dark)" />
-    <img src={frames[frontFrame]} alt="Pencil portrait of Kristof Dewilde" width={512} height={512} draggable="false" class="block aspect-square w-full select-none" />
-  </picture>
-</cursor-portrait>
+<div class="relative my-2">
+  <cursor-portrait class="contents" data-frames={JSON.stringify(frames)} data-dark-frames={JSON.stringify(darkFrames)}>
+    <picture class="block aspect-square w-full mix-blend-multiply opacity-40 dark:mix-blend-lighten">
+      <source srcset={darkFrames[frontFrame]} media="(prefers-color-scheme: dark)" />
+      <img src={frames[frontFrame]} alt="Pencil portrait of Kristof Dewilde" width={512} height={512} draggable="false" class="block aspect-square w-full select-none" />
+    </picture>
+    <button type="button" hidden aria-label="Enable tilt" title="Enable tilt" class="absolute top-0 right-0 flex size-11 cursor-pointer items-center justify-center rounded text-foreground/60 transition-colors hover:bg-foreground/5 hover:text-primary focus-visible:outline-2 focus-visible:outline-primary">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8" y="4" width="8" height="16" rx="1.5" transform="rotate(-15 12 12)" />
+        <path d="M3 13a9 9 0 0 1 2-7M2 6h3v3M21 11a9 9 0 0 1-2 7m3 0h-3v-3" />
+      </svg>
+    </button>
+  </cursor-portrait>
+</div>
 
 <script>
+  import { getPortraitOrientation, getPortraitTilt, type PortraitOrientation } from "~/utils/portrait-tilt";
+
   class CursorPortrait extends HTMLElement {
     private visibilityObserver?: IntersectionObserver;
     private cleanup?: () => void;
@@ -67,94 +77,159 @@ const frontFrame = Math.floor(frames.length / 2);
       const themeObserver = new MutationObserver(syncTheme);
       themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
-    const pointer = window.matchMedia("(any-hover: hover) and (any-pointer: fine)");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let ready = false;
-    let disposed = false;
-    let pendingFrame = 0;
-    let cursorX: number | null = null;
+      const enableTilt = this.querySelector("button")!;
+      const pointer = window.matchMedia("(any-hover: hover) and (any-pointer: fine)");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      // Safari requires a user gesture; other browsers can listen immediately.
+      const orientationEvent = window.DeviceOrientationEvent as (typeof DeviceOrientationEvent & {
+        requestPermission?: () => Promise<"granted" | "denied">;
+      }) | undefined;
+      const supportsTilt = window.isSecureContext && !!orientationEvent;
+      let permission: "prompt" | "granted" | "denied" = orientationEvent?.requestPermission ? "prompt" : "granted";
+      let listeningToTilt = false;
+      let loading = false;
+      let ready = false;
+      let disposed = false;
+      let pendingFrame = 0;
+      let cursorX: number | null = null;
+      let neutralTilt: PortraitOrientation | null = null;
+      let tiltPosition = 0;
 
-    // Decode every view before allowing swaps, so moving the cursor never flashes an unloaded image.
-    if (pointer.matches && !reducedMotion.matches) preload();
+      // Decode every view before allowing swaps, so neither input flashes an unloaded image.
+      function preload() {
+        if (loading) return;
+        loading = true;
+        void Promise.all(
+          [...frames, ...darkFrames].map((src) => {
+            const image = new Image();
+            image.src = src;
+            return image.decode();
+          }),
+        )
+          .then(() => {
+            if (!disposed) {
+              ready = true;
+              scheduleUpdate();
+            }
+          })
+          .catch(() => {
+            // Keep the server-rendered front view if a frame cannot load.
+          });
+      }
 
-    function preload() {
-      void Promise.all(
-        [...frames, ...darkFrames].map((src) => {
-          const image = new Image();
-          image.src = src;
-          return image.decode();
-        }),
-      )
-        .then(() => {
-          if (!disposed) {
-            ready = true;
-            scheduleUpdate();
-          }
-        })
-        .catch(() => {
-          // Keep the server-rendered front view if a frame cannot load.
-        });
-    }
+      function update() {
+        pendingFrame = 0;
+        if (!ready || reducedMotion.matches) return;
+        let position = tiltPosition;
+        if (pointer.matches) {
+          if (cursorX === null) return;
+          const bounds = portrait.getBoundingClientRect();
+          const center = bounds.left + bounds.width / 2;
+          // Face forward over the portrait, reaching either extreme at the corresponding viewport edge.
+          const distance = cursorX - center;
+          const range = distance < 0 ? center : window.innerWidth - center;
+          position = Math.max(-1, Math.min(1, distance / Math.max(1, range)));
+        } else if (!listeningToTilt || neutralTilt === null) {
+          return;
+        }
+        setFrame(Math.round(((position + 1) / 2) * (frames.length - 1)));
+      }
 
-    function update() {
-      pendingFrame = 0;
-      if (!ready || cursorX === null || !pointer.matches || reducedMotion.matches) return;
+      function scheduleUpdate() {
+        if (!pendingFrame) pendingFrame = window.requestAnimationFrame(update);
+      }
 
-      const bounds = portrait.getBoundingClientRect();
-      const center = bounds.left + bounds.width / 2;
-      // Face forward over the portrait, reaching either extreme at the corresponding viewport edge.
-      const distance = cursorX - center;
-      const range = distance < 0 ? center : window.innerWidth - center;
-      const position = Math.max(-1, Math.min(1, distance / Math.max(1, range)));
-      setFrame(Math.round(((position + 1) / 2) * (frames.length - 1)));
-    }
+      function track(event: PointerEvent) {
+        if (!pointer.matches || event.pointerType === "touch") return;
+        cursorX = event.clientX;
+        scheduleUpdate();
+      }
 
-    function scheduleUpdate() {
-      if (!pendingFrame) pendingFrame = window.requestAnimationFrame(update);
-    }
+      function trackTilt(event: DeviceOrientationEvent) {
+        if (document.hidden) return;
+        // Safari's legacy angle matches the sensor frame; Screen Orientation can use a landscape baseline on iPad.
+        const legacyAngle: unknown = Reflect.get(window, "orientation");
+        const screenAngle = typeof legacyAngle === "number" && Number.isFinite(legacyAngle) ? legacyAngle : (window.screen.orientation?.angle ?? 0);
+        const tilt = getPortraitOrientation(event, screenAngle);
+        if (!tilt) return;
+        neutralTilt ??= tilt;
+        const delta = getPortraitTilt(neutralTilt, tilt);
+        // Spread the full portrait rotation over 45° of tilt in either direction.
+        const target = Math.max(-1, Math.min(1, delta / 45));
+        // Filter small sensor fluctuations without running a continuous animation loop.
+        tiltPosition += (target - tiltPosition) * 0.25;
+        scheduleUpdate();
+      }
 
-    function track(event: PointerEvent) {
-      if (event.pointerType === "touch") return;
-      cursorX = event.clientX;
-      scheduleUpdate();
-    }
+      function reset() {
+        cursorX = null;
+        neutralTilt = null;
+        tiltPosition = 0;
+        window.cancelAnimationFrame(pendingFrame);
+        pendingFrame = 0;
+        setFrame(frontFrame);
+      }
 
-    function reset() {
-      cursorX = null;
-      window.cancelAnimationFrame(pendingFrame);
-      pendingFrame = 0;
-      setFrame(frontFrame);
-    }
+      function leave(event: PointerEvent) {
+        if (pointer.matches && event.relatedTarget === null) reset();
+      }
 
-    function leave(event: PointerEvent) {
-      if (event.relatedTarget === null) reset();
-    }
+      function preferencesChanged() {
+        reset();
+        const canTilt = supportsTilt && !pointer.matches && !reducedMotion.matches;
+        enableTilt.hidden = !canTilt || permission !== "prompt";
+        const shouldListen = canTilt && permission === "granted";
+        if (shouldListen !== listeningToTilt) {
+          listeningToTilt = shouldListen;
+          if (shouldListen) window.addEventListener("deviceorientation", trackTilt, { passive: true });
+          else window.removeEventListener("deviceorientation", trackTilt);
+        }
+        if (!reducedMotion.matches && (pointer.matches || shouldListen)) preload();
+      }
 
-    function preferencesChanged() {
-      reset();
-      if (!ready && pointer.matches && !reducedMotion.matches) preload();
-    }
+      async function requestTilt() {
+        enableTilt.disabled = true;
+        try {
+          permission = await orientationEvent!.requestPermission!();
+        } catch {
+          permission = "denied";
+        }
+        if (!disposed) {
+          enableTilt.disabled = false;
+          preferencesChanged();
+        }
+      }
 
-    window.addEventListener("pointermove", track, { passive: true });
-    window.addEventListener("pointerout", leave);
-    window.addEventListener("blur", reset);
-    window.addEventListener("resize", scheduleUpdate);
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    pointer.addEventListener("change", preferencesChanged);
-    reducedMotion.addEventListener("change", preferencesChanged);
+      preferencesChanged();
+      enableTilt.addEventListener("click", requestTilt);
+      window.addEventListener("pointermove", track, { passive: true });
+      window.addEventListener("pointerout", leave);
+      window.addEventListener("blur", reset);
+      window.addEventListener("resize", scheduleUpdate);
+      window.addEventListener("scroll", scheduleUpdate, { passive: true });
+      window.screen.orientation?.addEventListener("change", reset);
+      window.addEventListener("orientationchange", reset);
+      document.addEventListener("visibilitychange", reset);
+      pointer.addEventListener("change", preferencesChanged);
+      reducedMotion.addEventListener("change", preferencesChanged);
 
-    return () => {
-      themeObserver.disconnect();
-      disposed = true;
-      window.cancelAnimationFrame(pendingFrame);
-      window.removeEventListener("pointermove", track);
-      window.removeEventListener("pointerout", leave);
-      window.removeEventListener("blur", reset);
-      window.removeEventListener("resize", scheduleUpdate);
-      window.removeEventListener("scroll", scheduleUpdate);
-      pointer.removeEventListener("change", preferencesChanged);
-      reducedMotion.removeEventListener("change", preferencesChanged);
-    };
+      return () => {
+        themeObserver.disconnect();
+        disposed = true;
+        window.cancelAnimationFrame(pendingFrame);
+        enableTilt.removeEventListener("click", requestTilt);
+        window.removeEventListener("deviceorientation", trackTilt);
+        window.removeEventListener("pointermove", track);
+        window.removeEventListener("pointerout", leave);
+        window.removeEventListener("blur", reset);
+        window.removeEventListener("resize", scheduleUpdate);
+        window.removeEventListener("scroll", scheduleUpdate);
+        window.screen.orientation?.removeEventListener("change", reset);
+        window.removeEventListener("orientationchange", reset);
+        document.removeEventListener("visibilitychange", reset);
+        pointer.removeEventListener("change", preferencesChanged);
+        reducedMotion.removeEventListener("change", preferencesChanged);
+      };
     }
   }
 
