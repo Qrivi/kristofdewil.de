@@ -1,18 +1,9 @@
-.astro
+.idea/**
+!.idea/icon.svg
 
-.idea
+.astro
+dist/
 
 node_modules/
-
-dist/
-.output/
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-.env
-.env.production
 
 .DS_Store
