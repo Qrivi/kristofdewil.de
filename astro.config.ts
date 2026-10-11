@@ -1,6 +1,6 @@
 // @ts-check
 
-import { unified } from "@astrojs/markdown-remark";
+import { rehypeHeadingIds, unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
@@ -8,6 +8,7 @@ import { defineConfig, fontProviders } from "astro/config";
 
 import packageData from "./package.json" with { type: "json" };
 import { markdownOptions } from "./src/markdown.config";
+import { rehypeHeadingLinks } from "./src/utils/rehype-heading-links";
 
 // https://astro.build/config
 export default defineConfig({
@@ -42,7 +43,10 @@ export default defineConfig({
   ],
   integrations: [mdx(), sitemap()],
   markdown: {
-    processor: unified(markdownOptions),
+    processor: unified({
+      ...markdownOptions,
+      rehypePlugins: [...(markdownOptions.rehypePlugins ?? []), rehypeHeadingIds, rehypeHeadingLinks],
+    }),
     shikiConfig: markdownOptions.shikiConfig,
   },
   vite: {

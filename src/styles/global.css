@@ -356,7 +356,37 @@
     h4,
     h5,
     h6 {
-      @apply font-sans;
+      @apply relative font-sans;
+
+      .heading-link {
+        @apply inline-block ml-2 no-underline opacity-0 transition-opacity duration-200 text-foreground/70;
+        @apply before:content-["#"/""];
+
+        &:focus-visible {
+          @apply opacity-100 outline-2 outline-primary outline-offset-4 rounded-sm;
+        }
+      }
+
+      &:hover .heading-link,
+      &:focus-within .heading-link {
+        @apply opacity-100;
+      }
+
+      @media (hover: none) {
+        .heading-link {
+          @apply opacity-100;
+        }
+      }
+
+      @media (width >= theme(--breakpoint-desktop)) {
+        .heading-link {
+          @apply absolute ml-0 opacity-100 transition-none;
+          /* Align with the right edge of mesh-left, across the mesh's 3rem gap. */
+          right: calc(100% + 3rem);
+          top: 0;
+          padding-top: inherit;
+        }
+      }
     }
 
     a {
