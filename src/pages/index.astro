@@ -23,9 +23,6 @@ const careerEntries = (await getCollection("career")).sort((a, b) => {
 
     <section class="wrapper mesh">
       <h2 class="mesh-center title-section">Recent blog posts</h2>
-      <p class="uppercase text-xs">
-        <a href="/blog">Read more</a>
-      </p>
       <ul class="contents">
         {blogEntries.map(entry => (
           <li class="contents">
@@ -33,13 +30,13 @@ const careerEntries = (await getCollection("career")).sort((a, b) => {
           </li>
         ))}
       </ul>
+      <p class="mesh-right text-right desktop:text-left desktop:row-start-1 uppercase text-xs">
+        <a href="/blog">Read more</a>
+      </p>
     </section>
 
     <section class="wrapper mesh">
       <h2 class="mesh-center title-section">Recent career highlights</h2>
-      <p class="uppercase text-xs">
-        <a href="/career">View timeline</a>
-      </p>
       <ul class="contents">
         {careerEntries.map(entry => (
           <li class="contents">
@@ -47,5 +44,8 @@ const careerEntries = (await getCollection("career")).sort((a, b) => {
           </li>
         ))}
       </ul>
+      <p class="mesh-right text-right desktop:text-left desktop:row-start-1 uppercase text-xs">
+        <a href="/career">View timeline</a>
+      </p>
     </section>
 </BaseLayout>
