@@ -86,6 +86,7 @@
 
 @theme {
   --breakpoint-xs: 26rem;
+  --breakpoint-desktop: 55rem;
 
   --color-background: rgb(var(--color-value-background));
   --color-foreground: rgb(var(--color-value-foreground));
@@ -201,8 +202,8 @@
 @utility wrapper {
   @apply container mx-auto px-2 max-w-246 py-4 sm:py-12;
 
-  @media (max-width: 55rem) {
-    @apply px-6;
+  @media (width < theme(--breakpoint-desktop)) {
+    @apply px-6 max-w-150;
   }
 }
 
@@ -210,20 +211,15 @@
   @apply grid gap-x-12;
   grid-template-columns: [left] 160px [center] minmax(0, 1fr) [right] 160px [end];
 
-  @media (max-width: 55rem) {
-    @apply gap-x-8;
-    grid-template-columns: [left] 120px [center right] minmax(0, 1fr) [end];
-  }
-
-  @media (max-width: 40rem) {
+  @media (width < theme(--breakpoint-desktop)) {
     grid-template-columns: [left center right] minmax(0, 1fr) [end];
   }
 }
 
 @utility mesh-left {
-  @apply col-[left] text-right text-foreground/70 text-xs font-medium pt-1.5 uppercase font-mono;
+  @apply col-[left] text-right;
 
-  @media (max-width: 40rem) {
+  @media (width < theme(--breakpoint-desktop)) {
     @apply text-left pb-2;
   }
 }
@@ -233,11 +229,24 @@
 }
 
 @utility mesh-right {
-  @apply col-[right] text-foreground/70 text-xs font-medium pt-1.5 uppercase font-mono;
+  @apply col-[right];
 }
 
 @utility mesh-full {
   @apply col-[left/end];
+}
+
+@utility title-page {
+  @apply mesh-center space-y-3;
+  @apply before:mb-5 before:block before:h-0.5 before:w-8 before:bg-primary;
+
+  h1 {
+    @apply text-4xl tracking-tight;
+  }
+
+  p {
+    @apply max-w-sm text-sm text-pretty;
+  }
 }
 
 @utility title-section {
@@ -264,6 +273,10 @@
 }
 
 @layer components {
+  .item-timestamp {
+    @apply text-xs font-medium pt-1.5 uppercase font-mono;
+  }
+
   .item-indicator {
     @apply relative text-foreground/70 transition-colors;
 
@@ -326,19 +339,6 @@
     translate: 0 100%;
   }
 
-  .component-collapsible {
-    @apply h-0 opacity-0 hidden transition-all overflow-clip ease-out duration-500;
-    transition-behavior: allow-discrete;
-
-    &[data-open="true"] {
-      @apply h-auto opacity-100 block;
-
-      @starting-style {
-        @apply h-0 opacity-0;
-      }
-    }
-  }
-
   .component-content {
     @apply contents;
 
@@ -370,7 +370,7 @@
     }
 
     h2 {
-      @apply mesh-center py-4 text-lg;
+      @apply mesh-center pt-8 pb-6 text-lg;
     }
 
     p,
@@ -385,15 +385,21 @@
 
     ul,
     ol {
-      @apply list-outside list-disc pl-6;
+      @apply pl-6;
 
       li {
-        @apply pb-2;
+        @apply relative pb-2;
+        @apply before:absolute before:content-["⦿"/""] before:-left-5.5 before:text-primary before:font-medium;
       }
     }
 
     ol {
-      @apply list-decimal;
+      counter-reset: item-count;
+
+      li {
+        counter-increment: item-count;
+        @apply before:content-[counter(item-count)"."];
+      }
     }
 
     img {

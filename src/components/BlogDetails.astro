@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { dateForComputer, dateOfPostForHuman } from "~/utils/date-util";
+import { estimateReadingTime } from "~/utils/duration-util";
+
+type Props = {
+  entry: CollectionEntry<"blog">;
+};
+const { entry } = Astro.props;
+const { data } = entry;
+
+const readingTime = estimateReadingTime(entry.body);
+---
+
+<time class="mesh-left item-timestamp" datetime={dateForComputer(data.publishDate)}>
+  {dateOfPostForHuman(data.publishDate)}
+</time>
+<div class="mesh-center pb-4">
+  <a class="text-foreground font-semibold" href={`/blog/${entry.id}`}>
+    {data.title}
+  </a>
+  <p class="text-xs text-foreground/70 pb-6">
+    <time datetime={`PT${readingTime}M`}>{readingTime} min</time> read
+  </p>
+  <p class="font-reading">{data.description}</p>
+</div>

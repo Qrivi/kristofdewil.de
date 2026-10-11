@@ -1,0 +1,55 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { dateOfCareerForHuman } from "~/utils/date-util";
+import { formatIsoDuration } from "~/utils/duration-util";
+import TechnologyStack from "./_components/TechnologyStack.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("career");
+  return entries.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+
+const website = new URL(data.link).hostname.replace(/^www\./, "");
+---
+
+<BaseLayout title={entry.data.organization}>
+  <article class="wrapper mesh">
+    <header class="contents">
+      <hgroup class="title-page">
+        <h1>{data.organization}</h1>
+        <p>{data.title}</p>
+      </hgroup>
+      <p class="mesh-center text-base/7 pt-4 pb-10 sm:pb-20">{data.description}</p>
+      <time class="mesh-left item-timestamp -order-1 self-end pb-13 max-desktop:pb-4" datetime={formatIsoDuration(data.startDate, data.endDate)}>
+        {dateOfCareerForHuman(data.startDate)} — {dateOfCareerForHuman(data.endDate)}
+      </time>
+    </header>
+
+    <section class="component-content" aria-labelledby="overview-title">
+      <h2 id="overview-title" class="mesh-center title-section pt-5 sm:pt-0">Overview</h2>
+      <Content/>
+      <p class="text-xs pt-1">
+        {data.locations.join(" · ")} &nbsp;/&nbsp;
+        <a class="no-underline after:text-primary after:content-['↗'/''] after:ml-1"
+           href={data.link} rel="nofollow noopener noreferrer" target="_blank">{website}<span class="sr-only"> (opens in a new tab)</span></a>
+      </p>
+    </section>
+
+    <section class="component-content" aria-labelledby="contributions-title">
+      <h2 id="contributions-title" class="mesh-center title-section pt-10 sm:pt-16">Contributions</h2>
+      <ul>{data.summary.map((item) => <li>{item}</li>)}</ul>
+    </section>
+
+    <aside class="mesh-right desktop:row-span-6 desktop:row-start-3" aria-label="Technology stack">
+      <TechnologyStack technologies={data.technologies} />
+    </aside>
+  </article>
+</BaseLayout>

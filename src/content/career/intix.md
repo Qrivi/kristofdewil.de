@@ -2,13 +2,7 @@
 organization: Intix
 description: Built and optimized Java tooling and backend services for banking clients, including high-performance data processing for Bank of America.
 link: https://intix.eu
-logo: ./intix.webp
-locationMap:
-  image: /assets/map/mechelen.svg
-  alt: Map of Belgium with Mechelen marked in the north, between Brussels and Antwerp.
-  link: https://maps.app.goo.gl/bwEWBPN6yD7cx1uH6
-titles:
-  - Full Stack / Java Developer
+title: Full Stack / Java Developer
 startDate: 2019-11-01
 endDate: 2021-07-01
 locations:

@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { dateOfCareerForHuman } from "~/utils/date-util";
+import {  formatIsoDuration } from "~/utils/duration-util";
+
+type Props = {
+  entry: CollectionEntry<"career">;
+};
+const { entry } = Astro.props;
+const { data } = entry;
+---
+
+<time class="mesh-left item-timestamp" datetime={formatIsoDuration(data.startDate, data.endDate)}>
+  {dateOfCareerForHuman(data.startDate)} — {dateOfCareerForHuman(data.endDate)}
+</time>
+<div class="mesh-center pb-4">
+  <a class="text-foreground font-semibold" href={`/career/${entry.id}`}>
+    {data.organization}
+  </a>
+  <p class="text-xs text-foreground/70 pb-6">{data.title}</p>
+  <p class="font-reading">{data.description}</p>
+</div>

@@ -2,13 +2,7 @@
 organization: CIN-NIC
 description: Java developer building microservices and frontend features for citizen and employer matching platforms with secure government integrations.
 link: https://www.cin-nic.be
-logo: ./cinnic.png
-locationMap:
-  image: /assets/map/saint-josse.svg
-  alt: Map of Belgium with Saint-Josse-ten-Noode marked in the Brussels area.
-  link: https://maps.app.goo.gl/Rxhafs1iw5tcKijD9
-titles:
-  - Java Developer
+title: Java Developer
 startDate: 2026-02-01
 locations:
   - Saint-Josse-ten-Noode, BE

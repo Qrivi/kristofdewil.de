@@ -15,8 +15,8 @@ Guidance for agents working in this repository.
 - `src/pages/_components/`: page-specific Astro components
 - `src/components/`: shared Astro components
 - `src/layouts/`: shared layouts
-- `src/content/posts/`: blog posts
-- `src/content/experiences/`: resume/work experience entries
+- `src/content/blog/`: blog posts
+- `src/content/career/`: career entries
 - `src/content.config.ts`: collection schemas
 - `src/styles/global.css`: global styles, theme tokens, utilities, and component classes
 - `src/utils/`: small formatting helpers for dates and durations
@@ -50,8 +50,8 @@ Use the repo scripts instead of ad hoc commands when possible.
 
 ## Content Notes
 
-- Posts and experience items are loaded from filesystem collections using `glob(...)`.
-- `posts` frontmatter currently expects:
+- Posts and career entries are loaded from filesystem collections using `glob(...)`.
+- `blog` frontmatter currently expects:
   - `title`
   - `description`
   - `publishDate`
@@ -59,17 +59,15 @@ Use the repo scripts instead of ad hoc commands when possible.
   - `topics`
   - optional `draft`
   - optional `rss` (set to `false` to exclude a published post from `/rss.xml`; drafts are always excluded from the feed)
-- `experiences` frontmatter currently expects:
+- `career` frontmatter currently expects:
   - `organization`
   - `description`
   - `link`
-  - `logo` (relative image path beside the Markdown entry, validated with Astro's `image()` helper)
-  - `locationMap` (`image`, descriptive `alt`, and map `link`)
-  - `titles`
+  - `title` (single string)
   - `startDate`
   - optional `endDate`
   - `locations`
-  - `technologies` (technical category keys mapped to lists of technology names, in display order; supported keys: `backend`, `frontend`, `frontend-mobile`, `data`, `devops`, `testing`, `other`)
+  - `technologies` (technical category keys mapped to lists of technology names, in display order; supported keys: `backend`, `frontend`, `data`, `devops`, `testing`, `other`)
   - `summary`
 
 ## Style Notes

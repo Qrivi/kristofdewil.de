@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { type StackCategory, stackCategoryLabels } from "~/content.config";
+
+type Props = {
+  technologies: CollectionEntry<"career">["data"]["technologies"]
+};
+const { technologies } = Astro.props;
+
+const groups = Object.entries(technologies);
+---
+
+<section aria-labelledby="technologies-title">
+  <h2 id="technologies-title" class="title-section pt-10 sm:pt-16 desktop:pt-0 pb-4">Technologies</h2>
+  <dl class="grid gap-6 grid-cols-4 desktop:grid-cols-1 mt-9">
+    {groups.map(([name, tools]) => (
+      <div>
+        <dt class="text-xs text-foreground/60 mb-2">{stackCategoryLabels[name as StackCategory]}</dt>
+        <dd><ul class="p-0 text-xs/6 text-foreground">{tools.map((tool) => <li>{tool}</li>)}</ul></dd>
+      </div>
+    ))}
+  </dl>
+</section>

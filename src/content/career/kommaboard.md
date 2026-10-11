@@ -2,13 +2,7 @@
 organization: Komma Board
 description: Led architecture and delivery of an internal people-project matching platform with Kotlin microservices and a Next.js frontend.
 link: https://kommaboard.be
-logo: ./kommaboard.jpeg
-locationMap:
-  image: /assets/map/mechelen.svg
-  alt: Map of Belgium with Mechelen marked in the north, between Brussels and Antwerp.
-  link: https://maps.app.goo.gl/K91ey3BPrnRCVWaG7
-titles:
-  - Technical Architect / Lead Java Developer
+title: Technical Architect / Lead Java Developer
 startDate: 2022-08-01
 endDate: 2024-08-01
 locations:

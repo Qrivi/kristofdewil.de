@@ -2,13 +2,7 @@
 organization: BASE / Telenet
 description: Maintained BASE's AEM website and internal Java applications, contributing across Spring Boot backend and Angular frontend work.
 link: https://telenet.be
-logo: ./telenet.png
-locationMap:
-  image: /assets/map/telenet-locations.svg
-  alt: Map of Belgium with Woluwe-Saint-Lambert and Mechelen marked.
-  link: https://maps.app.goo.gl/hRWyxHf5QC5HutKRA
-titles:
-  - Full Stack / Java Developer
+title: Full Stack / Java Developer
 startDate: 2018-05-01
 endDate: 2019-11-01
 locations:

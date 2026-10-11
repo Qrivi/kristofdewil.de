@@ -2,13 +2,7 @@
 organization: Napoleon Sports & Casino Online
 description: Improved release quality by building Java-based test automation and supporting QA for customer service tooling in an agile team.
 link: https://napoleongames.be
-logo: ./napoleongames.svg
-locationMap:
-  image: /assets/map/erembodegem.svg
-  alt: Map of Belgium with Erembodegem marked near Aalst.
-  link: https://maps.app.goo.gl/msdKWkbTC6kLYkY58
-titles:
-  - QA Automation Engineer / Java Developer
+title: QA Automation Engineer / Java Developer
 startDate: 2021-07-01
 endDate: 2022-08-01
 locations:

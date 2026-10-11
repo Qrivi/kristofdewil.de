@@ -2,13 +2,7 @@
 organization: VDAB
 description: Built full stack Java applications that match job seekers and employers, with secure government integrations and event-driven microservices.
 link: https://vdab.be
-logo: ./vdab.png
-locationMap:
-  image: /assets/map/brussels.svg
-  alt: Map of Belgium with Brussels marked in the centre of the country.
-  link: https://maps.app.goo.gl/tjdq2LtjA6ggAYQBA
-titles:
-  - Full Stack / Java Developer
+title: Full Stack / Java Developer
 startDate: 2024-08-01
 endDate: 2025-04-01
 locations:

@@ -12,7 +12,7 @@ const processor = createMarkdownProcessor({ ...markdownOptions, syntaxHighlight:
 
 export const GET: APIRoute = async ({ site }) => {
   const markdown = await processor;
-  const posts = (await getCollection("posts", ({ data }) => !data.draft && data.rss !== false)) //
+  const posts = (await getCollection("blog", ({ data }) => !data.draft && data.rss !== false)) //
     .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
 
   const items = await Promise.all(

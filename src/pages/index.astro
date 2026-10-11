@@ -1,19 +1,19 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "~/layouts/BaseLayout.astro";
-import ExperienceDetails from "~/components/ExperienceDetails.astro";
-import PostDetails from "~/components/PostDetails.astro";
+import CareerDetails from "~/components/CareerDetails.astro";
+import BlogDetails from "~/components/BlogDetails.astro";
 import AboutSection from "./_components/AboutSection.astro";
 
 const limit = 3;
 
-const posts = (await getCollection("posts")).sort((a, b) => {
+const blogEntries = (await getCollection("blog")).sort((a, b) => {
   const dateA = (a.data.editDate ?? a.data.publishDate).getTime();
   const dateB = (b.data.editDate ?? b.data.publishDate).getTime();
   return dateB - dateA; // newest to oldest
 }).slice(0, limit);
 
-const experiences = (await getCollection("experiences")).sort((a, b) => {
+const careerEntries = (await getCollection("career")).sort((a, b) => {
   return b.data.startDate.getTime() - a.data.startDate.getTime(); // newest to oldest
 }).slice(0, limit);
 ---
@@ -27,31 +27,25 @@ const experiences = (await getCollection("experiences")).sort((a, b) => {
         <a href="/blog">Read more</a>
       </p>
       <ul class="contents">
-        {posts.map(post => (
+        {blogEntries.map(entry => (
           <li class="contents">
-            <PostDetails post={post}/>
+            <BlogDetails entry={entry}/>
           </li>
         ))}
       </ul>
     </section>
 
     <section class="wrapper mesh">
-      <h2 class="mesh-center title-section">Recent work experience</h2>
+      <h2 class="mesh-center title-section">Recent career highlights</h2>
       <p class="uppercase text-xs">
-        <a href="/work">Full resume</a>
+        <a href="/career">View timeline</a>
       </p>
       <ul class="contents">
-        {experiences.map(experience => (
+        {careerEntries.map(entry => (
           <li class="contents">
-            <ExperienceDetails experience={experience}/>
+            <CareerDetails entry={entry}/>
           </li>
         ))}
       </ul>
-    </section>
-
-    <section class="wrapper mesh">
-      <div class="mesh-left">hello 1</div>
-      <div class="mesh-center">hello 2</div>
-      <div class="mesh-right">hello 3</div>
     </section>
 </BaseLayout>
