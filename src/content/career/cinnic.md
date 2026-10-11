@@ -1,8 +1,8 @@
 ---
 organization: CIN-NIC
-description: Java developer building microservices and frontend features for citizen and employer matching platforms with secure government integrations.
+description: Developing Nomenrep, a platform for managing and exchanging healthcare nomenclature, with a Java/Quarkus backend and Angular frontend.
 link: https://www.cin-nic.be
-title: Java Developer
+title: Full Stack / Java Developer
 startDate: 2026-02-01
 locations:
   - Saint-Josse-ten-Noode, BE
@@ -10,31 +10,36 @@ locations:
 technologies:
   backend:
     - Java
-    - Spring Boot
+    - Quarkus
     - Hibernate
-    - Axon
+    - OpenAPI
   frontend:
     - TypeScript
     - Angular
-    - Preact
   data:
-    - OracleDB
-    - Flyway
-    - Kafka
+    - PostgreSQL
+    - Liquibase
+    - S3
   devops:
-    - Jenkins
-    - Argo CD
+    - Maven
+    - GitLab CI/CD
     - Docker
     - Kubernetes
+    - Helm
+  testing:
+    - JUnit
+    - Cucumber
+    - Selenium
+  other:
+    - Keycloak
 summary:
-  - Developed Java applications to support job seekers and employers in finding the right match.
-  - Integrated with government systems to securely access and process citizen data.
-  - Built and maintained backend microservices using Spring Boot, JPA/Hibernate and Axon.
-  - Developed frontend features with Angular and Preact, ensuring a seamless user experience.
-  - Implemented event-driven architectures with Apache Kafka for reliable data processing.
-  - Managed build and deployment pipelines with Maven, Jenkins and Argo CD.
-  - Optimized database queries and performance for Oracle Database.
-  - Collaborated with cross-functional teams to align development with business needs.
+  - Develop backend APIs and Angular features for managing healthcare nomenclature codes, attributes, rules and templates.
+  - Build editing workflows with validation, reusable tables and dialogs, and Dutch and French labels.
+  - Improve the editing experience for rich text and generated rule documentation.
+  - Maintain OpenAPI contracts and generated clients to keep frontend and backend integrations aligned.
+  - Work on versioned publications and data exchange, backed by PostgreSQL and S3-compatible storage.
+  - Extend automated coverage with backend tests and Cucumber API and UI scenarios.
+  - Work closely with business analysts to refine application behaviour and align it with business needs.
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet lectus quis est congue mattis. In turpis. Pellentesque posuere. Praesent turpis. Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus. Donec elit libero, sodales nec, volutpat a, suscipit non, turpis. Nullam sagittis. Suspendisse pulvinar, augue ac venen
+At CIN-NIC, I work on Nomenrep, a platform for managing and exchanging healthcare nomenclature. My role spans the Java/Quarkus backend and Angular frontend, building APIs and editing workflows for codes, attributes, rules and templates. I also improve rich text documentation, support versioned publications and data exchange, and extend automated tests to keep the application reliable.
