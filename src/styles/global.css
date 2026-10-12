@@ -432,10 +432,6 @@
     ul,
     ol {
       @apply mesh-center;
-
-      code {
-        @apply px-0.5 font-mono text-xs;
-      }
     }
 
     ul,
@@ -464,6 +460,15 @@
     strong,
     b {
       @apply font-bold;
+    }
+
+    code:not(pre code) {
+      @apply px-0.5 font-mono text-xs inline-block max-w-full align-baseline;
+      overflow-wrap: break-word;
+
+      &:has(> wbr) {
+        @apply inline;
+      }
     }
 
     pre {

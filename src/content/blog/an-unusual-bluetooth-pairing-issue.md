@@ -28,7 +28,7 @@ This one was weirder. After the reboot, my MX Keys keyboard stopped working on t
 
 On day four I tried the obvious: unpair and re-pair the keyboard. The unpairing hung, which left me with no mouse since I'd disabled Bluetooth mid-process. 🧠 After sorting that out and finally getting the keyboard unpaired, I hit a new wall — pairing wouldn't work at all, for any device. Always the same: "Try connecting the device again" and Swift Pair timing out after a minute.
 
-The driver was up to date and functional, so I started digging. First I cleared all known Bluetooth devices from the registry at <code>HKEY_LOCAL_MACHINE\\<wbr>SYSTEM\\<wbr>CurrentControlSet<wbr>\Services\\<wbr>BTHPORT\\<wbr>Parameters\\<wbr>Devices</code>. You can do this manually, or from an elevated command prompt (note: this is `cmd` syntax, not PowerShell). Perhaps run this once without the `reg delete "%i" /f` first.
+The driver was up to date and functional, so I started digging. First I cleared all known Bluetooth devices from the registry at `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\BTHPORT\Parameters\Devices`. You can do this manually, or from an elevated command prompt (note: this is `cmd` syntax, not PowerShell). Perhaps run this once without the `reg delete "%i" /f` first.
 
 ```batch
 for /f "tokens=*" %i in ('reg query HKLM\SYSTEM\CurrentControlSet\Services\BTHPORT\Parameters\Devices') do (
