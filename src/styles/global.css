@@ -147,7 +147,7 @@
   }
 
   kbd {
-    @apply bg-foreground/10 py-0.5 px-1.5 rounded-md text-xs font-mono font-semibold;
+    @apply bg-foreground/10 py-0.5 px-1.5 rounded-md text-xs font-mono font-semibold border-b border-foreground/30;
   }
 
   button,
@@ -455,6 +455,14 @@
 
     img {
       @apply max-w-full;
+    }
+
+    picture {
+      @apply mesh-full block w-200 max-w-full min-w-0 mx-auto mt-2 mb-6;
+
+      img {
+        @apply block w-full h-auto;
+      }
     }
 
     strong,

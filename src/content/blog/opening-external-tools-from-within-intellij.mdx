@@ -1,0 +1,50 @@
+---
+title: Opening external tools from within IntelliJ
+description: You can easily launch external tools from IntelliJ with custom toolbar buttons or keyboard shortcuts.
+publishDate: 2026-10-13
+topics:
+  - intellij
+  - macos
+  - programming
+draft: false
+---
+
+import { Picture } from "astro:assets";
+import toolbarImage from "./opening-external-tools-from-within-intellij/toolbar.png";
+
+Blame it on being mainly a Java developer, but I do most of my programming in [IntelliJ](https://www.jetbrains.com/idea/). It's been the best IDE for Java development for years, but really it's a beautiful all-round tool that can do much more than just Java. That hasn't always meant it was my first choice for everything. For front-end web development, for example, I used [Visual Studio Code](https://code.visualstudio.com/) for a long time, often alongside IntelliJ for the backend work, usually because plugins were available sooner or had more features.
+
+This website is a good example. I'd been experimenting with [Astro](https://astro.build/) since its early alphas and used its first beta release back in [July 2021](https://github.com/Qrivi/kristofdewil.de/commit/269790dfdbee0ebc750eb84333cddd99da42e836) to migrate away from [Jekyll](https://jekyllrb.com/). It took quite a while for an Astro plugin to become available for IntelliJ, and without things like syntax highlighting or proper formatting, working on an Astro project in IntelliJ wasn't really an option. The `.vscode` directory in [this repository](https://github.com/qrivi/kristofdewil.de) is a relic of that early development in VS Code.
+
+Today, I don't even have VS Code installed anymore, and I've tweaked IntelliJ to be the ideal environment for me to work quickly. For small edits I use [Zed](https://zed.dev/), or [`nano`](https://www.nano-editor.org/) (the best TUI _IDE_ — don't @ me 💩). But I still use some other tools out of habit: I barely use IntelliJ's built-in terminal, and for Git I usually use [Fork](https://git-fork.com/).
+
+# Opening external tools from IntelliJ
+
+Which brings me to what I wanted to share: custom toolbar buttons in IntelliJ! When I finished a feature, I'd usually switch back to [Ghostty](https://ghostty.org/) with <kbd>command</kbd>+<kbd>tab</kbd> and run `fork .` to open the repository in Fork. I'd generally already be in the right directory, since I usually open IntelliJ with the `idea` command. Not much work, but you can also put a button in IntelliJ's toolbar to do this directly.
+
+<Picture
+  alt="IntelliJ toolbar with a custom theme, an Open in Fork button, and Back and Forward buttons"
+  src={toolbarImage}
+  pictureAttributes={{ class: "mesh-center" }}
+/>
+
+To set this up for Fork, you need to add an [External Tool](https://www.jetbrains.com/help/idea/configuring-third-party-tools.html) first. Open **Settings → Tools → External Tools**, click the **+** button, and fill in the following:
+
+| Field             | Value                               | Description                                                                          |
+| ----------------- | ----------------------------------- | ------------------------------------------------------------------------------------ |
+| Name              | `Open in Fork`                      | Tooltip text                                                                         |
+| Description       | `Opens the current project in Fork` | Shown on the left of the bottom status bar when you hover over the button            |
+| Group             | `External Tools`                    | You might want to organize this better if you add many external tools                |
+| Program           | `/opt/homebrew/bin/fork`            | Your `which fork` output                                                             |
+| Arguments         | `"$ProjectFileDir$"`                | Passes the project directory to the Fork CLI; quotes keep paths with spaces together |
+| Working directory | `$ProjectFileDir$`                  | Runs the command from the project directory                                          |
+
+One important detail: under **Advanced Options**, untick **Open console for tool output**. Otherwise, IntelliJ opens a new terminal tab every time you launch Fork, which isn't particularly useful here.
+
+Save and apply the settings. The action is now available under **Tools → External Tools → Open in Fork** 🎉 To give it a button, right-click the main toolbar and choose **Customize Toolbar…**. You can pick where the button goes (beside the Git controls made the most sense to me) and give it an icon (I use `/Applications/Fork.app/Contents/Resources/FallbackIconDark.png`).
+
+This works for other commands too, of course. And if you'd prefer a keyboard shortcut, you can assign one to your external tool under **Settings → Keymap → External Tools**. The IDE is your oyster.
+
+# One more thing
+
+You can add the built-in **Back** and **Forward** actions to the toolbar the same way. I do most things with keyboard shortcuts, but those buttons can still be handy when I'm already using the mouse and want to go back to where I was before jumping to a definition. Back can also return to a file you've closed if it's still in your navigation history — very handy!
