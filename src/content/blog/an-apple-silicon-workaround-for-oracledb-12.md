@@ -1,6 +1,6 @@
 ---
-title: Running OracleDB 12 on Apple Silicon
-description: OracleDB 12 won't run on ARM, not even emulated. So I emulated the entire Docker environment instead.
+title: An Apple Silicon workaround for OracleDB 12
+description: A Colima setup for running OracleBD 12 containers on a Mac with an Apple Silicon chip.
 publishDate: 2024-11-22
 topics:
   - docker
@@ -10,11 +10,11 @@ draft: false
 
 During a project for a previous client, I had to deal with some seriously old codebases. They'd all been containerized before the move to Kubernetes, which helped... until I met OracleDB 12. That one refuses to run on Apple Silicon, and unlike most x86_64 images, you can't just emulate your way out of it.
 
-The root cause is subtle. Most container tools handle the amd64→arm64 mismatch fine: they pull the image, QEMU's emulation steps in, and you pay a performance tax but it just works™. OracleDB 12 however breaks at a lower level, because it relies on certain kernel behaviors during initialization that QEMU doesn't faithfully replicate. The container spins up, hangs silently, and that's it. No logs, no crash, no useful signal. For comparison, OracleDB 19 emulated just fine under [OrbStack](https://orbstack.dev) on the same machine. The hanging is specific to 12.
+The root cause is subtle. Most container tools handle the amd64→arm64 mismatch fine: they pull the image, QEMU's emulation steps in, and you pay a performance tax but it just works™. OracleDB 12 however breaks at a lower level, because it relies on certain kernel behaviors during initialization that QEMU doesn't faithfully replicate. The container spins up, hangs silently, and that's it. No logs, no crash, no useful signal. For comparison, OracleDB 19 emulated just fine under [OrbStack](https://orbstack.dev) on the same machine. The hanging is specific to version 12.
 
 # Enter Colima
 
-The fix isn't to emulate the OracleDB container, but to emulate the entire Docker environment. [Colima](https://colima.run) lets you spin up a lightweight Linux VM with a specific architecture, meaning the Docker daemon itself runs as x86_64. OracleDB 12 never knows it's on ARM hardware.
+The fix isn't to emulate the OracleDB container, but to emulate the entire Docker environment. [Colima](https://colima.run) lets you spin up a lightweight Linux VM with a specific architecture, meaning the Docker daemon itself can run as x86_64. OracleDB 12 never knows it's on ARM hardware.
 
 ```shell
 brew install colima
@@ -53,10 +53,10 @@ docker compose up -d oracle12
 docker context use orbstack
 docker compose up -d service1 service2 # or use service profiles or even a separate compose file for just OracleDB 12
 # daily grind...
-colima stop # optional, but frees up RAM
+colima stop # optional, but frees up some RAM at the end of the day
 ```
 
-The emulated VM is noticeably slower than OrbStack's native ARM environment, so I'd keep Colima reserved for containers that actually need it. If you're using OracleDB 12 constantly and want Colima to start on boot:
+The emulated VM is noticeably slower than OrbStack's native ARM environment, so I'd keep Colima reserved for containers that actually need x86_64. If you're using OracleDB 12 constantly and want Colima to start on boot:
 
 ```shell
 brew services start colima
