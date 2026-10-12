@@ -356,10 +356,18 @@
     h4,
     h5,
     h6 {
-      @apply relative font-sans;
+      @apply font-sans;
+
+      &:has(> .heading-link) {
+        @apply mesh-center flex items-baseline justify-between gap-x-2;
+      }
+
+      .heading-text {
+        @apply min-w-0;
+      }
 
       .heading-link {
-        @apply inline-block ml-2 no-underline opacity-0 transition-opacity duration-200 text-foreground/70;
+        @apply block shrink-0 no-underline opacity-0 transition-opacity duration-200 text-foreground/70;
         @apply before:content-["#"/""];
 
         &:focus-visible {
@@ -379,12 +387,17 @@
       }
 
       @media (width >= theme(--breakpoint-desktop)) {
+        &:has(> .heading-link) {
+          @apply col-[left/right] grid grid-cols-subgrid;
+          column-gap: normal;
+        }
+
+        .heading-text {
+          @apply mesh-center row-start-1;
+        }
+
         .heading-link {
-          @apply absolute ml-0 opacity-100 transition-none;
-          /* Align with the right edge of mesh-left, across the mesh's 3rem gap. */
-          right: calc(100% + 3rem);
-          top: 0;
-          padding-top: inherit;
+          @apply mesh-left row-start-1 opacity-100 transition-none;
         }
       }
     }

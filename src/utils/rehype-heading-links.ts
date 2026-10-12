@@ -10,17 +10,25 @@ export function rehypeHeadingLinks() {
         if (node.type !== "element") continue;
 
         if (/^h[1-6]$/.test(node.tagName) && typeof node.properties.id === "string") {
-          node.children.push({
-            type: "element",
-            tagName: "a",
-            properties: {
-              href: `#${node.properties.id}`,
-              className: ["heading-link"],
-              ariaLabel: "Link to this heading",
-              title: "Link to this heading",
+          node.children = [
+            {
+              type: "element",
+              tagName: "span",
+              properties: { className: ["heading-text"] },
+              children: node.children,
             },
-            children: [],
-          });
+            {
+              type: "element",
+              tagName: "a",
+              properties: {
+                href: `#${node.properties.id}`,
+                className: ["heading-link"],
+                ariaLabel: "Link to this heading",
+                title: "Link to this heading",
+              },
+              children: [],
+            },
+          ];
         } else {
           addLinks(node);
         }
