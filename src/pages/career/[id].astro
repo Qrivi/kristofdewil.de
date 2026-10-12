@@ -36,7 +36,7 @@ const website = new URL(data.link).hostname.replace(/^www\./, "");
     <section class="component-content" aria-labelledby="overview-title">
       <h2 id="overview-title" class="mesh-center title-section pt-5 sm:pt-0">Overview</h2>
       <Content/>
-      <p class="text-xs pt-1">
+      <p class="text-xs pt-1 font-sans">
         {data.locations.join(" · ")} &nbsp;/&nbsp;
         <a class="no-underline after:text-primary after:content-['↗'/''] after:ml-1"
            href={data.link} rel="nofollow noopener noreferrer" target="_blank">{website}<span class="sr-only"> (opens in a new tab)</span></a>
