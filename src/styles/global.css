@@ -462,6 +462,37 @@
       @apply font-bold;
     }
 
+    .table-scroll {
+      @apply mesh-full w-200 max-w-full min-w-0 mx-auto mt-2 mb-6 overflow-x-auto scrollbar-thin rounded-md border border-foreground/10;
+    }
+
+    table {
+      @apply w-full border-separate border-spacing-0 font-reading text-sm/6;
+
+      th,
+      td {
+        @apply min-w-32 px-4 py-2 align-top whitespace-nowrap;
+      }
+
+      th {
+        @apply bg-foreground/5 text-foreground font-medium;
+        text-align: start;
+      }
+
+      tr:not(:last-child) > td,
+      thead th {
+        @apply border-b border-foreground/10;
+      }
+
+      thead th:first-child {
+        @apply rounded-tl-md;
+      }
+
+      thead th:last-child {
+        @apply rounded-tr-md;
+      }
+    }
+
     code:not(pre code) {
       @apply px-0.5 font-mono text-xs inline-block max-w-full align-baseline;
       overflow-wrap: break-word;
