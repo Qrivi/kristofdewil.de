@@ -2,6 +2,11 @@ import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { defineCollection } from "astro:content";
 
+import { smartPunctuation } from "~/utils/text-util";
+
+// Normalize frontmatter once for pages, listing cards, metadata, and RSS.
+const prose = z.string().transform(smartPunctuation);
+
 const StackCategory = z.enum(["backend", "frontend", "data", "devops", "testing", "other"]);
 export type StackCategory = z.infer<typeof StackCategory>;
 
@@ -20,8 +25,8 @@ const blog = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
   schema: () =>
     z.object({
-      title: z.string(),
-      description: z.string(),
+      title: prose,
+      description: prose,
       publishDate: z.date(),
       editDate: z.date().optional(),
       topics: z.array(z.string()),
@@ -34,10 +39,10 @@ const career = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/career" }),
   schema: () =>
     z.object({
-      organization: z.string(),
-      description: z.string(),
+      organization: prose,
+      description: prose,
       link: z.string(),
-      title: z.string(),
+      title: prose,
       startDate: z.date(),
       endDate: z.date().optional(),
       locations: z.array(z.string()),
