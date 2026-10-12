@@ -103,12 +103,13 @@
     @apply bg-primary/50 text-foreground;
   }
 
-  *:focus {
-    @apply outline-primary/5;
+  :focus-visible {
+    @apply outline-2 outline-primary outline-offset-4 rounded-sm;
+    @apply duration-0!;
   }
 
   html {
-    @apply min-h-svh scrollbar-thin;
+    @apply min-h-svh scrollbar-thin bg-background;
   }
 
   body {
@@ -149,7 +150,9 @@
     @apply bg-foreground/10 py-0.5 px-1.5 rounded-md text-xs font-mono font-semibold;
   }
 
-  button {
+  button,
+  label,
+  select {
     cursor: var(--cursor-pointer);
 
     &:active {
@@ -328,7 +331,15 @@
 
   .page-header,
   .page-footer {
-    transition: translate 500ms 50ms ease-out;
+    @apply wrapper py-12 bg-background transition-[translate] duration-500 delay-50 ease-out;
+  }
+
+  .page-header {
+    mask-image: linear-gradient(to bottom, #000 calc(100% - --spacing(12)), transparent);
+  }
+
+  .page-footer {
+    mask-image: linear-gradient(to top, #000 calc(100% - --spacing(12)), transparent);
   }
 
   html[data-scroll-direction="down"]:not([data-near-top], [data-near-bottom]) .page-header:not(:focus-within) {
@@ -374,10 +385,6 @@
       .heading-link {
         @apply block shrink-0 no-underline opacity-0 transition-opacity duration-200 text-foreground/70;
         @apply before:content-["#"/""];
-
-        &:focus-visible {
-          @apply opacity-100 outline-2 outline-primary outline-offset-4 rounded-sm;
-        }
       }
 
       &:hover .heading-link,
