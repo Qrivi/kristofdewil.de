@@ -9,6 +9,8 @@ draft: false
 
 Last week, a friend hit me up for a gaming session. I powered on my Windows PC, untouched for over two months, and braced for a flood of updates. What I didn't brace for was my CPU hitting over 100°C on cold boot, all fans screaming and the desktop running at what felt like 10 FPS. The system shut itself off after 3–4 minutes, right in the middle of a cumulative Windows Update. When it came back up, two things were broken.
 
+<p class="note">Turns out my AIO was toast. A couple of months later it failed again, and permanently.</p>
+
 # Windows Update stuck at 16%
 
 The interrupted update left Windows Update in a bad state: stuck at 16% every time, eventually spitting out error code `0x80073712` and a message about missing update files. It never self-healed, and manually downloading the update from Microsoft's Update Catalog didn't help either. What did work was running these two DISM commands from an elevated prompt, in order:

@@ -349,6 +349,10 @@
     blockquote,
     dl {
       @apply font-reading;
+
+      &.note {
+        @apply mesh-right italic text-sm pl-2 h-fit border-l border-foreground/10;
+      }
     }
 
     h1,
