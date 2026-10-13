@@ -1,17 +1,14 @@
 import type { APIRoute } from "astro";
 
-import { createMarkdownProcessor } from "@astrojs/markdown-remark";
+import mdxRenderer from "@astrojs/mdx/server.js";
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
+import { experimental_AstroContainer as AstroContainer } from "astro/container";
+import { getCollection, render } from "astro:content";
 import sanitizeHtml from "sanitize-html";
 
-import { markdownOptions } from "~/markdown.config";
-
-// RSS readers supply their own styling, so syntax highlighting is unnecessary.
-const processor = createMarkdownProcessor({ ...markdownOptions, syntaxHighlight: false });
-
 export const GET: APIRoute = async ({ site }) => {
-  const markdown = await processor;
+  const container = await AstroContainer.create();
+  container.addServerRenderer({ renderer: mdxRenderer });
   const posts = (await getCollection("blog", ({ data }) => !data.draft && data.rss !== false)) //
     .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
 
@@ -19,7 +16,9 @@ export const GET: APIRoute = async ({ site }) => {
     posts.map(async (post) => {
       const link = `/blog/${post.id}`;
       const url = new URL(link, site);
-      const { code } = await markdown.render(post.body ?? "");
+      // Render compiled content so MDX imports and components work just as on the site.
+      const { Content } = await render(post);
+      const code = await container.renderToString(Content, { request: new Request(url) });
 
       return {
         title: post.data.title,
@@ -28,7 +27,8 @@ export const GET: APIRoute = async ({ site }) => {
         link,
         categories: post.data.topics,
         content: sanitizeHtml(code, {
-          allowedTags: [...sanitizeHtml.defaults.allowedTags, "img", "details", "summary"],
+          // Layout-only code breaks can appear as literal markup in feed readers.
+          allowedTags: [...sanitizeHtml.defaults.allowedTags.filter((tag) => tag !== "wbr"), "img", "details", "summary"],
           allowedAttributes: {
             ...sanitizeHtml.defaults.allowedAttributes,
             "*": ["id"],
@@ -53,7 +53,12 @@ export const GET: APIRoute = async ({ site }) => {
     description: "Blog posts by Kristof Dewilde about software development and technology.",
     site: site!,
     trailingSlash: false,
-    customData: "<language>en</language>",
+    xmlns: { atom: "http://www.w3.org/2005/Atom" },
+    customData: `
+      <language>en</language>
+      <atom:link href="${new URL("rss.xml", site)}" rel="self" type="application/rss+xml" />
+      <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    `,
     items,
   });
 };
