@@ -11,11 +11,26 @@ const pageDescription = description || "Full Stack Java Developer"; // TODO be m
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const cardUrl = new URL("og_card.png", Astro.site); // TODO Make a card
+
+const cursors = ["default", "pointer", "text"];
+const colors = ["b", "w"];
+const states = ["", "-p"];
+const cursorPaths = cursors.flatMap(cursor => colors.flatMap(color => states.map(state => `/assets/cursor/${cursor}-${color}${state}`)));
 ---
 
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width"/>
+
+  {cursorPaths.map(path => (
+    <link
+      rel="preload"
+      as="image"
+      href={`${path}.png`}
+      imagesrcset={`${path}.png 1x, ${path}@2x.png 2x`}
+      media="(any-pointer: fine)"
+    />
+  ))}
 
   <meta name="health-check" content="ok">
   <meta name="generator" content={Astro.generator}/>

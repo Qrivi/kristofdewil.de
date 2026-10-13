@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import portrait from "~/assets/kristof.jpeg";
+
 type Props = {
   isHomePage?: boolean;
 };
@@ -16,7 +19,7 @@ const menu = [
 
 <header class="page-header group/header pt-2 mesh top-0 sticky z-50">
   <div class="mesh-center flex items-center gap-4 border-b border-foreground/10 py-4">
-    <a href="/" class="rounded aspect-square w-10 shrink-0 overflow-clip bg-primary after:hidden"><img alt="Kristof Dewilde — home" src="/kristof.jpeg" class="object-cover w-full h-full grayscale group-hover/header:grayscale-0 hover:opacity-0 transition-[filter,opacity] duration-500"></a>
+    <a href="/" class="rounded aspect-square w-10 shrink-0 overflow-clip bg-primary after:hidden"><Image alt="Kristof Dewilde — home" src={portrait} width={40} height={40} densities={[1, 2, 3]} format="webp" class="object-cover w-full h-full grayscale group-hover/header:grayscale-0 hover:opacity-0 transition-[filter,opacity] duration-500" /></a>
     <IdentityGroup class="min-w-0 flex flex-col gap-2">
       <Name class="text-box-trim text-base font-semibold text-foreground pb-0">Kristof Dewilde</Name>
       <p class="text-box-trim pb-0" data-header-subtitle transition:persist="header-subtitle">Consultant Software Engineer</p>
