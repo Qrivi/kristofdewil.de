@@ -39,3 +39,24 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+      - name: Notify successful deployment
+        if: ${{ success() }}
+        continue-on-error: true
+        env:
+          NTFY_URL: "https://ntfy.tunnel.qrivi.dev/website"
+          NTFY_USERNAME: "qrivi"
+          NTFY_PASSWORD: ${{ secrets.NTFY_PASSWORD }}
+          DEPLOYMENT_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          : "${NTFY_PASSWORD:?Set the NTFY_PASSWORD repository secret}"
+
+          curl --fail --silent --show-error --output /dev/null \
+            --proto '=https' \
+            --connect-timeout 10 --max-time 30 \
+            --user "$NTFY_USERNAME:$NTFY_PASSWORD" \
+            --header "Title: Deployment successful" \
+            --header "Tags: white_check_mark" \
+            --header "Click: $DEPLOYMENT_URL" \
+            --data-binary "Deployed $GITHUB_REPOSITORY (${GITHUB_SHA:0:7}) to $DEPLOYMENT_URL" \
+            --url "$NTFY_URL"
