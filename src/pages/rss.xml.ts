@@ -58,6 +58,13 @@ export const GET: APIRoute = async ({ site }) => {
       <language>en</language>
       <atom:link href="${new URL("rss.xml", site)}" rel="self" type="application/rss+xml" />
       <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+      <image>
+        <url>${new URL("feed-icon.png", site)}</url>
+        <title>Kristof Dewilde → Blog</title>
+        <link>${site}</link>
+        <width>128</width>
+        <height>128</height>
+      </image>
     `,
     items,
   });
