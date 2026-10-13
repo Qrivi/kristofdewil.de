@@ -71,15 +71,25 @@ const menu = [
   if (!customElements.get("header-navigation")) customElements.define("header-navigation", HeaderNavigation);
 
   const subtitles = [
-    "Consultant Software Engineer",
+    // "Consultant Software Engineer",
     "Backend brain, frontend curiosity",
     "Turning coffee into software",
     "Down another technical rabbit hole",
     "Making complex things feel simple",
+    "Probably thinking about edge cases",
+    "Just one more refactor, I promise",
+    "Professionally suspicious of timezones",
+    "Debugging by educated guessing",
+    "Currently overthinking a side project",
+    "Adding logs until it makes sense",
+    "2014 Web Ninja Engineer",
+    "The fix was a missing comma",
+    "Estimating in optimistic units",
+    "Reading docs after trying all else",
+    "Accidentally learning how DNS works",
   ];
 
   let observer: IntersectionObserver | undefined;
-  let index = 0;
 
   function setupSubtitle() {
     observer?.disconnect();
@@ -93,8 +103,8 @@ const menu = [
     observer = new IntersectionObserver(([entry]) => {
       const visible = entry.isIntersecting && entry.intersectionRatio > 0.01;
       if (visible && wasVisible === false) {
-        index = (index + 1) % subtitles.length;
-        subtitle.textContent = subtitles[index];
+        const candidates = subtitles.filter(text => text !== subtitle.textContent);
+        subtitle.textContent = candidates[Math.floor(Math.random() * candidates.length)];
       }
       wasVisible = visible;
     }, { threshold: 0.01 });

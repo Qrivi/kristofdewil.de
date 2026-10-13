@@ -131,7 +131,7 @@
   h4,
   h5,
   h6 {
-    @apply scroll-mt-12 text-balance text-foreground font-medium;
+    @apply scroll-mt-16 text-balance text-foreground font-medium;
     text-rendering: optimizeLegibility;
   }
 
