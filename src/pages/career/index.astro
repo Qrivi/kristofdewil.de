@@ -2,25 +2,24 @@
 import { getCollection } from "astro:content";
 import CareerDetails from "~/components/CareerDetails.astro";
 import BaseLayout from "~/layouts/BaseLayout.astro";
+import { CAREER_DESCRIPTION } from "~/constants";
 
 const entries = (await getCollection("career")) //
   .sort((a, b) => {
   return b.data.startDate.getTime() - a.data.startDate.getTime();
 });
-
-const contentTitle = "A few chapters of my life in software.";
 ---
 
 <BaseLayout
   title="Career"
-  description={contentTitle}
+  description={CAREER_DESCRIPTION}
   structuredData={{ type: "CollectionPage", items: entries.map(entry => ({ name: entry.data.organization, path: `/career/${entry.id}` })) }}
 >
   <section class="wrapper mesh">
     <header class="contents">
       <hgroup class="title-page mb-10 sm:mb-16">
         <h1>Career</h1>
-        <p>{contentTitle}</p>
+        <p>{CAREER_DESCRIPTION}</p>
       </hgroup>
     </header>
 

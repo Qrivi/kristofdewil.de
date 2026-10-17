@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BlogDetails from "~/components/BlogDetails.astro";
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import { isPublishedPost } from "~/utils/blog-util";
+import { BLOG_DESCRIPTION } from "~/constants";
 
 const entries = (await getCollection("blog", isPublishedPost)) //
   .sort((a, b) => {
@@ -10,20 +11,18 @@ const entries = (await getCollection("blog", isPublishedPost)) //
   const dateB = (b.data.editDate ?? b.data.publishDate).getTime();
   return dateB - dateA; // newest to oldest
 });
-
-const contentTitle = "Things I’ve built, fixed, and figured out.";
 ---
 
 <BaseLayout
   title="Blog"
-  description={contentTitle}
+  description={BLOG_DESCRIPTION}
   structuredData={{ type: "CollectionPage", items: entries.map(entry => ({ name: entry.data.title, path: `/blog/${entry.id}` })) }}
 >
   <section class="wrapper mesh">
     <header class="contents">
       <hgroup class="title-page mb-10 sm:mb-16">
         <h1>Blog</h1>
-        <p>{contentTitle}</p>
+        <p>{BLOG_DESCRIPTION}</p>
       </hgroup>
     </header>
 
