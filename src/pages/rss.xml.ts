@@ -6,10 +6,12 @@ import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { getCollection, render } from "astro:content";
 import sanitizeHtml from "sanitize-html";
 
+import { isPublishedPost } from "~/utils/blog-util";
+
 export const GET: APIRoute = async ({ site }) => {
   const container = await AstroContainer.create();
   container.addServerRenderer({ renderer: mdxRenderer });
-  const posts = (await getCollection("blog", ({ data }) => !data.draft && data.rss !== false)) //
+  const posts = (await getCollection("blog", (entry) => isPublishedPost(entry) && entry.data.rss !== false)) //
     .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
 
   const items = await Promise.all(

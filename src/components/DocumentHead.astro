@@ -1,16 +1,20 @@
 ---
+import { SITE_DESCRIPTION, SITE_NAME } from "~/constants";
+import { createStructuredData, serializeStructuredData, type PageStructuredData } from "~/utils/structured-data";
+
 type Props = {
   title?: string;
   description?: string;
+  structuredData?: PageStructuredData;
 };
-const {title, description}: Props = Astro.props;
+const {title, description, structuredData = { type: "WebPage" }}: Props = Astro.props;
 
-const defaultTitle = "Kristof Dewilde";
-const pageTitle = title ? `${defaultTitle} → ${title}` : defaultTitle;
-const pageDescription = description || "Full Stack Java Developer"; // TODO be more original
+const pageTitle = title ? `${SITE_NAME} → ${title}` : SITE_NAME;
+const pageDescription = description || SITE_DESCRIPTION;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const cardUrl = new URL("og_card.png", Astro.site); // TODO Make a card
+const jsonLd = structuredData && createStructuredData(Astro.site!, canonicalUrl, pageTitle, pageDescription, structuredData);
 
 const cursors = ["default", "pointer", "text"];
 const colors = ["b", "w"];
@@ -41,7 +45,7 @@ const cursorPaths = cursors.flatMap(cursor => colors.flatMap(color => states.map
   <meta property="og:type" content="website">
   <meta property="og:url" content={canonicalUrl}>
   <meta property="og:locale" content="nl_BE"/>
-  <meta property="og:site_name" content={defaultTitle}>
+  <meta property="og:site_name" content={SITE_NAME}>
   <meta property="og:title" content={pageTitle}>
   <meta property="og:description" content={pageDescription}>
   <meta property="og:image" content={cardUrl}>
@@ -56,7 +60,9 @@ const cursorPaths = cursors.flatMap(cursor => colors.flatMap(color => states.map
   <link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/>
   <link rel="alternate" type="application/rss+xml" href={new URL("rss.xml", Astro.site)} title="Kristof Dewilde → Blog"/>
 
-  <title>{pageTitle}</title>
+  <link rel="canonical" href={canonicalUrl}/>
+
+  {jsonLd && <script is:inline type="application/ld+json" set:html={serializeStructuredData(jsonLd)} />}
 
   <script>
     import { applyPreferences } from "~/utils/preferences";
@@ -65,6 +71,8 @@ const cursorPaths = cursors.flatMap(cursor => colors.flatMap(color => states.map
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => applyPreferences());
     document.addEventListener("astro:before-swap", (event) => applyPreferences(event.newDocument));
   </script>
+
+  <title>{pageTitle}</title>
 
   <slot/>
 </head>

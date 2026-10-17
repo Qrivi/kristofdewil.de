@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import portrait from "~/assets/kristof.jpeg";
+import { SITE_TITLE } from "~/constants";
 
 type Props = {
   isHomePage?: boolean;
@@ -22,7 +23,7 @@ const menu = [
     <a href="/" class="rounded aspect-square w-10 shrink-0 overflow-clip bg-primary after:hidden"><Image alt="Kristof Dewilde — home" src={portrait} width={40} height={40} densities={[1, 2, 3]} format="webp" class="object-cover w-full h-full grayscale group-hover/header:grayscale-0 hover:opacity-0 transition-[filter,opacity] duration-500" /></a>
     <IdentityGroup class="min-w-0 flex flex-col gap-2">
       <Name class="text-box-trim text-base font-semibold text-foreground pb-0">Kristof Dewilde</Name>
-      <p class="text-box-trim pb-0" data-header-subtitle transition:persist="header-subtitle">Consultant Software Engineer</p>
+      <p class="text-box-trim pb-0" data-header-subtitle transition:persist="header-subtitle">{SITE_TITLE}</p>
     </IdentityGroup>
     <nav aria-label="Main" class="header-desktop-nav ml-auto">
     <ul class="flex items-center uppercase text-xs gap-6 pb-0">
@@ -74,7 +75,7 @@ const menu = [
   if (!customElements.get("header-navigation")) customElements.define("header-navigation", HeaderNavigation);
 
   const subtitles = [
-    // "Consultant Software Engineer",
+    // SITE_TITLE,
     "Backend brain, frontend curiosity",
     "Turning coffee into software",
     "Down another technical rabbit hole",

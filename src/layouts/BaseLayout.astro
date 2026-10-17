@@ -5,15 +5,18 @@ import PageFooter from "~/components/PageFooter.astro";
 import DocumentHead from "../components/DocumentHead.astro";
 import Font from "astro/components/Font.astro";
 import { ClientRouter, fade } from "astro:transitions";
+import type { PageStructuredData } from "~/utils/structured-data";
 
 type Props = {
   title?: string;
+  description?: string;
+  structuredData?: PageStructuredData;
 };
-const {title}: Props = Astro.props;
+const {title, description, structuredData}: Props = Astro.props;
 ---
 
-<html transition:name="root" transition:animate={fade({ duration: "250ms" })}>
-  <DocumentHead title={title}>
+<html lang="en" transition:name="root" transition:animate={fade({ duration: "250ms" })}>
+  <DocumentHead title={title} description={description} structuredData={structuredData}>
     <Font cssVariable="--font-value-sans" preload />
     <Font cssVariable="--font-value-serif" preload />
     <Font cssVariable="--font-value-mono" preload />

@@ -3,9 +3,10 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { dateForComputer, dateOfPostForHuman } from "~/utils/date-util";
 import { estimateReadingTime } from "~/utils/duration-util";
+import { isPublishedPost } from "~/utils/blog-util";
 
 export async function getStaticPaths() {
-  const entries = await getCollection("blog");
+  const entries = await getCollection("blog", isPublishedPost);
   return entries.map((entry) => ({
     params: { id: entry.id },
     props: { entry },
@@ -18,7 +19,10 @@ const { Content } = await render(entry);
 const readingTime = estimateReadingTime(entry.body);
 ---
 
-<BaseLayout title={`${data.title}`}>
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  structuredData={{ type: "BlogPosting", entry }}>
   <article class="wrapper mesh">
     <header class="contents">
       <hgroup class="title-page">

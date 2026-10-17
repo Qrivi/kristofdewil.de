@@ -2,8 +2,10 @@ import type { APIRoute } from "astro";
 
 import { getCollection } from "astro:content";
 
+import { isPublishedPost } from "~/utils/blog-util";
+
 export const GET: APIRoute = async ({ site }) => {
-  const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+  const posts = (await getCollection("blog", isPublishedPost)).sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
   const careers = (await getCollection("career")).sort((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime());
 
   const toListItem = (title: string, path: string, description: string) => `- [${title}](${new URL(path, site).href}): ${description}`;
