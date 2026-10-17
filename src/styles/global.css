@@ -110,15 +110,15 @@
 
   html {
     @apply min-h-svh scrollbar-thin bg-background;
-  }
-
-  body {
-    @apply overflow-x-clip antialiased text-pretty text-foreground/70 opaque min-h-dvh;
     cursor: var(--cursor);
 
     &:active {
       cursor: var(--cursor-pressed);
     }
+  }
+
+  body {
+    @apply overflow-x-clip antialiased text-pretty text-foreground/70 opaque min-h-dvh;
   }
 
   section {
