@@ -7,7 +7,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 
 import packageData from "./package.json" with { type: "json" };
-import { markdownOptions } from "./src/markdown.config";
+import { markdownOptions, shikiConfig } from "./src/markdown.config";
 import { rehypeHeadingLinks } from "./src/utils/rehype-heading-links";
 
 // https://astro.build/config
@@ -47,7 +47,7 @@ export default defineConfig({
       ...markdownOptions,
       rehypePlugins: [...(markdownOptions.rehypePlugins ?? []), rehypeHeadingIds, rehypeHeadingLinks],
     }),
-    shikiConfig: markdownOptions.shikiConfig,
+    shikiConfig,
   },
   vite: {
     plugins: [tailwindcss()],
