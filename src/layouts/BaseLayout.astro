@@ -15,7 +15,7 @@ type Props = {
 const {title, description, structuredData}: Props = Astro.props;
 ---
 
-<html lang="en" transition:name="root" transition:animate={fade({ duration: "250ms" })}>
+<html lang="en" transition:name="root" transition:animate={fade({ duration: "300ms" })}>
   <DocumentHead title={title} description={description} structuredData={structuredData}>
     <Font cssVariable="--font-value-sans" preload />
     <Font cssVariable="--font-value-serif" preload />

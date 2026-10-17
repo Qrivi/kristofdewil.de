@@ -20,7 +20,7 @@ const menu = [
 
 <header class="page-header group/header pt-2 mesh top-0 sticky z-50">
   <div class="mesh-center flex items-center gap-4 border-b border-foreground/10 py-4">
-    <a href="/" class="rounded aspect-square w-10 shrink-0 overflow-clip bg-primary after:hidden"><Image alt="Kristof Dewilde — home" src={portrait} width={40} height={40} densities={[1, 2, 3]} format="webp" class="object-cover w-full h-full grayscale group-hover/header:grayscale-0 hover:opacity-0 transition-[filter,opacity] duration-500" /></a>
+    <a href="/" data-home-link class="rounded aspect-square w-10 shrink-0 overflow-clip bg-primary after:hidden"><Image alt="Kristof Dewilde — home" src={portrait} width={40} height={40} densities={[1, 2, 3]} format="webp" class="object-cover w-full h-full grayscale group-hover/header:grayscale-0 hover:opacity-0 transition-[filter,opacity] duration-500" /></a>
     <IdentityGroup class="min-w-0 flex flex-col gap-2">
       <Name class="text-box-trim text-base font-semibold text-foreground pb-0">Kristof Dewilde</Name>
       <p class="text-box-trim pb-0" data-header-subtitle transition:persist="header-subtitle">{SITE_TITLE}</p>
@@ -55,6 +55,16 @@ const menu = [
 </header>
 
 <script>
+  // If already on home page, scroll to top instead of reloading page (triggering fade on interactive-portrait)
+  document.addEventListener("astro:page-load", () => {
+    if (window.location.pathname !== "/") return;
+    document.querySelector<HTMLAnchorElement>("[data-home-link]")?.addEventListener("click", event => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      window.scrollTo({ top: 0 });
+    });
+  });
+
   class HeaderNavigation extends HTMLElement {
     private controller?: AbortController;
 

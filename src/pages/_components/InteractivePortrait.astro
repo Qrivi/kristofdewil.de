@@ -15,7 +15,10 @@ const frontFrame = Math.floor(frames.length / 2);
 
 <div class="relative my-2">
   <interactive-portrait class="contents" data-frames={JSON.stringify(frames)} data-dark-frames={JSON.stringify(darkFrames)}>
-    <picture class="block aspect-square w-full mix-blend-multiply opacity-40 dark:mix-blend-lighten">
+    <picture class:list={[
+      "block aspect-square w-full mix-blend-multiply opacity-40",
+      "dark:mix-blend-lighten"]}
+    >
       <source srcset={darkFrames[frontFrame]} media="(prefers-color-scheme: dark)" />
       <img src={frames[frontFrame]} alt="Pencil portrait of Kristof Dewilde" width={512} height={512} draggable="false" class="block aspect-square w-full select-none" />
     </picture>
@@ -27,6 +30,22 @@ const frontFrame = Math.floor(frames.length / 2);
     </button>
   </interactive-portrait>
 </div>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    picture {
+      transition: opacity 500ms ease-out;
+
+      @starting-style {
+        opacity: 0;
+      }
+    }
+
+    interactive-portrait:defined picture:not([data-ready]) {
+      opacity: 0;
+    }
+  }
+</style>
 
 <script>
   import { getPortraitOrientation, getPortraitTilt, type PortraitOrientation } from "~/utils/portrait-tilt";
@@ -94,6 +113,20 @@ const frontFrame = Math.floor(frames.length / 2);
       let cursorX: number | null = null;
       let neutralTilt: PortraitOrientation | null = null;
       let tiltPosition = 0;
+
+      async function reveal() {
+        await image.decode().catch(() => {});
+        // Allow the initial hidden style and Astro's transition animations to render.
+        await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+        await Promise.allSettled(
+          document.getAnimations()
+            .filter((animation) => animation.effect instanceof KeyframeEffect && animation.effect.target === document.documentElement)
+            .map((animation) => animation.finished),
+        );
+        if (!disposed) portrait.dataset.ready = "";
+      }
+
+      void reveal();
 
       // Decode every view before allowing swaps, so neither input flashes an unloaded image.
       function preload() {
