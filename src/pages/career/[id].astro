@@ -28,12 +28,12 @@ const website = new URL(data.link).hostname.replace(/^www\./, "");
   <article class="wrapper mesh">
     <header class="contents">
       <hgroup class="title-page">
-        <h1>{data.organization}</h1>
-        <p>{data.title}</p>
+        <h1><span class="inline-block" transition:name={`career-${entry.id}-organization`}>{data.organization}</span></h1>
+        <p><span class="block" transition:name={`career-${entry.id}-role`}>{data.title}</span></p>
       </hgroup>
-      <p class="mesh-center text-base/7 pt-4 pb-10 sm:pb-20">{data.description}</p>
+      <p class="mesh-center text-base/7 pt-4 pb-10 sm:pb-20"><span class="block" transition:name={`career-${entry.id}-description`}>{data.description}</span></p>
       <time class="mesh-left item-timestamp -order-1 self-end pb-13 max-desktop:pb-4" datetime={formatIsoDuration(data.startDate, data.endDate)}>
-        {dateOfCareerForHuman(data.startDate)} — {dateOfCareerForHuman(data.endDate)}
+        <span class="inline-block" transition:name={`career-${entry.id}-date`}>{dateOfCareerForHuman(data.startDate)} — {dateOfCareerForHuman(data.endDate)}</span>
       </time>
     </header>
 

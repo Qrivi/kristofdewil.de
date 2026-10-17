@@ -11,12 +11,12 @@ const { data } = entry;
 ---
 
 <time class="mesh-left item-timestamp" datetime={formatIsoDuration(data.startDate, data.endDate)}>
-  {dateOfCareerForHuman(data.startDate)} — {dateOfCareerForHuman(data.endDate)}
+  <span class="inline-block" transition:name={`career-${entry.id}-date`}>{dateOfCareerForHuman(data.startDate)} — {dateOfCareerForHuman(data.endDate)}</span>
 </time>
 <div class="mesh-center pb-4">
   <a class="text-foreground font-semibold" href={`/career/${entry.id}`}>
-    {data.organization}
+    <span class="inline-block" transition:name={`career-${entry.id}-organization`}>{data.organization}</span>
   </a>
-  <p class="text-xs text-foreground/70 pb-6">{data.title}</p>
-  <p class="font-reading">{data.description}</p>
+  <p class="text-xs text-foreground/70 pb-6"><span class="block" transition:name={`career-${entry.id}-role`}>{data.title}</span></p>
+  <p class="font-reading"><span class="block" transition:name={`career-${entry.id}-description`}>{data.description}</span></p>
 </div>

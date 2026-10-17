@@ -26,11 +26,11 @@ const readingTime = estimateReadingTime(entry.body);
   <article class="wrapper mesh">
     <header class="contents">
       <hgroup class="title-page">
-        <h1>{data.title}</h1>
-        <p><time datetime={`PT${readingTime}M`}>{readingTime} min</time> read</p>
+        <h1><span class="inline-block" transition:name={`blog-${entry.id}-title`}>{data.title}</span></h1>
+        <p><span class="block" transition:name={`blog-${entry.id}-reading-time`}><time datetime={`PT${readingTime}M`}>{readingTime} min</time> read</span></p>
       </hgroup>
-      <p class="mesh-center text-base/7 border-b border-foreground/10 pt-4 pb-10 sm:pb-20 mb-10">{data.description}</p>
-      <time class="mesh-left item-timestamp -order-1 self-end pb-13 max-desktop:pb-4" datetime={dateForComputer(data.publishDate)}>{dateOfPostForHuman(data.publishDate)}</time>
+      <p class="mesh-center text-base/7 border-b border-foreground/10 pt-4 pb-10 sm:pb-20 mb-10"><span class="block" transition:name={`blog-${entry.id}-description`}>{data.description}</span></p>
+      <time class="mesh-left item-timestamp -order-1 self-end pb-13 max-desktop:pb-4" datetime={dateForComputer(data.publishDate)}><span class="inline-block" transition:name={`blog-${entry.id}-date`}>{dateOfPostForHuman(data.publishDate)}</span></time>
     </header>
 
     <div class="component-content">

@@ -13,14 +13,14 @@ const readingTime = estimateReadingTime(entry.body);
 ---
 
 <time class="mesh-left item-timestamp" datetime={dateForComputer(data.publishDate)}>
-  {dateOfPostForHuman(data.publishDate)}
+  <span class="inline-block" transition:name={`blog-${entry.id}-date`}>{dateOfPostForHuman(data.publishDate)}</span>
 </time>
 <div class="mesh-center pb-4">
   <a class="text-foreground font-semibold" href={`/blog/${entry.id}`}>
-    {data.title}
+    <span class="inline-block" transition:name={`blog-${entry.id}-title`}>{data.title}</span>
   </a>
   <p class="text-xs text-foreground/70 pb-6">
-    <time datetime={`PT${readingTime}M`}>{readingTime} min</time> read
+    <span class="block" transition:name={`blog-${entry.id}-reading-time`}><time datetime={`PT${readingTime}M`}>{readingTime} min</time> read</span>
   </p>
-  <p class="font-reading">{data.description}</p>
+  <p class="font-reading"><span class="block" transition:name={`blog-${entry.id}-description`}>{data.description}</span></p>
 </div>
