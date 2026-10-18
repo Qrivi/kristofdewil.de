@@ -35,6 +35,13 @@ export default defineConfig({
     },
     {
       provider: fontProviders.fontsource(),
+      name: "Comic Relief",
+      cssVariable: "--font-value-comic",
+      subsets: ["latin", "latin-ext"],
+      fallbacks: ["Comic Sans MS", "cursive"],
+    },
+    {
+      provider: fontProviders.fontsource(),
       name: "JetBrains Mono",
       cssVariable: "--font-value-mono",
       subsets: ["latin", "latin-ext"],

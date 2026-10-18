@@ -2,7 +2,7 @@ export const colorThemes = ["default", "light", "dark"] as const;
 type ColorTheme = (typeof colorThemes)[number];
 export const textSizes = ["default", "smaller", "larger"] as const;
 type TextSize = (typeof textSizes)[number];
-export const readingFonts = ["default", "serif"] as const;
+export const readingFonts = ["default", "serif", "comic"] as const;
 type ReadingFont = (typeof readingFonts)[number];
 
 export const colorThemeKey = "colorTheme";
@@ -33,6 +33,7 @@ export function applyPreferences(doc: Document = document) {
   doc.documentElement.classList.toggle("text-size-smaller", textSize === "smaller");
   doc.documentElement.classList.toggle("text-size-larger", textSize === "larger");
   doc.documentElement.classList.toggle("reading-font-serif", readingFont === "serif");
+  doc.documentElement.classList.toggle("reading-font-comic", readingFont === "comic");
 }
 
 export function setPreference(key: string, value: string) {
