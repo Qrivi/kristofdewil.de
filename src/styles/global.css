@@ -88,6 +88,11 @@
   }
 }
 
+:root[data-directional-cursor] {
+  --cursor: none;
+  --cursor-pressed: none;
+}
+
 @theme {
   --breakpoint-xs: 26rem;
   --breakpoint-desktop: 55rem;

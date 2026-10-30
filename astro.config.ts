@@ -13,7 +13,7 @@ import { rehypeHeadingLinks } from "./src/utils/rehype-heading-links";
 // https://astro.build/config
 export default defineConfig({
   server: {
-    port: 4321,
+    port: 3333,
     allowedHosts: true, // fine for dev
   },
   site: packageData.homepage,

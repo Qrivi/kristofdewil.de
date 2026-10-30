@@ -1,0 +1,131 @@
+<img popover="manual" data-directional-cursor-image src="/assets/cursor/default-b@2x.png" alt="" aria-hidden="true" width="20" height="20" />
+
+<style>
+  [data-directional-cursor-image] {
+    position: fixed;
+    inset: auto;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    overflow: visible;
+    pointer-events: none;
+    visibility: hidden;
+    transform-origin: 3px 3px;
+  }
+
+  [data-directional-cursor-image]::backdrop {
+    background: transparent;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  // Render inside the page so browser cursor bounds checks cannot replace it.
+  const variants = ["b", "b-p", "w", "w-p"];
+  const sources = Promise.all(variants.map(async variant => {
+    const image = new Image();
+    image.src = `/assets/cursor/default-${variant}@2x.png`;
+    await image.decode();
+    return image;
+  })).catch(() => undefined);
+  let cleanup: (() => void) | undefined;
+
+  function setupCursor() {
+    cleanup?.();
+    const root = document.documentElement;
+    const image = document.querySelector<HTMLImageElement>("[data-directional-cursor-image]");
+    if (!image) return;
+
+    const controller = new AbortController();
+    const { signal } = controller;
+    let ready = false;
+    let inside = false;
+    let x = 0;
+    let y = 0;
+    let pressed = false;
+    let frame = 0;
+
+    function update() {
+      frame = 0;
+      root.toggleAttribute("data-directional-cursor", ready && inside);
+      const target = inside ? document.elementFromPoint(x, y) : null;
+      // Links, text, controls, and explicit cursor styles retain their own cursors.
+      const visible = ready && target && getComputedStyle(target).cursor === "none";
+      image!.style.visibility = visible ? "visible" : "hidden";
+      if (!visible) return;
+      if (!image!.matches(":popover-open")) image!.showPopover();
+
+      const position = Math.max(0, Math.min(1, x / Math.max(1, root.clientWidth - 1)));
+      const angle = 90 * (1 - position);
+      image!.style.transform = `translate(${x - 3}px, ${y - 3}px) rotate(${angle}deg)`;
+      const color = root.classList.contains("dark") ? "w" : "b";
+      const path = `/assets/cursor/default-${color}${pressed ? "-p" : ""}@2x.png`;
+      if (image!.getAttribute("src") !== path) image!.src = path;
+    }
+
+    function handlePopoverToggle(event: Event) {
+      if (event.target === image || !(event.target instanceof HTMLElement)) return;
+      if (!event.target.matches("[popover]:popover-open")) return;
+      // Top-layer entries paint in opening order; put the cursor above a new menu.
+      if (image!.matches(":popover-open")) {
+        image!.hidePopover();
+        image!.showPopover();
+      }
+      scheduleUpdate();
+    }
+
+    function scheduleUpdate() {
+      if (!frame) frame = requestAnimationFrame(update);
+    }
+
+    function trackPointer(event: PointerEvent) {
+      if (event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+      x = event.clientX;
+      y = event.clientY;
+      pressed = event.buttons !== 0;
+      inside = true;
+      scheduleUpdate();
+    }
+
+    function hide() {
+      inside = false;
+      pressed = false;
+      update();
+    }
+
+    document.addEventListener("toggle", handlePopoverToggle, { capture: true, signal });
+    window.addEventListener("pointermove", trackPointer, { passive: true, signal });
+    window.addEventListener("pointerdown", trackPointer, { passive: true, signal });
+    window.addEventListener("pointerup", trackPointer, { passive: true, signal });
+    window.addEventListener("pointercancel", hide, { signal });
+    document.addEventListener("pointerleave", hide, { signal });
+    window.addEventListener("blur", hide, { signal });
+    window.addEventListener("scroll", scheduleUpdate, { passive: true, signal, capture: true });
+    window.addEventListener("resize", scheduleUpdate, { signal });
+    const observer = new MutationObserver(scheduleUpdate);
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+    void sources.then(images => {
+      if (signal.aborted || !images) return;
+      ready = true;
+      scheduleUpdate();
+    });
+
+    cleanup = () => {
+      controller.abort();
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+      root.removeAttribute("data-directional-cursor");
+      image.style.visibility = "hidden";
+      if (image.matches(":popover-open")) image.hidePopover();
+    };
+  }
+
+  document.addEventListener("astro:page-load", setupCursor);
+  document.addEventListener("astro:before-swap", () => cleanup?.());
+</script>
