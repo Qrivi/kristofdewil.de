@@ -1,4 +1,6 @@
 ---
+import { getImage } from "astro:assets";
+import portrait from "~/assets/kristof.jpeg";
 import { SITE_DESCRIPTION, SITE_NAME } from "~/constants";
 import { createStructuredData, serializeStructuredData, type PageStructuredData } from "~/utils/structured-data";
 import { openGraphImagePath } from "~/utils/open-graph";
@@ -14,7 +16,9 @@ const pageTitle = title ? `${SITE_NAME} → ${title}` : SITE_NAME;
 const pageDescription = description || SITE_DESCRIPTION;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const jsonLd = structuredData && createStructuredData(Astro.site!, canonicalUrl, pageTitle, pageDescription, structuredData);
+const optimizedPortrait = await getImage({ src: portrait, width: 800, height: 800, format: "webp", quality: 85 });
+const portraitUrl = new URL(optimizedPortrait.src, Astro.site!);
+const jsonLd = structuredData && createStructuredData(Astro.site!, canonicalUrl, pageTitle, pageDescription, structuredData, portraitUrl);
 
 const cardUrl = new URL(openGraphImagePath(Astro.url.pathname), Astro.site);
 

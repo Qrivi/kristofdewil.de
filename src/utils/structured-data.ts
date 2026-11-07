@@ -8,7 +8,7 @@ export type PageStructuredData =
   | { type: "BlogPosting"; entry: CollectionEntry<"blog"> }
   | { type: "WebPage"; organization?: { name: string; url: string } };
 
-export function createStructuredData(site: URL, url: URL, name: string, description: string, data: PageStructuredData) {
+export function createStructuredData(site: URL, url: URL, name: string, description: string, data: PageStructuredData, portraitUrl: URL) {
   const person = { "@id": new URL("#person", site).href };
   const website = { "@id": new URL("#website", site).href };
   const page = { "@id": `${url.href}#webpage` };
@@ -22,6 +22,7 @@ export function createStructuredData(site: URL, url: URL, name: string, descript
         ...person,
         "@type": "Person",
         name: SITE_NAME,
+        image: portraitUrl.href,
         url: site.href,
         jobTitle: SITE_TITLE,
         mainEntityOfPage: { "@id": new URL("#webpage", site).href },
@@ -44,7 +45,7 @@ export function createStructuredData(site: URL, url: URL, name: string, descript
         inLanguage: "en",
         isPartOf: website,
         about: person,
-        ...(data.type === "ProfilePage" && { mainEntity: person }),
+        ...(data.type === "ProfilePage" && { mainEntity: person, primaryImageOfPage: portraitUrl.href }),
         ...(data.type === "CollectionPage" && { mainEntity: list }),
         ...(data.type === "BlogPosting" && { mainEntity: article }),
         ...(data.type === "WebPage" &&
